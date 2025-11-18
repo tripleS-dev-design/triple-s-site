@@ -322,72 +322,190 @@
     .hero-kpi strong {
       color: #ffcf66;
     }
-    .hero-visual {
+        .hero-visual {
       display: flex;
       justify-content: center;
     }
-    .hero-orbit {
+
+    /* ===== GLOBE 3D TRIPLE S ===== */
+    .hero-globe {
       position: relative;
-      width: min(360px, 80vw);
+      width: min(380px, 80vw);
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 0, #ffcf66, #ff8a1f 55%, #24110a 100%);
-      box-shadow: 0 0 80px rgba(255,138,31,0.7);
-      padding: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
+      filter: drop-shadow(0 0 70px rgba(255, 138, 31, 0.7));
+    }
+
+    .globe-shadow {
+      position: absolute;
+      inset: 10%;
+      border-radius: 50%;
+      box-shadow: 0 0 140px rgba(255, 138, 31, 0.85);
+      z-index: -1;
+    }
+
+    .globe-planet {
+      position: relative;
+      width: 68%;
+      height: 68%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 0, #fff7d6 0, #ffcf66 26%, #ff8a1f 52%, #3a1404 100%);
+      box-shadow:
+        0 0 40px rgba(255, 138, 31, 0.9),
+        0 0 80px rgba(0, 0, 0, 0.9) inset;
+      border: 1px solid rgba(255, 255, 255, 0.4);
       overflow: hidden;
     }
-    .hero-orbit::before {
+
+    /* lignes / longitudes qui tournent */
+    .globe-planet::before {
       content: "";
       position: absolute;
-      inset: -40%;
-      background-image:
-        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.45) 0, transparent 55%),
-        radial-gradient(circle at 80% 80%, rgba(0,0,0,0.55) 0, transparent 55%);
-      opacity: 0.75;
-      mix-blend-mode: multiply;
+      inset: -25%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 60%),
+        repeating-radial-gradient(circle at 50% 50%,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0.18) 1px,
+          transparent 1px,
+          transparent 4px);
+      mix-blend-mode: screen;
+      opacity: 0.35;
+      animation: globe-spin 55s linear infinite;
     }
-    .hero-card-inner {
+
+    .globe-planet::after {
+      content: "";
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8) inset,
+        0 0 20px rgba(0, 0, 0, 0.6);
+      mix-blend-mode: multiply;
+      opacity: 0.9;
+    }
+
+    .globe-inner {
       position: relative;
       z-index: 1;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.35);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 26px;
       text-align: center;
-      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.1), transparent 55%);
-      font-size: 13px;
-      line-height: 1.6;
+      padding: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #fff7e0;
     }
-    .hero-floating-tag {
-      position: absolute;
-      top: 18px;
-      right: -34px;
-      transform: rotate(-8deg);
-      background: #111;
-      border-radius: var(--radius-pill);
-      padding: 8px 16px;
+
+    .globe-chip {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.45);
+      margin-bottom: 6px;
+    }
+
+    .globe-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      margin-bottom: 4px;
+    }
+
+    .globe-sub {
       font-size: 11px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255,255,255,0.16);
+      opacity: 0.95;
     }
-    .hero-pill {
+
+    /* Orbites autour de la planète */
+    .globe-orbit {
       position: absolute;
-      bottom: 16px;
+      inset: 4%;
+      border-radius: 50%;
+      animation: orbit-rotate 38s linear infinite;
+      pointer-events: none;
+    }
+
+    .globe-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 18px rgba(255, 138, 31, 0.35);
+    }
+
+    .orbit-1 { animation-duration: 32s; }
+    .orbit-2 { animation-duration: 40s; animation-direction: reverse; inset: 0; }
+    .orbit-3 { animation-duration: 46s; inset: 8%; }
+    .orbit-4 { animation-duration: 55s; animation-direction: reverse; inset: 12%; }
+
+    .orbit-node {
+      position: absolute;
+      top: 0;
       left: 50%;
-      transform: translateX(-50%);
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      background: rgba(0,0,0,0.65);
-      border: 1px solid rgba(255,255,255,0.16);
-      font-size: 11px;
+      transform: translate(-50%, -50%);
     }
+
+    .orbit-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(5, 6, 8, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 11px;
+      white-space: nowrap;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.7);
+      color: #f9f9f9;
+    }
+
+    .globe-tag {
+      position: absolute;
+      top: 16%;
+      right: -8%;
+      transform: rotate(-9deg);
+      background: #050608;
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.85);
+      max-width: 180px;
+      text-align: center;
+    }
+
+    @keyframes orbit-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes globe-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 720px) {
+      .hero-globe {
+        margin-top: 20px;
+      }
+      .globe-tag {
+        right: -2%;
+        top: 6%;
+      }
+    }
+
 
     /* === Sections === */
     section {
@@ -1000,23 +1118,54 @@
               <strong>50+ boutiques</strong> déjà optimisées avec nos blocs et apps (bars, popups, compteurs, formulaires COD…)
             </div>
           </div>
+<div class="hero-visual">
+  <div class="hero-globe">
+    <div class="globe-shadow"></div>
 
-          <div class="hero-visual">
-            <div class="hero-orbit">
-              <div class="hero-card-inner">
-                <span>
-                  Aperçu en temps réel de vos blocs Shopify :<br/>
-                  <strong>Triple Announcement Bar</strong>, popups, compteurs et bouton WhatsApp sticky.<br/>
-                  Tout depuis le Theme Editor, sans code.
-                </span>
-              </div>
-              <div class="hero-floating-tag">
-                <span style="font-size:11px;">Clique → ton agent IA répond en live</span>
-              </div>
-              <div class="hero-pill">
-                Studio Shopify & IA — TRIPLE S
-              </div>
-            </div>
+    <!-- Planète / Terre 3D -->
+    <div class="globe-planet">
+      <div class="globe-inner">
+        <div class="globe-chip">Studio Shopify &amp; IA</div>
+        <div class="globe-title">TRIPLE&nbsp;S</div>
+        <div class="globe-sub">
+          Bars d’annonce, popups, compteurs,<br/>
+          formulaires COD &amp; automatisations.
+        </div>
+      </div>
+    </div>
+
+    <!-- Orbites avec les apps / services -->
+    <div class="globe-orbit orbit-1">
+      <div class="orbit-node">
+        <div class="orbit-pill">Thèmes Shopify</div>
+      </div>
+    </div>
+
+    <div class="globe-orbit orbit-2">
+      <div class="orbit-node">
+        <div class="orbit-pill">Blocks: Bar &amp; Popups</div>
+      </div>
+    </div>
+
+    <div class="globe-orbit orbit-3">
+      <div class="orbit-node">
+        <div class="orbit-pill">Tripleform COD</div>
+      </div>
+    </div>
+
+    <div class="globe-orbit orbit-4">
+      <div class="orbit-node">
+        <div class="orbit-pill">Automations IA</div>
+      </div>
+    </div>
+
+    <!-- Petit tag style Voksica -->
+    <div class="globe-tag">
+      Clique → ton agent IA te répond
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
       </section>
