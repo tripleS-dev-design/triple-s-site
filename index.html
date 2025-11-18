@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRIPLE S — Thèmes & Apps Shopify</title>
-  <meta name="description" content="TRIPLE S — Création d’apps Shopify, sections premium, thèmes personnalisés et automatisations intelligentes pour votre boutique (COD, popups, barres d’annonce, compteurs, WhatsApp & Google Sheets).">
+  <title>TRIPLE S — AI & Shopify Studio</title>
+  <meta name="description" content="TRIPLE S — Création d’apps Shopify, sections premium, thèmes personnalisés et automatisations intelligentes pour votre boutique.">
   <link rel="icon" href="assets/logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #050608;
@@ -29,10 +30,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
-      height: 100%;
-    }
-
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background:
@@ -44,8 +41,6 @@
     }
 
     a { color: inherit; text-decoration: none; }
-
-    .muted { color: var(--muted); }
 
     .page {
       min-height: 100vh;
@@ -66,13 +61,13 @@
       padding: 0 var(--sidepad);
     }
 
-    /* === Navbar === */
+    /* === NAVBAR === */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(5,6,8,0.96), rgba(5,6,8,0.9));
+      background: linear-gradient(to bottom, rgba(5,6,8,0.98), rgba(5,6,8,0.9));
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
@@ -80,7 +75,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px var(--sidepad);
+      padding: 12px var(--sidepad);
       max-width: var(--maxw);
       margin: 0 auto;
       gap: 20px;
@@ -118,9 +113,9 @@
       display: flex;
       align-items: center;
       gap: 22px;
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
     }
 
     .nav-links a {
@@ -153,7 +148,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 22px;
+      padding: 8px 18px;
       border-radius: var(--radius-sm);
       background: linear-gradient(135deg, #ff8a1f, #ffcf66);
       color: #111;
@@ -191,71 +186,65 @@
       background: #fff;
     }
 
-    /* Announcement bar */
+    /* === ANNOUNCEMENT BAR (promo lancement) === */
     .annc {
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: radial-gradient(circle at 0 0, rgba(255,138,31,0.32), transparent 60%),
+                  linear-gradient(90deg,#050608,#101018);
     }
 
     .annc-inner {
-      position: relative;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 8px var(--sidepad);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      padding: 10px var(--sidepad);
       font-size: 13px;
-      background:
-        radial-gradient(1200px 200px at 20% -80%, rgba(255,138,31,0.2), transparent 55%),
-        linear-gradient(90deg,#111,#2c2c2c);
-      color:#fff;
-      box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.08),
-        0 6px 22px rgba(0,0,0,.5);
+      color: var(--text);
     }
 
-    .annc-inner strong {
+    .annc-inner b {
       color: #ffcf66;
     }
 
     .annc .close {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,.12);
+      background: rgba(0,0,0,0.65);
       color: #fff;
-      border: none;
-      width: 28px;
-      height: 28px;
+      border: 1px solid rgba(255,255,255,0.18);
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       cursor: pointer;
-      font-weight: 800;
-    }
-
-    .annc .close:hover {
-      background: rgba(255,255,255,.22);
-    }
-
-    /* Buttons */
-    .btn {
+      font-weight: 700;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 10px 18px;
+      font-size: 14px;
+    }
+
+    .annc .close:hover {
+      background: rgba(0,0,0,0.9);
+    }
+
+    /* === BUTTONS === */
+    .btn-primary,
+    .btn-ghost,
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
       border-radius: var(--radius-sm);
       border: 1px solid transparent;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition);
       text-decoration: none;
-      transition:
-        background var(--transition),
-        color var(--transition),
-        transform var(--transition),
-        box-shadow var(--transition),
-        border-color var(--transition);
     }
 
     .btn-primary {
@@ -283,17 +272,19 @@
 
     .btn-whatsapp {
       background: var(--whats);
-      color: #fff;
-      border-color: var(--whats);
+      color: #0b0d11;
+      border-color: #1da955;
+      box-shadow: 0 0 22px rgba(37,211,102,0.4);
     }
 
     .btn-whatsapp:hover {
-      filter: brightness(0.94);
+      filter: brightness(0.95);
+      box-shadow: 0 0 26px rgba(37,211,102,0.5);
     }
 
-    /* === Hero === */
+    /* === HERO === */
     .hero {
-      padding: 70px var(--sidepad) 90px;
+      padding: 60px var(--sidepad) 80px;
     }
 
     .hero-inner {
@@ -309,7 +300,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.14);
       background: radial-gradient(circle at 0 0, rgba(255,138,31,0.4), transparent 65%);
@@ -317,7 +308,7 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .eyebrow-dot {
@@ -326,6 +317,44 @@
       border-radius: 999px;
       background: #ff8a1f;
       box-shadow: 0 0 10px rgba(255,138,31,0.7);
+    }
+
+    /* LIVE STRIP dynamique */
+    .live-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(120deg,
+        rgba(255,138,31,0.24),
+        rgba(5,6,8,0.95),
+        rgba(255,138,31,0.24));
+      background-size: 220% 220%;
+      animation: liveGradient 7s ease-in-out infinite;
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #ff4d4f;
+      box-shadow: 0 0 10px rgba(255,77,79,0.9);
+      animation: pulse 1.3s infinite;
+    }
+
+    .live-label {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .live-text {
+      color: var(--muted);
+      white-space: nowrap;
     }
 
     .hero-title {
@@ -340,18 +369,18 @@
     }
 
     .hero-subtitle {
-      max-width: 520px;
+      max-width: 480px;
       font-size: 14px;
       line-height: 1.6;
       color: var(--muted);
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     .badge {
@@ -368,12 +397,12 @@
       flex-wrap: wrap;
       gap: 14px;
       align-items: center;
+      margin-bottom: 8px;
     }
 
     .hero-kpi {
       font-size: 11px;
       color: var(--muted);
-      margin-top: 8px;
     }
 
     .hero-kpi strong {
@@ -397,6 +426,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      animation: float 6s ease-in-out infinite;
     }
 
     .hero-orbit::before {
@@ -420,9 +450,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.1), transparent 55%);
       text-align: center;
-      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.12), transparent 55%);
+      padding: 18px;
       font-size: 13px;
       line-height: 1.6;
     }
@@ -452,7 +482,28 @@
       font-size: 11px;
     }
 
-    /* === Sections === */
+    /* === SECTION BANNERS (séparateurs orange/noir) === */
+    .section-banner {
+      margin: 0 auto 32px;
+      padding: 9px var(--sidepad);
+      max-width: var(--maxw);
+      text-align: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffcf66;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: linear-gradient(120deg,
+        rgba(255,138,31,0.25),
+        rgba(5,6,8,0.98),
+        rgba(255,138,31,0.25));
+      background-size: 220% 220%;
+      box-shadow: 0 0 26px rgba(0,0,0,0.7);
+      animation: bannerGlow 10s linear infinite;
+    }
+
+    /* === GENERIC SECTIONS === */
     section {
       padding: 40px var(--sidepad) 64px;
     }
@@ -487,24 +538,14 @@
       margin-bottom: 26px;
     }
 
-    .section-banner {
-      margin: 0 var(--sidepad);
-      margin-top: 8px;
-      padding: 14px 20px;
-      border-radius: 16px;
-      color:#fff;
-      text-align:center;
-      font-weight:800;
-      font-size: 14px;
-      background:linear-gradient(90deg,#2a2a2a,#3b3b3b 45%,#2a2a2a);
-      box-shadow:0 10px 24px rgba(0,0,0,.4) inset, 0 2px 0 rgba(255,255,255,.06) inset;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:22px;
+    /* GRID HELPERS */
+    .themes-grid,
+    .apps-grid,
+    .info-grid,
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .grid-2 {
@@ -514,6 +555,7 @@
       align-items: flex-start;
     }
 
+    /* CARDS */
     .card {
       background: radial-gradient(circle at 0 0, rgba(255,138,31,0.09), transparent 55%), var(--card);
       border-radius: var(--radius-lg);
@@ -549,6 +591,119 @@
       line-height: 1.6;
     }
 
+    /* THEME CARDS */
+    .theme-item {
+      all: unset;
+      display: block;
+      cursor: pointer;
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .theme-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 32px rgba(0,0,0,0.8);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .theme-item img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .theme-meta {
+      padding: 14px 16px 16px;
+    }
+
+    .theme-meta h4 {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .theme-meta p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* APPS CARDS */
+    .app-item {
+      all: unset;
+      display: block;
+      cursor: pointer;
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 20px 20px 18px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .app-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 32px rgba(0,0,0,0.8);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .app-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .app-item h3 {
+      font-size: 15px;
+    }
+
+    .app-badge {
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--muted);
+      background: rgba(5,6,8,0.9);
+    }
+
+    .app-badge.live {
+      background: #12b76a;
+      color: #fff;
+      border-color: #0f9f5b;
+    }
+
+    .app-item p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .app-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .app-ctas a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+      color: #ffcf66;
+    }
+
+    .app-ctas a:hover {
+      color: #fff;
+    }
+
+    /* FEATURES GRID (services) */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
@@ -565,154 +720,7 @@
       margin-bottom: 10px;
     }
 
-    /* Thèmes & Apps */
-    .theme-item {
-      all: unset;
-      display: block;
-      cursor: pointer;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--card);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .theme-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 34px rgba(0,0,0,0.9);
-      border-color: rgba(255,255,255,0.16);
-    }
-
-    .theme-item img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: block;
-    }
-
-    .theme-meta {
-      padding: 12px 16px 16px;
-    }
-
-    .theme-meta h4 {
-      margin: 0 0 6px;
-      font-weight: 800;
-      font-size: 15px;
-    }
-
-    .theme-meta p {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .app-item {
-      all: unset;
-      display:block;
-      cursor:pointer;
-      background: var(--card);
-      border:1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding:22px;
-      box-shadow:var(--shadow-soft);
-      transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-
-    .app-item:hover {
-      transform:translateY(-4px);
-      box-shadow:0 0 34px rgba(0,0,0,0.9);
-      border-color: rgba(255,255,255,0.16);
-    }
-
-    .app-item h3 {
-      margin-bottom:6px;
-      font-weight:800;
-      font-size:16px;
-    }
-
-    .app-item p {
-      color:var(--muted);
-      margin:10px 0 12px;
-      font-size:13px;
-    }
-
-    .app-header-row {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-
-    .app-badge {
-      display:inline-block;
-      padding:4px 10px;
-      border-radius:999px;
-      font-size:11px;
-      font-weight:800;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,0.02);
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:0.12em;
-    }
-
-    .app-badge.live {
-      background:#12b76a;
-      color:#fff;
-      border-color:#12b76a;
-    }
-
-    /* Video previews */
-    .video-row {
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-    }
-
-    .video-card {
-      position:relative;
-      border:1px solid var(--border);
-      border-radius:16px;
-      overflow:hidden;
-      background:#000;
-      aspect-ratio:16/9;
-      display:block;
-      text-decoration:none;
-    }
-
-    .video-card .thumb {
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .play-btn {
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      width:72px;
-      height:72px;
-      border-radius:999px;
-      border:0;
-      cursor:pointer;
-      background:rgba(0,0,0,.7);
-      color:#fff;
-      font-size:28px;
-      font-weight:800;
-      display:grid;
-      place-items:center;
-      pointer-events:none;
-    }
-
-    .video-card:hover .play-btn {
-      background:rgba(0,0,0,.82);
-    }
-
-    /* Process */
+    /* PROCESS */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0,1fr));
@@ -745,7 +753,7 @@
       line-height: 1.6;
     }
 
-    /* Stats / Testimonials */
+    /* STATS / TESTIMONIALS */
     .stats-testimonials {
       display: grid;
       grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr);
@@ -812,7 +820,7 @@
 
     .testimonial-heading {
       font-size: 20px;
-      margin-bottom: 12px;
+      margin-bottom: 18px;
     }
 
     .testimonial-text {
@@ -832,174 +840,41 @@
       color: var(--muted);
     }
 
-    /* Forms */
+    /* FORMS */
     form {
-      display:grid;
-      gap:10px;
+      display: grid;
+      gap: 10px;
     }
 
     input,
     textarea,
     select {
-      width:100%;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:#05060a;
-      color:var(--text);
-      font:inherit;
+      width: 100%;
+      padding: 11px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8,9,14,0.96);
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
     }
 
     textarea {
-      min-height:120px;
-      resize:vertical;
+      min-height: 120px;
+      resize: vertical;
     }
 
     input::placeholder,
     textarea::placeholder {
-      color: rgba(255,255,255,0.32);
+      color: #6b6b6b;
     }
 
-    /* Modal + Slider */
-    .modal {
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.6);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      z-index:50;
-    }
-
-    .modal.open {
-      display:flex;
-    }
-
-    .modal-card {
-      width:min(1400px,96vw);
-      background:#050608;
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      box-shadow:0 20px 60px rgba(0,0,0,.9);
-      max-height:92vh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .modal-head {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 18px;
-      border-bottom:1px solid var(--border);
-      background:#050608;
-    }
-
-    .modal-body {
-      padding:18px;
-      overflow:auto;
-      background:#050608;
-    }
-
-    .close {
-      appearance:none;
-      border:none;
-      background:#1b1d23;
-      color:#f5f5f5;
-      border-radius:10px;
-      padding:6px 10px;
-      font-weight:800;
-      cursor:pointer;
-      font-size:12px;
-    }
-
-    .detail-grid {
-      display:grid;
-      grid-template-columns:1fr 1.1fr;
-      gap:18px;
-      align-items:start;
-    }
-
-    .slider {
-      position:relative;
-      border:1px solid var(--border);
-      border-radius:12px;
-      overflow:hidden;
-      background:#000;
-    }
-
-    .slides {
-      display:flex;
-      transition:transform .4s ease;
-      will-change:transform;
-    }
-
-    .slide {
-      min-width:100%;
-    }
-
-    .slide img {
-      width:100%;
-      height:auto;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      display:block;
-    }
-
-    .slider-btn {
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      background:rgba(0,0,0,.6);
-      color:#fff;
-      border:none;
-      width:38px;
-      height:38px;
-      border-radius:999px;
-      cursor:pointer;
-      display:grid;
-      place-items:center;
-      font-weight:800;
-    }
-
-    .slider-btn:hover {
-      background:rgba(0,0,0,.8);
-    }
-
-    .slider-btn.prev { left:10px; }
-    .slider-btn.next { right:10px; }
-
-    .dots {
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:10px;
-      display:flex;
-      gap:6px;
-      justify-content:center;
-    }
-
-    .dot {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.6);
-      border:1px solid rgba(0,0,0,.15);
-      cursor:pointer;
-    }
-
-    .dot.active {
-      background:#fff;
-    }
-
-    /* Footer */
+    /* FOOTER */
     footer {
       border-top: 1px solid rgba(255,255,255,0.08);
       background: radial-gradient(circle at 0 0, rgba(255,138,31,0.2), transparent 55%), #050608;
       padding: 32px var(--sidepad) 24px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .footer-inner {
@@ -1041,7 +916,7 @@
 
     .footer-bottom {
       max-width: var(--maxw);
-      margin: 20px auto 0;
+      margin: 18px auto 0;
       font-size: 11px;
       color: #696969;
       display: flex;
@@ -1050,54 +925,240 @@
       gap: 10px;
     }
 
-    /* === Responsive === */
-    @media (max-width: 980px) {
+    /* MODAL / SLIDER */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 50;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(1200px, 96vw);
+      max-height: 92vh;
+      background: #050608;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 20px 60px rgba(0,0,0,.7);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      background: radial-gradient(circle at 0 0, rgba(255,138,31,0.25), transparent 70%);
+    }
+
+    .modal-body {
+      padding: 18px;
+      overflow: auto;
+    }
+
+    .close {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .close:hover {
+      background: rgba(0,0,0,0.9);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .slider {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform .4s ease;
+      will-change: transform;
+    }
+
+    .slide {
+      min-width: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,.7);
+      color: #fff;
+      border: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .slider-btn:hover {
+      background: rgba(0,0,0,.9);
+    }
+
+    .slider-btn.prev { left: 10px; }
+    .slider-btn.next { right: 10px; }
+
+    .dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.5);
+      border: 1px solid rgba(0,0,0,.4);
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: #fff;
+    }
+
+    .detail-actions {
+      margin-top: 14px;
+    }
+
+    .detail-actions .btn-primary,
+    .detail-actions .btn-ghost,
+    .detail-actions .btn-whatsapp {
+      font-size: 13px;
+      padding-inline: 16px;
+      padding-block: 8px;
+    }
+
+    /* KEYFRAMES */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes liveGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes bannerGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
       .hero-inner {
         grid-template-columns: 1fr;
       }
+
       .hero {
-        padding-top: 50px;
+        padding-top: 40px;
       }
+
       .grid-2 {
         grid-template-columns: 1fr;
       }
+
       .process-grid {
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
+
       .stats-testimonials {
         grid-template-columns: 1fr;
       }
+
       .footer-inner {
         grid-template-columns: 1fr 1fr;
       }
-      .video-row {
+
+      .detail-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 720px) {
-      .navbar-inner {
-        padding-inline: var(--sidepad);
-      }
-      .nav-links, .nav-cta {
+      .nav-links,
+      .nav-cta {
         display: none;
       }
+
       .nav-burger {
         display: inline-flex;
       }
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
+
       .hero-actions {
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .live-text {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="page">
-    <!-- NAVBAR + ANNOUNCEMENT -->
+    <!-- NAVBAR -->
     <header class="navbar">
       <div class="navbar-inner">
         <a href="#top" class="logo">
@@ -1107,30 +1168,35 @@
             <div class="logo-text-sub">Shopify Apps & Sections</div>
           </div>
         </a>
+
         <nav class="nav-links">
           <a href="#themes">Thèmes</a>
-          <a href="#apps">Apps</a>
+          <a href="#apps">Applications</a>
           <a href="#services">Services</a>
           <a href="#process">Process</a>
           <a href="#portfolio">Portfolio</a>
+          <a href="#reviews">Avis</a>
+          <a href="#custom">Demande perso</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button class="nav-cta" type="button" onclick="document.getElementById('custom').scrollIntoView({behavior:'smooth'})">
-          Parler de votre projet
-        </button>
+
+        <a class="nav-cta" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Parler sur WhatsApp</a>
+
         <button class="nav-burger" aria-label="Menu">
           <span></span><span></span>
         </button>
       </div>
-      <div class="annc" id="annc">
-        <div class="annc-inner">
-          <span><strong>Promo lancement</strong> : installation & premières personnalisations offertes.</span>
-          <a class="btn btn-ghost" href="#themes">Voir les thèmes</a>
-          <a class="btn btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Parler sur WhatsApp</a>
-          <button class="close" id="anncClose" aria-label="Fermer">×</button>
-        </div>
-      </div>
     </header>
+
+    <!-- ANNOUNCEMENT BAR PROMO -->
+    <div class="annc" id="annc">
+      <div class="annc-inner">
+        <span><b>Promo lancement</b> : installation & premières personnalisations offertes.</span>
+        <a class="btn-ghost" href="#themes">Voir les thèmes</a>
+        <a class="btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Parler sur WhatsApp</a>
+        <button class="close" id="anncClose" aria-label="Fermer">×</button>
+      </div>
+    </div>
 
     <main id="top">
       <!-- HERO -->
@@ -1141,62 +1207,72 @@
               <span class="eyebrow-dot"></span>
               <span>AI & SHOPIFY FUTURE</span>
             </div>
+
+            <div class="live-strip">
+              <span class="live-dot"></span>
+              <span class="live-label">LIVE DEMO</span>
+              <span class="live-text">Thèmes & Apps TRIPLE S en mouvement sur Shopify</span>
+            </div>
+
             <h1 class="hero-title">
-              Thèmes Shopify modernes & apps<br/>
-              <span>automatisées pour votre boutique</span>
+              Automatisations intelligentes<br/>
+              <span>pour votre boutique Shopify</span>
             </h1>
+
             <p class="hero-subtitle">
-              TRIPLE S conçoit des thèmes, sections et applications Shopify pensés pour
-              les conversions&nbsp;: formulaires COD, popups, barres d’annonce, compteurs
-              et intégrations WhatsApp &amp; Google Sheets. Tout est géré dans le Theme Editor,
-              sans code compliqué.
+              TRIPLE S conçoit des apps, sections et thèmes Shopify pensés pour
+              les conversions : formulaires COD, popups, compteurs, bars d’annonce
+              et automatisations pilotées par l’IA.
             </p>
+
             <div class="hero-badges">
               <div class="badge">Apps & sections Shopify</div>
-              <div class="badge">Formulaires COD & popups</div>
-              <div class="badge">Automatisations intelligentes</div>
+              <div class="badge">Automatisation IA</div>
+              <div class="badge">Design premium</div>
             </div>
+
             <div class="hero-actions">
-              <a href="#themes" class="btn btn-primary">Voir les thèmes</a>
-              <a href="#apps" class="btn btn-ghost">Voir les apps</a>
+              <a href="#apps" class="btn-primary">Découvrir les applications</a>
+              <a href="https://apps.shopify.com/announcement-bar-app-1?locale=fr" target="_blank" rel="noopener" class="btn-ghost">
+                Voir sur Shopify App Store
+              </a>
             </div>
+
             <div class="hero-kpi">
-              <strong>30+ boutiques</strong> accompagnées sur Shopify (thèmes, apps & blocs).
+              <strong>+50 boutiques</strong> déjà optimisées avec nos blocs & apps.
             </div>
           </div>
+
           <div class="hero-visual">
             <div class="hero-orbit">
               <div class="hero-card-inner">
                 <span>
-                  Aperçu en temps réel de vos blocs Shopify<br/>
-                  (<strong>Triple Announcement Bar</strong>, popups, compteurs, bouton WhatsApp…)
+                  Aperçu en temps réel<br/>
+                  de vos blocs Shopify<br/>
+                  (<strong>Triple Announcement Bar</strong>, popups, compteurs…)
                 </span>
               </div>
               <div class="hero-floating-tag">
-                <span style="font-size:11px;">Design inspiré IA / néon, adapté pour TRIPLE S</span>
+                <span style="font-size:11px;">Click = parler avec nous sur WhatsApp</span>
               </div>
               <div class="hero-pill">
-                Création par TRIPLE S — Studio Shopify & IA
+                Développé par TRIPLE S — Studio Shopify & IA
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- THÈMES -->
+      <!-- THEMES -->
       <div class="section-banner">“Thèmes — Exemples”</div>
       <section id="themes">
         <div class="section-inner">
-          <div class="grid">
+          <div class="themes-grid">
             <button class="theme-item" data-theme="theme1" type="button">
               <img src="assets/themes/theme1.png" alt="Thème 1 — couverture" />
               <div class="theme-meta">
                 <h4>Thème 1 — Minimal Clean</h4>
-                <p class="muted">
-                  Design minimaliste et très lisible. Accent sur la clarté des sections,
-                  typographies équilibrées, rendu mobile impeccable. Idéal pour cosmétiques,
-                  accessoires et marques qui veulent une vitrine épurée.
-                </p>
+                <p>Design minimaliste et très lisible. Sections claires, typographies équilibrées, rendu mobile impeccable. Idéal pour cosmétiques, accessoires et marques qui veulent une vitrine épurée avec mise en avant de collections.</p>
               </div>
             </button>
 
@@ -1204,11 +1280,7 @@
               <img src="assets/themes/theme2.png" alt="Thème 2 — couverture" />
               <div class="theme-meta">
                 <h4>Thème 2 — Glow Premium</h4>
-                <p class="muted">
-                  Effets lumineux fins (glow), visuels immersifs et CTA mis en valeur.
-                  Parfait pour collections limitées, drops & offres saisonnières.
-                  Animation légère, temps de chargement optimisé, sections “héro” impactantes.
-                </p>
+                <p>Effets lumineux fins (glow), visuels immersifs et CTA mis en valeur. Parfait pour collections limitées, drops & offres saisonnières. Animation légère, temps de chargement optimisé, sections “héro” impactantes.</p>
               </div>
             </button>
 
@@ -1216,111 +1288,95 @@
               <img src="assets/themes/theme3.png" alt="Thème 3 — couverture" />
               <div class="theme-meta">
                 <h4>Thème 3 — Editorial</h4>
-                <p class="muted">
-                  Style magazine / storytelling produit&nbsp;: grands visuels, blocs éditoriaux,
-                  focus sur l’histoire de la marque. Excellent pour mode, chaussures
-                  et marques lifestyle.
-                </p>
+                <p>Style magazine / storytelling produit : grands visuels, blocs éditoriaux, focus sur l’histoire de la marque et la mise en scène du look & feel. Excellent pour mode, chaussures et marques lifestyle.</p>
               </div>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- VIDÉOS -->
-      <div class="section-banner" id="videos">“Vidéos de démonstration (aperçus)”</div>
-      <section>
-        <div class="section-inner">
-          <div class="video-row">
-            <a class="video-card" href="https://www.youtube.com/watch?v=i8R6X0FuEtE" target="_blank" rel="noopener">
-              <img class="thumb" src="https://i.ytimg.com/vi/i8R6X0FuEtE/hqdefault.jpg" alt="Vidéo 1 aperçu">
-              <span class="play-btn">▶</span>
-            </a>
-            <a class="video-card" href="https://youtu.be/zIPN2DEEGp0go" target="_blank" rel="noopener">
-              <img class="thumb" src="https://i.ytimg.com/vi/zIPN2EGp0go/hqdefault.jpg" alt="Vidéo 2 aperçu">
-              <span class="play-btn">▶</span>
-            </a>
-            <a class="video-card" href="https://youtu.be/UJzd4Re21e0" target="_blank" rel="noopener">
-              <img class="thumb" src="https://i.ytimg.com/vi/UJzd4Re21e0/hqdefault.jpg" alt="Vidéo 3 aperçu">
-              <span class="play-btn">▶</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- APPS -->
+      <!-- APPLICATIONS -->
       <div class="section-banner">“Applications — Aperçu”</div>
       <section id="apps">
         <div class="section-inner">
-          <div class="grid">
-            <!-- App 1 (live) -->
+          <div class="apps-grid">
+            <!-- App 1 (Live) -->
             <button class="app-item" type="button" data-app="app1" aria-label="Ouvrir Blocks: Bar, WhatsApp & More">
-              <div class="app-header-row">
-                <h3>Blocks: Bar, WhatsApp &amp; More</h3>
+              <div class="app-item-header">
+                <h3>Blocks: Bar, WhatsApp & More</h3>
                 <span class="app-badge live">Live</span>
               </div>
               <p>
-                Ajoutez des barres d’annonce premium (promo, livraison, info), des popups ciblés,
-                un compte à rebours dynamique et un bouton WhatsApp sticky. Installation simple,
-                100&nbsp;% Theme Editor.
+                Barres d’annonce premium (promo, livraison, info), popups ciblés, compte à rebours dynamique
+                et bouton WhatsApp sticky. Installation simple, compatible Theme Editor.
               </p>
-              <span class="btn btn-primary">Voir la démo</span>
+              <div class="app-ctas">
+                <a href="https://apps.shopify.com/announcement-bar-app-1?locale=fr" target="_blank" rel="noopener">Voir sur Shopify App Store</a>
+                <a href="https://www.youtube.com/watch?v=i8R6X0FuEtE&t=36s" target="_blank" rel="noopener">Voir la démo vidéo</a>
+              </div>
             </button>
 
             <!-- App 2 -->
             <button class="app-item" type="button" data-app="app2" aria-label="Ouvrir Triple-Luxe-Sections (bientôt)">
-              <div class="app-header-row">
+              <div class="app-item-header">
                 <h3>Triple-Luxe-Sections</h3>
                 <span class="app-badge">Bientôt</span>
               </div>
               <p>
-                Pack de sections haut de gamme prêtes à l’emploi : bannières animées, galeries,
-                blocs USP, grilles produits élégantes, et plus. Idéal pour vendre des sections
-                individuelles ou un pack complet.
+                Pack de sections haut de gamme prêtes à l’emploi : bannières animées, galeries, blocs USP,
+                grilles produits élégantes, et plus encore.
               </p>
-              <span class="btn btn-ghost">Aperçu bientôt</span>
+              <div class="app-ctas">
+                <span>Préparation de la fiche App Store.</span>
+              </div>
             </button>
 
             <!-- App 3 -->
             <button class="app-item" type="button" data-app="app3" aria-label="Ouvrir AfterFollow Emails (bientôt)">
-              <div class="app-header-row">
+              <div class="app-item-header">
                 <h3>AfterFollow Emails</h3>
                 <span class="app-badge">Bientôt</span>
               </div>
               <p>
-                Automatisations post-achat (merci, relances, cross-sell) en quelques minutes.
-                Modèles propres, scénarios simples et statistiques claires pour suivre vos retours.
+                Automatisations post-achat (emails merci, relances, cross-sell) en quelques minutes.
+                Modèles propres et statistiques claires.
               </p>
-              <span class="btn btn-ghost">Aperçu bientôt</span>
+              <div class="app-ctas">
+                <span>Prototype interne en cours.</span>
+              </div>
             </button>
 
             <!-- App 4 -->
             <button class="app-item" type="button" data-app="app4" aria-label="Ouvrir Tripleform-COD (bientôt)">
-              <div class="app-header-row">
+              <div class="app-item-header">
                 <h3>Tripleform-COD</h3>
                 <span class="app-badge">Bientôt</span>
               </div>
               <p>
-                Formulaire COD 1 étape, synchronisation WhatsApp &amp; Google Sheets, options
-                anti-bot, upsell léger et suivi des conversions. Pensé pour les boutiques COD.
+                Formulaire COD 1 étape, synchronisation WhatsApp & Google Sheets, options anti-bot,
+                upsell léger, suivi des conversions.
               </p>
-              <span class="btn btn-ghost">Aperçu bientôt</span>
+              <div class="app-ctas">
+                <span>En développement.</span>
+              </div>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- SERVICES / À PROPOS -->
+      <!-- SERVICES / ABOUT -->
+      <div class="section-banner">“Studio Shopify & Automations”</div>
       <section id="services">
         <div class="section-inner grid-2">
           <div>
             <div class="section-eyebrow">À propos</div>
-            <h2 class="section-title">Studio <span>Shopify &amp; Automations</span></h2>
+            <h2 class="section-title">Studio <span>Shopify & Automations</span></h2>
             <p class="section-description">
               Nous créons des expériences complètes : thème, sections, formulaires COD,
-              popups, compteurs, barres d’annonce et intégrations (Google Sheets, WhatsApp,
+              popups, compteurs, bars d’annonce et intégrations (Google Sheets, WhatsApp,
               Pixels…). Chaque bloc est pensé pour être simple à configurer et performant.
             </p>
+
             <div class="card">
               <div class="card-title">Ce que nous faisons pour votre store</div>
               <p class="card-text">
@@ -1330,6 +1386,7 @@
               </p>
             </div>
           </div>
+
           <div class="features-grid">
             <div class="card">
               <div class="feature-icon"></div>
@@ -1339,14 +1396,16 @@
                 et notifications instantanées.
               </p>
             </div>
+
             <div class="card">
               <div class="feature-icon"></div>
-              <div class="card-title">Barres d’annonce & popups</div>
+              <div class="card-title">Bars d’annonce & popups</div>
               <p class="card-text">
-                Barres d’annonce dynamiques, popups lumineux, compteurs intégrés et CTA
+                Bars d’annonce dynamiques, popups lumineux, compteurs intégrés et CTA
                 WhatsApp / Messenger.
               </p>
             </div>
+
             <div class="card">
               <div class="feature-icon"></div>
               <div class="card-title">Sections & thèmes</div>
@@ -1355,6 +1414,7 @@
                 semi-sur-mesure prêts pour la vente.
               </p>
             </div>
+
             <div class="card">
               <div class="feature-icon"></div>
               <div class="card-title">Automatisations IA</div>
@@ -1368,6 +1428,7 @@
       </section>
 
       <!-- PROCESS -->
+      <div class="section-banner">“Process — Comment on travaille”</div>
       <section id="process">
         <div class="section-inner">
           <div class="section-eyebrow">Process</div>
@@ -1376,6 +1437,7 @@
             Un process simple, en 4 étapes, pour lancer votre thème, vos blocs ou votre app
             Shopify sans perdre de temps dans la technique.
           </p>
+
           <div class="process-grid">
             <div class="card">
               <div class="step-number">01</div>
@@ -1385,6 +1447,7 @@
                 que vous voulez lancer.
               </p>
             </div>
+
             <div class="card">
               <div class="step-number">02</div>
               <div class="step-title">Design & structure</div>
@@ -1393,6 +1456,7 @@
                 et organisation des blocs.
               </p>
             </div>
+
             <div class="card">
               <div class="step-number">03</div>
               <div class="step-title">Build & intégrations</div>
@@ -1401,6 +1465,7 @@
                 pixels, automatisations IA, etc.
               </p>
             </div>
+
             <div class="card">
               <div class="step-number">04</div>
               <div class="step-title">Lancement & support</div>
@@ -1414,6 +1479,7 @@
       </section>
 
       <!-- PORTFOLIO / STATS -->
+      <div class="section-banner">“Portfolio — Résultats & retour clients”</div>
       <section id="portfolio">
         <div class="section-inner stats-testimonials">
           <div class="stats-card">
@@ -1434,13 +1500,14 @@
               </div>
             </div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-eyebrow">Témoignage</div>
             <div class="testimonial-heading">“On a enfin un système clair.”</div>
             <p class="testimonial-text">
               « Avant, notre boutique COD était un mélange de scripts, d’apps
               et de hacks. Avec TRIPLE S, on a un seul app avec des blocs
-              propres : barre d’annonce, popup, formulaire COD et compteur.
+              propres : bar d’annonce, popup, formulaire COD et compteur.
               Tout est géré au même endroit. »
             </p>
             <div class="testimonial-author">Client TripleForm COD</div>
@@ -1449,85 +1516,89 @@
         </div>
       </section>
 
-      <!-- INFOS THÈMES -->
+      <!-- INFOS THEMES -->
       <div id="about-themes" class="section-banner">“Infos — Thèmes (ce que vous obtenez)”</div>
       <section>
-        <div class="section-inner">
-          <div class="grid">
-            <article class="card">
-              <h3 class="card-title">Installation guidée</h3>
-              <p class="card-text">
-                Thème prêt à activer avec guide clair : ajout des sections dans le Theme Editor,
-                structure d’accueil conseillée, réglages typographiques, variantes de bannières et blocs clés.
-              </p>
-            </article>
-            <article class="card">
-              <h3 class="card-title">Performance & SEO</h3>
-              <p class="card-text">
-                Images optimisées, lazy-loading, styles propres, balises structurées.
-                Le thème reste léger, accessible et rapide pour les Core Web Vitals.
-              </p>
-            </article>
-            <article class="card">
-              <h3 class="card-title">Support & évolutions</h3>
-              <p class="card-text">
-                Assistance WhatsApp & email. Corrections et petites améliorations au fil des retours.
-                Ajouts personnalisés possibles selon vos besoins.
-              </p>
-            </article>
-          </div>
+        <div class="section-inner info-grid">
+          <article class="card">
+            <h3>Installation guidée</h3>
+            <p class="card-text">
+              Thème prêt à activer avec guide clair : ajout des sections dans le Theme Editor,
+              structure d’accueil conseillée, réglages typographiques, variantes de bannières et blocs clés.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Performance & SEO</h3>
+            <p class="card-text">
+              Images optimisées, lazy-loading, styles propres, balises structurées.
+              Le thème reste léger, accessible et rapide pour les Core Web Vitals.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Support & évolutions</h3>
+            <p class="card-text">
+              Assistance WhatsApp & email. Corrections et petites améliorations
+              au fil des retours. Ajouts personnalisés possibles selon vos besoins.
+            </p>
+          </article>
         </div>
       </section>
 
       <!-- INFOS APPS -->
       <div id="about-apps" class="section-banner">“Infos — Applications (comment on aide)”</div>
       <section>
-        <div class="section-inner">
-          <div class="grid">
-            <article class="card">
-              <h3 class="card-title">Conversion immédiate</h3>
-              <p class="card-text">
-                Barre d’annonce pour l’urgence, popup pour la capture, compte à rebours pour la rareté,
-                bouton WhatsApp pour lever les freins. Des gains concrets sans complexité.
-              </p>
-            </article>
-            <article class="card">
-              <h3 class="card-title">Intégrations utiles</h3>
-              <p class="card-text">
-                WhatsApp, Google Sheets, pixels publicitaires : une stack simple mais puissante,
-                pour analyser et optimiser facilement.
-              </p>
-            </article>
-            <article class="card">
-              <h3 class="card-title">Roadmap transparente</h3>
-              <p class="card-text">
-                Nous priorisons les features demandées par les boutiques.
-                Donnez vos idées, nous itérons pour vous faire gagner du temps et des ventes.
-              </p>
-            </article>
-          </div>
+        <div class="section-inner info-grid">
+          <article class="card">
+            <h3>Conversion immédiate</h3>
+            <p class="card-text">
+              Barre d’annonce pour l’urgence, popup pour la capture, compte à rebours pour la rareté,
+              bouton WhatsApp pour lever les freins. Des gains concrets sans complexité.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Intégrations utiles</h3>
+            <p class="card-text">
+              WhatsApp, Google Sheets, pixels publicitaires : une stack simple mais puissante,
+              pour analyser et optimiser facilement.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Roadmap transparente</h3>
+            <p class="card-text">
+              Nous priorisons les features demandées par les boutiques. Donnez vos idées,
+              nous itérons pour vous faire gagner du temps et des ventes.
+            </p>
+          </article>
         </div>
       </section>
 
-      <!-- AVIS -->
+      <!-- AVIS CLIENTS -->
       <div id="reviews" class="section-banner">“Avis clients”</div>
       <section>
         <div class="section-inner">
-          <div class="grid">
+          <div class="reviews-grid">
             <article class="card">
-              <h3 class="card-title">Ahmed — Boutique Mode</h3>
+              <h3>Ahmed — Boutique Mode</h3>
               <p class="card-text">
-                “Installation rapide, le thème Glow a modernisé ma home. Bon support, réponses le jour même.”
+                “Installation rapide, le thème Glow a modernisé ma home. Bon support,
+                réponses le jour même.”
               </p>
             </article>
+
             <article class="card">
-              <h3 class="card-title">Sarah — Cosmétiques</h3>
+              <h3>Sarah — Cosmétiques</h3>
               <p class="card-text">
-                “Barre d’annonce + compte à rebours = plus d’actions pendant mes promos. Simple et efficace.”
+                “Barre d’annonce + compte à rebours = plus d’actions pendant mes promos.
+                Simple et efficace.”
               </p>
             </article>
+
             <article class="card">
-              <h3 class="card-title">Yassine — Accessoires</h3>
+              <h3>Yassine — Accessoires</h3>
               <p class="card-text">
                 “Interface claire, j’ai ajouté WhatsApp sticky en 2 minutes. Merci pour l’aide sur le thème !”
               </p>
@@ -1535,14 +1606,14 @@
           </div>
 
           <div class="card" style="max-width:760px;margin:24px auto 0;">
-            <h3 class="card-title">Laisser un avis</h3>
+            <h3>Laisser un avis</h3>
             <form id="reviewForm">
               <input name="name" placeholder="Votre nom" required />
               <input name="store" placeholder="Nom de boutique (optionnel)" />
               <textarea name="msg" placeholder="Votre avis (ce qui vous a plu, les résultats, etc.)" required></textarea>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
-                <button type="submit" class="btn btn-primary">Envoyer par Email</button>
-                <button type="button" id="reviewWA" class="btn btn-whatsapp">Envoyer sur WhatsApp</button>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button type="submit" class="btn-primary">Envoyer par Email</button>
+                <button type="button" id="reviewWA" class="btn-whatsapp">Envoyer sur WhatsApp</button>
               </div>
             </form>
           </div>
@@ -1553,14 +1624,15 @@
       <div id="custom" class="section-banner">“Demande de thème personnalisable”</div>
       <section>
         <div class="section-inner">
-          <div class="card" style="max-width:860px;margin:auto;">
-            <h3 class="card-title">Parlez-nous de votre besoin</h3>
-            <p class="muted" style="margin-bottom:8px;">
+          <div class="card" style="max-width:860px;margin:auto">
+            <h3>Parlez-nous de votre besoin</h3>
+            <p class="card-text" style="margin-bottom:8px">
               Donnez des exemples de sites que vous aimez, couleurs, sections souhaitées, contraintes, délais.
               On vous répond rapidement avec une proposition claire.
             </p>
+
             <form id="customForm">
-              <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+              <div class="themes-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-bottom:10px;">
                 <input name="name" placeholder="Nom complet" required />
                 <input name="email" type="email" placeholder="Email" required />
                 <input name="phone" placeholder="WhatsApp (avec indicatif)" />
@@ -1571,10 +1643,12 @@
                   <option value="Autre">Autre / Nouveau</option>
                 </select>
               </div>
+
               <textarea name="details" placeholder="Décrivez votre demande : sections, couleurs, références, objectifs de conversion…" required></textarea>
-              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
-                <button type="submit" class="btn btn-primary">Envoyer par Email</button>
-                <button type="button" id="customWA" class="btn btn-whatsapp">Envoyer sur WhatsApp</button>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
+                <button type="submit" class="btn-primary">Envoyer par Email</button>
+                <button type="button" id="customWA" class="btn-whatsapp">Envoyer sur WhatsApp</button>
               </div>
             </form>
           </div>
@@ -1582,74 +1656,75 @@
       </section>
     </main>
 
-    <!-- FOOTER / CONTACT -->
+    <!-- FOOTER -->
     <footer id="contact">
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <div class="logo-text-main">TRIPLE S</div>
-            <div class="logo-text-sub">Apps &amp; sections Shopify</div>
+            <span class="logo-text-main">TRIPLE S</span><br/>
+            <span class="logo-text-sub">Apps & sections Shopify</span>
           </div>
           <p>
-            Création d’apps, blocs et thèmes Shopify.<br/>
-            Formulaires COD, barres d’annonce, popups, compteurs et intégrations IA.
+            Création d’apps, blocs et thèmes Shopify.  
+            Formulaires COD, bars d’annonce, popups, compteurs et intégrations IA.
           </p>
         </div>
+
         <div>
           <div class="footer-nav-title">Navigation</div>
           <div class="footer-list">
             <a href="#top">Home</a>
             <a href="#themes">Thèmes</a>
-            <a href="#apps">Apps</a>
+            <a href="#apps">Applications</a>
             <a href="#services">Services</a>
             <a href="#process">Process</a>
-            <a href="#portfolio">Apps &amp; démos</a>
+            <a href="#portfolio">Apps & démos</a>
             <a href="#reviews">Avis</a>
             <a href="#custom">Demande perso</a>
           </div>
         </div>
+
         <div>
           <div class="footer-nav-title">Contact</div>
           <div class="footer-list">
-            <span>Email&nbsp;: <a href="mailto:SUPPORT_EMAIL">SUPPORT_EMAIL</a></span>
-            <span>WhatsApp&nbsp;: <a href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">+212 6 81 57 08 87</a></span>
+            <span>Email : ktami.sami@icloud.com</span>
+            <span>WhatsApp : +212 6 81 57 08 87</span>
             <span>Basé au Maroc, clients partout.</span>
           </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <span>© <span id="year"></span> TRIPLE S — Tous droits réservés.</span>
-        <a href="#top" class="btn btn-ghost" style="padding:6px 14px;font-size:11px;">Haut de page</a>
+        <span>Site design inspiré d’univers AI / néon, adapté pour TRIPLE S.</span>
       </div>
     </footer>
+  </div>
 
-    <!-- MODAL -->
-    <div class="modal" id="themeModal" aria-hidden="true">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="themeTitle">
-        <div class="modal-head">
-          <strong id="themeTitle">Détails</strong>
-          <button class="close" id="modalClose" type="button">Fermer</button>
-        </div>
-        <div class="modal-body" id="themeContent"></div>
+  <!-- MODAL (Thèmes & Apps) -->
+  <div class="modal" id="themeModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="themeTitle">
+      <div class="modal-head">
+        <strong id="themeTitle">Détails</strong>
+        <button class="close" id="modalClose" type="button">Fermer</button>
       </div>
+      <div class="modal-body" id="themeContent"></div>
     </div>
   </div>
 
   <!-- SCRIPT -->
   <script>
-    // Année dynamique
+    // année + fermer barre annonce
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Fermer la barre d'annonce
-    const annc = document.getElementById('annc');
     const anncClose = document.getElementById('anncClose');
-    if (annc && anncClose) {
+    if (anncClose) {
       anncClose.addEventListener('click', () => {
-        annc.style.display = 'none';
+        const bar = document.getElementById('annc');
+        if (bar) bar.style.display = 'none';
       });
     }
 
-    // ====== SLIDES THÈMES / TEXTES ======
+    // SLIDES THEMES / TEXTES
     const THEME_SLIDES = {
       theme1: ["assets/themes/theme1.png","assets/themes/theme12.png","assets/themes/theme13.png"],
       theme2: ["assets/themes/theme2.png","assets/themes/theme22.png","assets/themes/theme23.png"],
@@ -1683,7 +1758,7 @@
       }
     };
 
-    // ====== APPS (SANS vidéo) ======
+    // APPS DATA (sans vidéo intégrée, seulement images + liens)
     const APP_DATA = {
       app1: {
         title: "Blocks: Bar, WhatsApp & More",
@@ -1692,54 +1767,43 @@
             <li>Barres d’annonce multi-styles (promo, livraison, info, multi-messages).</li>
             <li>Popups ciblés (coupon, collecte email), <em>countdown</em> dynamique.</li>
             <li>Bouton WhatsApp sticky avec message pré-rempli.</li>
-            <li>100&nbsp;% Theme Editor, sans code, performances soignées.</li>
+            <li>100% Theme Editor, sans code, performances soignées.</li>
           </ul>`,
         slides: [
           "assets/apps/app1.png","assets/apps/app12.png","assets/apps/app13.png",
           "assets/apps/app14.png","assets/apps/app15.png","assets/apps/app16.png","assets/apps/app17.png"
         ],
-        appStore: "https://apps.shopify.com/announcement-bar-app-1",
+        appStore: "https://apps.shopify.com/announcement-bar-app-1?locale=fr",
+        demoVideo: "https://www.youtube.com/watch?v=i8R6X0FuEtE&t=36s",
         live: true
       },
       app2: {
-        title:"Triple-Luxe-Sections",
-        desc: `
-          <ul>
-            <li>Pack de sections premium (bannières, USP, grilles produits, témoignages…).</li>
-            <li>Compatible Theme Editor, idéal pour créer des landing pages rapides.</li>
-            <li>Parfait pour agences ou freelances qui vendent des sections.</li>
-          </ul>`,
+        title: "Triple-Luxe-Sections",
+        desc: "Pack de sections premium prêtes à l'emploi. Aperçu bientôt.",
         slides: [],
         appStore: null,
-        live:false
+        demoVideo: null,
+        live: false
       },
       app3: {
-        title:"AfterFollow Emails",
-        desc: `
-          <ul>
-            <li>Workflows post-achat simples : emails de remerciement, relances, cross-sell.</li>
-            <li>Templates propres, textes faciles à adapter pour votre marque.</li>
-            <li>Statistiques claires pour suivre l’impact de chaque séquence.</li>
-          </ul>`,
+        title: "AfterFollow Emails",
+        desc: "Relances automatiques post-achat simples. Aperçu bientôt.",
         slides: [],
-        appStore:null,
-        live:false
+        appStore: null,
+        demoVideo: null,
+        live: false
       },
       app4: {
-        title:"Tripleform-COD",
-        desc: `
-          <ul>
-            <li>Formulaire COD 1 étape, champs personnalisables et validations basiques.</li>
-            <li>Sync WhatsApp &amp; Google Sheets pour centraliser les commandes.</li>
-            <li>Options anti-bot légères, upsell simple, suivi des conversions.</li>
-          </ul>`,
+        title: "Tripleform-COD",
+        desc: "Formulaire COD 1 étape, sync WhatsApp/Sheets. Aperçu bientôt.",
         slides: [],
-        appStore:null,
-        live:false
+        appStore: null,
+        demoVideo: null,
+        live: false
       }
     };
 
-    // ====== MODAL HELPERS + RENDER ======
+    // MODAL HELPERS
     const modal = document.getElementById('themeModal');
     const modalClose = document.getElementById('modalClose');
     const themeContent = document.getElementById('themeContent');
@@ -1748,21 +1812,31 @@
       themeContent.innerHTML = html;
       modal.classList.add('open');
       modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
+      document.body.style.overflow = 'hidden';
+      const slider = themeContent.querySelector('[data-slider]');
+      if (slider) initSlider(slider);
     };
 
     const closeModal = () => {
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden','true');
-      themeContent.innerHTML='';
-      document.body.style.overflow='';
+      themeContent.innerHTML = '';
+      document.body.style.overflow = '';
     };
 
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && modal.classList.contains('open')) closeModal(); });
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
 
-    function initSlider(root){
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+    });
+
+    function initSlider(root) {
       const track = root.querySelector('.slides');
       const slides = Array.from(root.querySelectorAll('.slide'));
       const prev = root.querySelector('[data-prev]');
@@ -1770,44 +1844,46 @@
       const dots = Array.from(root.querySelectorAll('.dot'));
       let i = 0;
 
-      function update(){
-        track.style.transform = `translateX(${-i*100}%)`;
-        dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+      function update() {
+        track.style.transform = `translateX(${-i * 100}%)`;
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
       }
 
-      function go(n){
+      function go(n) {
         i = (n + slides.length) % slides.length;
         update();
       }
 
-      if(prev) prev.addEventListener('click', ()=>go(i-1));
-      if(next) next.addEventListener('click', ()=>go(i+1));
-      dots.forEach(d=>d.addEventListener('click', ()=>go(+d.dataset.i)));
+      if (prev) prev.addEventListener('click', () => go(i - 1));
+      if (next) next.addEventListener('click', () => go(i + 1));
+      dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.i)));
 
-      let startX=null,dx=0;
-      track.addEventListener('pointerdown',(e)=>{
-        startX=e.clientX;
+      let startX = null, dx = 0;
+      track.addEventListener('pointerdown', (e) => {
+        startX = e.clientX;
         track.setPointerCapture(e.pointerId);
       });
-      track.addEventListener('pointermove',(e)=>{
-        if(startX==null) return;
-        dx=e.clientX-startX;
+      track.addEventListener('pointermove', (e) => {
+        if (startX == null) return;
+        dx = e.clientX - startX;
       });
-      track.addEventListener('pointerup',()=>{
-        if(startX==null) return;
-        if(dx>60) go(i-1);
-        else if(dx<-60) go(i+1);
-        startX=null; dx=0;
+      track.addEventListener('pointerup', () => {
+        if (startX == null) return;
+        if (dx > 60) go(i - 1);
+        else if (dx < -60) go(i + 1);
+        startX = null;
+        dx = 0;
       });
 
       update();
     }
 
-    function renderThemeDetail(key){
+    function renderThemeDetail(key) {
       const imgs = THEME_SLIDES[key] || [];
       const t = THEME_TEXT[key];
-      const slides = imgs.map(src=>`<div class="slide"><img src="${src}" alt="${t?.title||'Thème'}"></div>`).join("");
-      const dots = imgs.map((_,i)=>`<button class="dot" data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join("");
+      const slides = imgs.map(src => `<div class="slide"><img src="${src}" alt="${t?.title || 'Thème'}"></div>`).join("");
+      const dots = imgs.map((_, i) => `<button class="dot" data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join("");
+
       return `
         <div class="detail-grid">
           <div>
@@ -1819,108 +1895,120 @@
             </div>
           </div>
           <div>
-            <h2>${t?.title||"Thème"}</h2>
-            <div class="muted">${t?.desc||""}</div>
-            <div class="detail-actions" style="margin-top:14px">
-              <a class="btn btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Demander sur WhatsApp</a>
-              <a class="btn btn-ghost" href="#themes">Retour</a>
+            <h2>${t?.title || "Thème"}</h2>
+            <div class="card-text">${t?.desc || ""}</div>
+            <div class="detail-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+              <a class="btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Demander sur WhatsApp</a>
+              <a class="btn-ghost" href="#themes">Retour</a>
             </div>
           </div>
         </div>`;
     }
 
-    function renderAppDetail(key){
+    function renderAppDetail(key) {
       const app = APP_DATA[key];
       if (!app) return `<p>Application introuvable.</p>`;
+
       const hasSlides = app.slides && app.slides.length;
       const slidesHtml = hasSlides
         ? app.slides.map(src => `<div class="slide"><img src="${src}" alt="${app.title}"></div>`).join("")
         : `<div class="card" style="margin-bottom:12px">Aperçu en préparation.</div>`;
+
       const dotsHtml = hasSlides
-        ? app.slides.map((_,i)=>`<button class="dot" data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join("")
+        ? app.slides.map((_, i) => `<button class="dot" data-i="${i}" aria-label="Aller au slide ${i+1}"></button>`).join("")
         : "";
-      const sliderBlock = `
-        <div class="slider" data-slider>
-          <div class="slides">${slidesHtml}</div>
-          ${hasSlides ? `
+
+      const sliderBlock = hasSlides
+        ? `
+          <div class="slider" data-slider>
+            <div class="slides">${slidesHtml}</div>
             <button class="slider-btn prev" data-prev aria-label="Précédent">‹</button>
             <button class="slider-btn next" data-next aria-label="Suivant">›</button>
-            <div class="dots">${dotsHtml}</div>` : ``}
-        </div>`;
+            <div class="dots">${dotsHtml}</div>
+          </div>`
+        : slidesHtml;
+
       const ctas = `
-        <div class="detail-actions" style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-          ${app.appStore ? `<a class="btn btn-primary" href="${app.appStore}" target="_blank" rel="noopener">Voir sur App Store</a>` : ``}
-          <a class="btn btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Parler sur WhatsApp</a>
-          <a class="btn btn-ghost" href="#apps">Retour</a>
+        <div class="detail-actions" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+          ${app.appStore ? `<a class="btn-primary" href="${app.appStore}" target="_blank" rel="noopener">Voir sur App Store</a>` : ``}
+          ${app.demoVideo ? `<a class="btn-ghost" href="${app.demoVideo}" target="_blank" rel="noopener">Voir la démo vidéo</a>` : ``}
+          <a class="btn-whatsapp" href="https://wa.me/PHONE_NUMBER" target="_blank" rel="noopener">Parler sur WhatsApp</a>
+          <a class="btn-ghost" href="#apps">Retour</a>
         </div>`;
+
       return `
         <div class="detail-grid">
           <div>${sliderBlock}</div>
           <div>
             <h2>${app.title}</h2>
-            <div class="muted">${app.desc}</div>
+            <div class="card-text">${app.desc}</div>
             ${ctas}
           </div>
         </div>`;
     }
 
     // Bind cartes thèmes
-    document.querySelectorAll('[data-theme]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.addEventListener('click', () => {
         const key = btn.getAttribute('data-theme');
-        openModal( renderThemeDetail(key) );
-        const slider = themeContent.querySelector('[data-slider]');
-        if(slider) initSlider(slider);
+        const html = renderThemeDetail(key);
+        openModal(html);
       });
     });
 
     // Bind cartes apps
-    document.querySelectorAll('[data-app]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-app]').forEach(btn => {
+      btn.addEventListener('click', () => {
         const key = btn.getAttribute('data-app');
-        openModal( renderAppDetail(key) );
-        const slider = themeContent.querySelector('[data-slider]');
-        if (slider) initSlider(slider);
+        const html = renderAppDetail(key);
+        openModal(html);
       });
     });
 
-    // Avis
+    // Avis client (mailto / WhatsApp)
     const reviewForm = document.getElementById('reviewForm');
-    const reviewWA = document.getElementById('reviewWA');
-    if (reviewForm && reviewWA) {
-      reviewForm.addEventListener('submit', (e)=>{
+    if (reviewForm) {
+      reviewForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const d = Object.fromEntries(new FormData(reviewForm).entries());
         const subject = encodeURIComponent("Nouvel avis client");
-        const body = encodeURIComponent(`Nom: ${d.name}\nBoutique: ${d.store||"-"}\n\nAvis:\n${d.msg}`);
+        const body = encodeURIComponent(`Nom: ${d.name}\nBoutique: ${d.store || "-"}\n\nAvis:\n${d.msg}`);
         window.location.href = `mailto:SUPPORT_EMAIL?subject=${subject}&body=${body}`;
-      });
-      reviewWA.addEventListener('click', ()=>{
-        const d = Object.fromEntries(new FormData(reviewForm).entries());
-        const text = encodeURIComponent(`Avis client\nNom: ${d.name}\nBoutique: ${d.store||"-"}\n\n${d.msg}`);
-        window.open(`https://wa.me/PHONE_NUMBER?text=${text}`,'_blank');
       });
     }
 
-    // Demande perso
+    const reviewWA = document.getElementById('reviewWA');
+    if (reviewWA && reviewForm) {
+      reviewWA.addEventListener('click', () => {
+        const d = Object.fromEntries(new FormData(reviewForm).entries());
+        const text = encodeURIComponent(`Avis client\nNom: ${d.name}\nBoutique: ${d.store || "-"}\n\n${d.msg}`);
+        window.open(`https://wa.me/PHONE_NUMBER?text=${text}`, '_blank');
+      });
+    }
+
+    // Demande perso (mailto / WhatsApp)
     const customForm = document.getElementById('customForm');
     const customWA = document.getElementById('customWA');
-    if (customForm && customWA) {
-      customForm.addEventListener('submit', (e)=>{
+
+    if (customForm) {
+      customForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const d = Object.fromEntries(new FormData(customForm).entries());
         const subject = encodeURIComponent(`Demande thème personnalisable — ${d.theme}`);
         const body = encodeURIComponent(
-          `Nom: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.phone||"-"}\nThème: ${d.theme}\n\nDétails:\n${d.details}`
+          `Nom: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.phone || "-"}\nThème: ${d.theme}\n\nDétails:\n${d.details}`
         );
         window.location.href = `mailto:SUPPORT_EMAIL?subject=${subject}&body=${body}`;
       });
-      customWA.addEventListener('click', ()=>{
+    }
+
+    if (customWA && customForm) {
+      customWA.addEventListener('click', () => {
         const d = Object.fromEntries(new FormData(customForm).entries());
         const text = encodeURIComponent(
-          `Demande thème personnalisable\nNom: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.phone||"-"}\nThème: ${d.theme}\n\nDétails:\n${d.details}`
+          `Demande thème personnalisable\nNom: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.phone || "-"}\nThème: ${d.theme}\n\nDétails:\n${d.details}`
         );
-        window.open(`https://wa.me/PHONE_NUMBER?text=${text}`,'_blank');
+        window.open(`https://wa.me/PHONE_NUMBER?text=${text}`, '_blank');
       });
     }
   </script>
