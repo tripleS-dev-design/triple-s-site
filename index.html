@@ -139,47 +139,124 @@
     .hero-kpi{font-size:11px;color:var(--muted);margin-top:6px}
     .hero-kpi strong{color:#ffcf66}
 
-    /* HERO PLANETE */
-    .hero-visual{display:flex;justify-content:center}
+    /* HERO GLOBE ULTRA DYNAMIQUE */
+    .hero-visual{
+      display:flex;justify-content:center;align-items:center;
+    }
     .hero-orbit{
-      position:relative;width:min(360px,80vw);aspect-ratio:1/1;border-radius:50%;
-      padding:22px;background:radial-gradient(circle at 30% 0,#ffcf66,#ff8a1f 55%,#24110a 100%);
-      box-shadow:0 0 80px rgba(255,138,31,.7),0 0 140px rgba(0,0,0,.9);overflow:hidden;
+      position:relative;
+      width:min(380px,80vw);aspect-ratio:1/1;border-radius:50%;
+      padding:26px;
+      background:radial-gradient(circle at 30% 0,#ffcf66,#ff8a1f 55%,#24110a 100%);
+      box-shadow:0 0 90px rgba(255,138,31,.7),0 0 160px rgba(0,0,0,.9);
+      overflow:hidden;
+      animation:float-globe 11s ease-in-out infinite alternate;
     }
-    .hero-orbit::before{
-      content:"";position:absolute;inset:-40%;
-      background-image:
-        radial-gradient(circle at 20% 20%,rgba(0,0,0,.45) 0,transparent 55%),
-        radial-gradient(circle at 80% 80%,rgba(0,0,0,.55) 0,transparent 55%);
-      opacity:.75;mix-blend-mode:multiply;
-    }
-    .earth-layer{
-      position:absolute;inset:14%;border-radius:50%;
-      border:1px solid rgba(255,255,255,.28);
-      box-shadow:0 0 22px rgba(255,255,255,.18) inset,0 0 60px rgba(0,0,0,.8) inset;
+
+    /* cœur du globe qui pulse */
+    .globe-core{
+      position:absolute;inset:20%;border-radius:50%;
       background:
-        radial-gradient(circle at 35% 20%,rgba(255,255,255,.25),transparent 55%),
-        radial-gradient(circle at 70% 80%,rgba(0,0,0,.45),transparent 65%);
+        radial-gradient(circle at 30% 20%,rgba(255,255,255,.4),transparent 55%),
+        radial-gradient(circle at 70% 80%,rgba(0,0,0,.6),transparent 65%);
+      box-shadow:
+        0 0 30px rgba(255,255,255,.35) inset,
+        0 0 60px rgba(0,0,0,.9) inset,
+        0 0 45px rgba(255,138,31,.55);
+      animation:pulse-core 3.2s ease-in-out infinite;
     }
-    .earth-layer:nth-child(1){transform:rotate(12deg)}
-    .earth-layer:nth-child(2){inset:22%;opacity:.65;border-style:dashed;border-width:1px;transform:rotate(-18deg)}
-    .earth-layer:nth-child(3){inset:30%;opacity:.4;border-style:dotted;border-width:1px;transform:rotate(8deg)}
+
+    /* halo “atmosphère” qui tourne */
+    .globe-halo{
+      position:absolute;inset:12%;border-radius:50%;
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow:0 0 30px rgba(255,255,255,.22);
+      mix-blend-mode:screen;
+      animation:halo-spin 28s linear infinite;
+    }
+
+    /* anneaux orbitaux */
+    .orbit-ring{
+      position:absolute;inset:10%;border-radius:50%;
+      border:1px dashed rgba(255,255,255,.35);
+      box-shadow:0 0 22px rgba(0,0,0,.8) inset;
+      mix-blend-mode:screen;
+      transform-origin:50% 50%;
+    }
+    .orbit-ring.main{animation:orbit-rotate 22s linear infinite;}
+    .orbit-ring.secondary{
+      inset:18%;
+      opacity:.7;
+      border-style:solid;
+      border-color:rgba(255,255,255,.18);
+      animation:orbit-rotate-reverse 36s linear infinite;
+    }
+    .orbit-ring.deep{
+      inset:26%;
+      opacity:.55;
+      border-style:dotted;
+      animation:orbit-rotate 46s linear infinite;
+    }
+
+    /* points / apps qui tournent sur l’orbite */
+    .orbit-dot{
+      position:absolute;
+      width:auto;
+      padding:5px 11px;
+      border-radius:999px;
+      font-size:10px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:rgba(4,4,4,.92);
+      color:#ffe8c6;
+      border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 0 18px rgba(0,0,0,.9);
+      transform-origin:50% 50%;
+      white-space:nowrap;
+    }
+    .orbit-dot span{
+      font-weight:600;
+      color:#ffcf66;
+    }
+
+    /* trois trajectoires différentes */
+    .orbit-dot.dot-1{
+      top:12%;left:50%;transform:translate(-50%,-50%);
+      animation:dot-orbit-1 24s linear infinite;
+    }
+    .orbit-dot.dot-2{
+      bottom:8%;left:18%;transform:translate(-50%,50%);
+      animation:dot-orbit-2 30s linear infinite;
+    }
+    .orbit-dot.dot-3{
+      top:50%;right:2%;transform:translate(50%,-50%);
+      animation:dot-orbit-3 34s linear infinite;
+    }
+
+    /* petit texte “moteur” au centre */
+    .orbit-center-label{
+      position:absolute;inset:35%;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:0 14px;
+      font-size:10px;line-height:1.6;color:#fff8ee;
+      text-transform:uppercase;letter-spacing:.14em;
+      background:radial-gradient(circle at 30% 10%,rgba(255,255,255,.4),transparent 55%);
+      mix-blend-mode:screen;
+    }
+    .orbit-center-label strong{
+      display:block;font-size:10px;margin-bottom:5px;color:#ffcf66;
+    }
+
+    /* étiquettes extérieures */
     .orbit-tag{
-      position:absolute;left:-30px;top:26%;padding:7px 18px;border-radius:999px;
+      position:absolute;left:-26px;top:24%;padding:7px 18px;border-radius:999px;
       background:#111;color:#fefefe;font-size:11px;box-shadow:var(--shadow-soft);
       border:1px solid rgba(255,255,255,.18);transform:rotate(-9deg);white-space:nowrap;
     }
     .orbit-tag.orbit-bottom{
-      left:32%;bottom:18px;top:auto;transform:rotate(4deg);
+      left:32%;bottom:16px;top:auto;transform:rotate(4deg);
       background:rgba(0,0,0,.84);
     }
-    .orbit-center{
-      position:absolute;inset:34%;border-radius:50%;
-      background:radial-gradient(circle at 30% 10%,rgba(255,255,255,.4),transparent 55%);
-      display:flex;align-items:center;justify-content:center;text-align:center;
-      padding:0 10px;font-size:11px;line-height:1.5;color:#fff8ee;
-    }
-    .orbit-center strong{display:block;font-size:11px;margin-bottom:4px}
 
     /* SECTIONS GENERIQUES */
     section{padding:40px var(--sidepad) 64px}
@@ -288,7 +365,7 @@
       display:flex;justify-content:space-between;align-items:center;gap:10px;
     }
 
-    /* ANIMATION SCROLL */
+    /* ANIMATION SCROLL (sections) */
     .reveal{
       opacity:0;transform:translateY(40px);
       transition:opacity .7s ease-out,transform .7s ease-out;
@@ -303,6 +380,48 @@
     .reveal-delay-2{transition-delay:.16s}
     .reveal-delay-3{transition-delay:.24s}
     .reveal-delay-4{transition-delay:.32s}
+
+    /* KEYFRAMES GLOBE */
+    @keyframes float-globe{
+      0%{transform:translateY(0) scale(1);}
+      50%{transform:translateY(-6px) scale(1.02);}
+      100%{transform:translateY(4px) scale(1);}
+    }
+    @keyframes pulse-core{
+      0%{transform:scale(1);box-shadow:
+        0 0 30px rgba(255,255,255,.35) inset,
+        0 0 60px rgba(0,0,0,.9) inset,
+        0 0 45px rgba(255,138,31,.55);}
+      50%{transform:scale(1.06);box-shadow:
+        0 0 40px rgba(255,255,255,.55) inset,
+        0 0 80px rgba(0,0,0,1) inset,
+        0 0 65px rgba(255,138,31,.85);}
+      100%{transform:scale(1);}
+    }
+    @keyframes halo-spin{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+    @keyframes orbit-rotate{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+    @keyframes orbit-rotate-reverse{
+      from{transform:rotate(360deg);}
+      to{transform:rotate(0deg);}
+    }
+    @keyframes dot-orbit-1{
+      0%{transform:rotate(0deg) translate(0,-70px) rotate(0deg);}
+      100%{transform:rotate(360deg) translate(0,-70px) rotate(-360deg);}
+    }
+    @keyframes dot-orbit-2{
+      0%{transform:rotate(0deg) translate(-80px,0) rotate(0deg);}
+      100%{transform:rotate(360deg) translate(-80px,0) rotate(-360deg);}
+    }
+    @keyframes dot-orbit-3{
+      0%{transform:rotate(0deg) translate(70px,0) rotate(0deg);}
+      100%{transform:rotate(360deg) translate(70px,0) rotate(-360deg);}
+    }
 
     /* RESPONSIVE */
     @media(max-width:900px){
@@ -390,22 +509,29 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal reveal-right reveal-fall">
+        <!-- GLOBE TRIPLE S ULTRA DYNAMIQUE -->
+        <div class="hero-visual">
           <div class="hero-orbit">
-            <div class="earth-layer"></div>
-            <div class="earth-layer"></div>
-            <div class="earth-layer"></div>
+            <div class="globe-core"></div>
+            <div class="globe-halo"></div>
 
-            <div class="orbit-tag">Clique → ton agent IA</div>
-            <div class="orbit-tag orbit-bottom">Apps & thèmes autour de votre boutique</div>
+            <div class="orbit-ring main"></div>
+            <div class="orbit-ring secondary"></div>
+            <div class="orbit-ring deep"></div>
 
-            <div class="orbit-center">
+            <div class="orbit-center-label">
               <div>
-                <strong>Aperçu en temps réel de vos blocs Shopify</strong>
-                Triple Announcement Bar, popups, compteurs & bouton WhatsApp sticky.
-                Tout depuis le Theme Editor, sans code.
+                <strong>TRIPLE S ENGINE</strong>
+                Apps, blocs & IA pilotent votre thème comme un système global.
               </div>
             </div>
+
+            <div class="orbit-dot dot-1"><span>Blocks</span> & Bars</div>
+            <div class="orbit-dot dot-2"><span>COD</span> Forms</div>
+            <div class="orbit-dot dot-3"><span>IA</span> Automations</div>
+
+            <div class="orbit-tag">Vue globale de ton store</div>
+            <div class="orbit-tag orbit-bottom">Tous les blocs autour d’une seule app</div>
           </div>
         </div>
       </div>
@@ -565,7 +691,7 @@
       </div>
     </section>
 
-    <!-- STATS + BLOC TEMOIGNAGE PRINCIPAL -->
+    <!-- STATS + TEMOIGNAGE -->
     <section id="portfolio">
       <div class="section-inner stats-testimonials">
         <div class="stats-card reveal reveal-left">
@@ -607,7 +733,6 @@
         <h2 class="section-title">Ce que <span>disent les boutiques</span></h2>
 
         <div class="grid-3" id="reviewsList">
-          <!-- Avis de départ -->
           <article class="card reveal reveal-left">
             <h3 class="card-title">Ahmed — Boutique Mode</h3>
             <p class="card-text">
@@ -774,15 +899,17 @@
     window.open(url, "_blank");
   }
 
-  // Scroll reveal
+  // Scroll reveal : animations INFINIES (haut/bas)
   const observer = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
         e.target.classList.add('in-view');
-        observer.unobserve(e.target);
+      } else {
+        e.target.classList.remove('in-view');
       }
     });
   }, {threshold:0.15});
+
   document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
   // AVIS : ajout dans la liste + envoi email + WA
@@ -796,30 +923,30 @@
     const store = data.store.trim();
     const msg = data.msg.trim();
 
-    // Ajout visuel
     const card = document.createElement('article');
-    card.className = 'card reveal in-view'; // déjà visible
+    card.className = 'card reveal reveal-left';
     card.innerHTML = `
       <h3 class="card-title">${name}${store ? " — " + store : ""}</h3>
       <p class="card-text">${msg}</p>
     `;
     reviewsList.prepend(card);
+    observer.observe(card);
 
-    // Email
     const subject = encodeURIComponent("Nouvel avis client TRIPLE S");
     const body = encodeURIComponent(`Nom: ${name}\nBoutique: ${store || "-"}\n\nAvis:\n${msg}`);
     window.open(`mailto:ktami.sami@icloud.com?subject=${subject}&body=${body}`, "_self");
 
-    // WhatsApp
     openWhatsApp(`Avis client\nNom: ${name}\nBoutique: ${store || "-"}\n\n${msg}`);
 
     reviewForm.reset();
   });
 
-  // Bouton "envoyer seulement WA"
   document.getElementById('reviewWA').addEventListener('click', ()=>{
     const data = Object.fromEntries(new FormData(reviewForm).entries());
-    if(!data.name || !data.msg){ alert("Remplissez au minimum votre nom et votre avis."); return; }
+    if(!data.name || !data.msg){
+      alert("Remplissez au minimum votre nom et votre avis.");
+      return;
+    }
     openWhatsApp(`Avis client\nNom: ${data.name}\nBoutique: ${data.store || "-"}\n\n${data.msg}`);
   });
 
