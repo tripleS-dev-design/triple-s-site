@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -13,15 +12,18 @@
       --bg:#050608;
       --bg-soft:#0b0d11;
       --primary:#ff8a1f;
-      --text:#f5f5f5;
+      --primary-soft:#f97316;
+      --text:#f9fafb;
       --muted:#9ca3af;
       --border:rgba(148,163,184,.35);
       --radius-lg:20px;
+      --radius-md:14px;
       --radius-pill:999px;
-      --maxw:1120px;
+      --maxw:1180px;
       --sidepad:clamp(16px,5vw,60px);
-      --shadow-soft:0 18px 40px rgba(15,23,42,.75);
+      --shadow-soft:0 22px 45px rgba(15,23,42,.85);
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -29,6 +31,8 @@
       color:var(--text);
       min-height:100vh;
     }
+    img{max-width:100%;display:block}
+
     a{text-decoration:none;color:inherit}
 
     .page{
@@ -40,9 +44,13 @@
       display:flex;
       flex-direction:column;
     }
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 var(--sidepad)}
+    .container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:0 var(--sidepad);
+    }
 
-    /* TOP BAR */
+    /* TOPBAR */
     .topbar{
       background:#020617;
       border-bottom:1px solid rgba(15,23,42,1);
@@ -63,17 +71,18 @@
       gap:6px;
       padding:3px 9px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.4);
+      border:1px solid rgba(148,163,184,.5);
       font-size:10px;
       text-transform:uppercase;
       letter-spacing:.14em;
     }
     .pill span{
-      width:6px;height:6px;border-radius:50%;background:#22c55e;
-      box-shadow:0 0 8px rgba(34,197,94,.8);
+      width:6px;height:6px;border-radius:50%;
+      background:#22c55e;
+      box-shadow:0 0 8px rgba(34,197,94,.9);
     }
 
-    /* HEADER STORE */
+    /* HEADER */
     header{
       backdrop-filter:blur(10px);
       background:rgba(15,23,42,.9);
@@ -95,9 +104,9 @@
       gap:10px;
     }
     .logo-mark{
-      width:28px;height:28px;border-radius:999px;
+      width:30px;height:30px;border-radius:999px;
       background:conic-gradient(from 140deg,#ff8a1f,#ffcf66,#ff8a1f);
-      box-shadow:0 0 16px rgba(255,138,31,.7);
+      box-shadow:0 0 20px rgba(255,138,31,.7);
     }
     .logo-text{
       display:flex;
@@ -105,7 +114,7 @@
       gap:2px;
     }
     .logo-title{
-      font-size:13px;
+      font-size:14px;
       font-weight:700;
     }
     .logo-sub{
@@ -113,7 +122,7 @@
     }
     nav{
       display:flex;
-      gap:16px;
+      gap:18px;
       font-size:12px;
       color:var(--muted);
     }
@@ -126,14 +135,14 @@
     .btn-outline{
       padding:7px 13px;
       border-radius:var(--radius-pill);
-      border:1px solid rgba(148,163,184,.6);
+      border:1px solid rgba(148,163,184,.7);
       font-size:11px;
       color:var(--muted);
       background:transparent;
       cursor:pointer;
     }
     .btn-primary{
-      padding:8px 15px;
+      padding:8px 16px;
       border-radius:var(--radius-pill);
       border:none;
       background:linear-gradient(135deg,#ff8a1f,#ffcf66);
@@ -143,18 +152,18 @@
       text-transform:uppercase;
       letter-spacing:.12em;
       cursor:pointer;
-      box-shadow:0 12px 25px rgba(251,146,60,.45);
+      box-shadow:0 14px 28px rgba(251,146,60,.5);
     }
 
     /* HERO */
     .hero{
-      padding:24px 0 26px;
+      padding:26px 0 28px;
     }
     .hero-inner{
       display:grid;
-      grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr);
-      gap:24px;
-      align-items:flex-start;
+      grid-template-columns:minmax(0,1.05fr) minmax(0,1.05fr);
+      gap:28px;
+      align-items:center;
     }
     .eyebrow{
       font-size:11px;
@@ -164,7 +173,7 @@
       margin-bottom:10px;
     }
     .hero-title{
-      font-size:28px;
+      font-size:30px;
       line-height:1.2;
       margin-bottom:8px;
     }
@@ -172,15 +181,15 @@
     .hero-sub{
       font-size:13px;
       color:var(--muted);
-      max-width:420px;
-      line-height:1.6;
-      margin-bottom:14px;
+      max-width:440px;
+      line-height:1.7;
+      margin-bottom:16px;
     }
     .hero-badges{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-bottom:16px;
+      margin-bottom:18px;
     }
     .badge{
       padding:4px 9px;
@@ -189,194 +198,253 @@
       border:1px solid rgba(148,163,184,.5);
       color:var(--muted);
     }
+    .hero-ctas{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:10px;
+    }
     .hero-note{
       font-size:11px;
       color:var(--muted);
     }
 
     .hero-card{
-      border-radius:var(--radius-lg);
-      border:1px solid rgba(148,163,184,.35);
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.2),transparent 65%),#020617;
-      padding:14px 14px 16px;
+      border-radius:26px;
+      border:1px solid rgba(15,23,42,.8);
+      background:
+        radial-gradient(circle at 0 0,rgba(255,138,31,.2),transparent 65%),
+        #020617;
+      padding:12px 12px 14px;
       box-shadow:var(--shadow-soft);
     }
-    .hero-card-header{
+    .hero-card-top{
       display:flex;
       justify-content:space-between;
       align-items:center;
       margin-bottom:10px;
-    }
-    .hero-card-title{
-      font-size:12px;
-      font-weight:600;
-    }
-    .hero-card-sub{
       font-size:11px;
       color:var(--muted);
     }
-    .price-tag{
-      font-size:11px;
-      color:#bbf7d0;
-      padding:3px 8px;
+    .hero-pill{
+      padding:4px 9px;
       border-radius:999px;
-      border:1px solid rgba(34,197,94,.6);
-      background:rgba(22,163,74,.2);
+      border:1px solid rgba(148,163,184,.6);
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:10px;
     }
-    .hero-grid{
+    .hero-main{
       display:grid;
       grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
       gap:10px;
       align-items:stretch;
     }
-    /* mini hero visuel */
-    .mini-hero{
-      border-radius:14px;
-      background:linear-gradient(135deg,#0f172a,#020617);
-      padding:10px;
+    .hero-main-visual{
+      border-radius:var(--radius-lg);
+      overflow:hidden;
+      background:#020617;
+    }
+    .hero-main-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.02);
+    }
+    .hero-main-side{
+      border-radius:var(--radius-lg);
+      background:#020617;
+      border:1px solid rgba(30,64,175,.7);
+      padding:10px 10px 11px;
       display:flex;
       flex-direction:column;
       gap:8px;
     }
-    .mini-hero-title{
-      width:80%;
-      height:7px;
-      border-radius:999px;
-      background:#e5e7eb;
+    .side-title{
+      font-size:12px;
+      font-weight:600;
     }
-    .mini-hero-sub{
-      width:60%;
-      height:4px;
-      border-radius:999px;
-      background:rgba(148,163,184,.9);
+    .side-lines{
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.5;
     }
-    .mini-hero-strip{
+    .side-strip{
       margin-top:4px;
-      width:60%;
-      height:6px;
+      width:70%;
+      height:7px;
       border-radius:999px;
       background:linear-gradient(90deg,#22c55e,#3b82f6);
     }
 
-    .mini-cod{
-      border-radius:14px;
-      background:rgba(15,23,42,1);
-      border:1px dashed rgba(148,163,184,.7);
-      padding:10px 9px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .mini-cod-row{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:5px;
-    }
-    .mini-cod-field{
-      height:8px;
-      border-radius:999px;
-      background:rgba(30,64,175,.9);
-    }
-    .mini-cod-btn{
-      margin-top:2px;
-      width:70%;
-      height:9px;
-      border-radius:999px;
-      background:linear-gradient(90deg,#22c55e,#bef264);
-    }
-
-    /* PRODUCTS */
+    /* SECTIONS GENERALES */
     .section{
-      padding:10px 0 24px;
+      padding:10px 0 26px;
     }
     .section-header{
       display:flex;
       justify-content:space-between;
-      align-items:center;
-      margin-bottom:12px;
+      align-items:flex-end;
+      gap:10px;
+      margin-bottom:14px;
     }
     .section-title{
-      font-size:16px;
+      font-size:18px;
     }
     .section-sub{
       font-size:12px;
       color:var(--muted);
+      max-width:420px;
     }
+
+    /* GRID PRODUITS */
     .product-grid{
       display:grid;
       grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:14px;
+      gap:16px;
     }
     .product-card{
-      border-radius:16px;
+      border-radius:var(--radius-lg);
       background:#020617;
       border:1px solid rgba(30,64,175,.45);
       padding:9px 9px 11px;
       display:flex;
       flex-direction:column;
-      gap:7px;
+      gap:8px;
+      transition:transform .18s ease-out,box-shadow .18s ease-out,border-color .18s ease-out;
     }
-    .product-img{
-      border-radius:12px;
-      height:90px;
-      background:linear-gradient(135deg,#0f172a,#1e293b);
+    .product-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 30px rgba(15,23,42,.9);
+      border-color:rgba(59,130,246,.8);
+    }
+    .product-img-wrap{
+      border-radius:var(--radius-md);
+      overflow:hidden;
+      background:#020617;
+    }
+    .product-img-wrap img{
+      width:100%;
+      height:170px;
+      object-fit:cover;
+      transform:scale(1.03);
+    }
+    .product-info{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
     }
     .product-title{
-      width:80%;
-      height:7px;
-      border-radius:999px;
-      background:#e5e7eb;
+      font-size:13px;
+      font-weight:600;
     }
     .product-sub{
-      width:60%;
-      height:4px;
-      border-radius:999px;
-      background:rgba(148,163,184,.85);
+      font-size:11px;
+      color:var(--muted);
     }
-    .product-price-row{
+    .product-meta{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:6px;
+      gap:8px;
+      margin-top:4px;
     }
     .product-price{
-      width:30%;
-      height:6px;
-      border-radius:999px;
-      background:rgba(34,197,94,.9);
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      font-size:12px;
     }
-    .product-btn{
-      width:45%;
-      height:7px;
+    .price-main{
+      font-weight:600;
+    }
+    .price-old{
+      font-size:11px;
+      color:var(--muted);
+      text-decoration:line-through;
+    }
+    .badge-small{
+      font-size:10px;
+      padding:2px 7px;
       border-radius:999px;
-      background:rgba(59,130,246,.9);
+      background:rgba(22,163,74,.18);
+      color:#bbf7d0;
+      border:1px solid rgba(34,197,94,.7);
+    }
+    .product-cta{
+      display:flex;
+      gap:6px;
+      margin-top:6px;
+    }
+    .btn-xs-primary,
+    .btn-xs-ghost{
+      flex:1;
+      padding:7px 0;
+      border-radius:999px;
+      font-size:11px;
+      cursor:pointer;
+      border:1px solid transparent;
+      text-align:center;
+    }
+    .btn-xs-primary{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#02120a;
+      border-color:rgba(22,163,74,.8);
+    }
+    .btn-xs-ghost{
+      background:transparent;
+      border-color:rgba(148,163,184,.7);
+      color:var(--muted);
     }
 
-    /* COD FORM (vitrine) */
+    /* AVANTAGES COD */
+    .benefits{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+      margin-top:6px;
+    }
+    .benefit-card{
+      border-radius:var(--radius-lg);
+      border:1px solid rgba(30,64,175,.4);
+      background:#020617;
+      padding:11px 11px 12px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .benefit-title{
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:5px;
+      color:#e5e7eb;
+    }
+
+    /* FORMULAIRE COD (DEMO) */
     .cod-section{
-      margin-top:26px;
+      margin-top:28px;
       border-radius:var(--radius-lg);
       background:#020617;
       border:1px solid rgba(148,163,184,.5);
       padding:16px 16px 18px;
       display:grid;
-      grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
-      gap:18px;
+      grid-template-columns:minmax(0,1.1fr) minmax(0,1.05fr);
+      gap:20px;
     }
-    .cod-text-title{
-      font-size:15px;
+    .cod-title{
+      font-size:16px;
       margin-bottom:4px;
     }
-    .cod-text-sub{
+    .cod-sub{
       font-size:12px;
       color:var(--muted);
       margin-bottom:10px;
     }
     .cod-list{
-      font-size:11px;
+      font-size:12px;
       color:var(--muted);
+      margin-left:16px;
     }
-    .cod-list li{margin-left:16px;margin-bottom:3px;}
+    .cod-list li{margin-bottom:4px;}
 
     .cod-form{
       display:grid;
@@ -386,12 +454,13 @@
     .cod-form label{
       font-size:11px;
       color:var(--muted);
+      display:block;
     }
     .cod-form input,
     .cod-form select{
       width:100%;
       margin-top:3px;
-      padding:7px 9px;
+      padding:8px 9px;
       border-radius:10px;
       border:1px solid rgba(55,65,81,.9);
       background:#020617;
@@ -401,7 +470,7 @@
     .cod-form textarea{
       grid-column:1/3;
       margin-top:3px;
-      padding:7px 9px;
+      padding:8px 9px;
       border-radius:10px;
       border:1px solid rgba(55,65,81,.9);
       background:#020617;
@@ -415,18 +484,19 @@
       display:flex;
       flex-wrap:wrap;
       gap:8px;
-      margin-top:4px;
+      margin-top:6px;
     }
 
     footer{
-      margin-top:26px;
+      margin-top:28px;
       padding:18px var(--sidepad) 22px;
       border-top:1px solid rgba(15,23,42,1);
       font-size:11px;
       color:var(--muted);
+      text-align:center;
     }
 
-    @media(max-width:900px){
+    @media(max-width:980px){
       .hero-inner{
         grid-template-columns:1fr;
       }
@@ -436,26 +506,34 @@
       .product-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
+      .benefits{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
       .cod-section{
         grid-template-columns:1fr;
       }
     }
+
     @media(max-width:640px){
       nav{display:none;}
       .header-cta{gap:6px;}
       .product-grid{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:1fr;
+      }
+      .benefits{
+        grid-template-columns:1fr;
       }
     }
   </style>
 </head>
 <body>
 <div class="page">
+  <!-- BARRE HAUT -->
   <div class="topbar">
     <div class="topbar-inner">
-      <span>Démo front-end · Thème 1 — Minimal Clean</span>
-      <div>
-        <span class="pill"><span></span> COD 1-step + produits simples</span>
+      <span>Démo TRIPLE S · Thème 1 — Minimal Clean (chaussures COD)</span>
+      <div class="pill">
+        <span></span> Démo front-end (pas de vraie commande)
       </div>
     </div>
   </div>
@@ -466,148 +544,274 @@
       <div class="logo-wrap">
         <div class="logo-mark"></div>
         <div class="logo-text">
-          <div class="logo-title">Minimal Store</div>
+          <div class="logo-title">Minimal Sneakers</div>
           <div class="logo-sub">Exemple de thème par TRIPLE S</div>
         </div>
       </div>
       <nav>
-        <a href="#">Accueil</a>
-        <a href="#">Boutique</a>
-        <a href="#">Offres</a>
-        <a href="#">Contact</a>
+        <a href="#home">Accueil</a>
+        <a href="#collection">Collection</a>
+        <a href="#cod">Commande COD</a>
       </nav>
       <div class="header-cta">
-        <a href="index.html#themes" class="btn-outline">Retour TRIPLE S</a>
+        <a href="index.html#themes" class="btn-outline">← Retour TRIPLE S</a>
         <a href="index.html#custom" class="btn-primary">Choisir ce thème</a>
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="home">
     <!-- HERO -->
     <section class="hero">
       <div class="hero-inner">
         <div>
           <div class="eyebrow">Thème 1 — Minimal Clean</div>
           <h1 class="hero-title">
-            Home claire, produits simples,<br>
-            <span>formulaire COD très lisible.</span>
+            Boutique chaussures COD,<br>
+            <span>home simple et ultra lisible.</span>
           </h1>
           <p class="hero-sub">
-            Exemple de boutique pour le COD classique : quelques produits bien
-            mis en avant, peu de distractions, et un formulaire “Cash on Delivery”
-            propre en bas de page.
+            Une seule page claire : un grand visuel, quelques modèles bien choisis,
+            et un formulaire COD propre à la fin. Idéal pour tester rapidement un marché.
           </p>
           <div class="hero-badges">
-            <div class="badge">1 page principale (home)</div>
-            <div class="badge">Section produits simple</div>
+            <div class="badge">Design sombre + produit clair</div>
+            <div class="badge">4 modèles en vedette</div>
             <div class="badge">Formulaire COD 1-step</div>
           </div>
+          <div class="hero-ctas">
+            <a class="btn-primary" href="#cod">Voir le formulaire COD</a>
+            <a class="btn-outline" href="index.html#custom">Commander ce thème chez TRIPLE S</a>
+          </div>
           <p class="hero-note">
-            Cette page est une démo front-end. Votre vrai thème sera installé
-            sur votre boutique Shopify avec les mêmes sections.
+            Ceci est une démo front-end. Sur votre vraie boutique, tous les textes,
+            images et prix seront adaptés à vos produits.
           </p>
         </div>
 
         <div class="hero-card">
-          <div class="hero-card-header">
-            <div>
-              <div class="hero-card-title">Vue globale de la page</div>
-              <div class="hero-card-sub">Ce que voit le client en arrivant.</div>
-            </div>
-            <div class="price-tag">Exemple non contractuel</div>
+          <div class="hero-card-top">
+            <span>Vue client · écran d’accueil</span>
+            <span class="hero-pill">aperçu</span>
           </div>
-          <div class="hero-grid">
-            <div class="mini-hero">
-              <div class="mini-hero-title"></div>
-              <div class="mini-hero-sub"></div>
-              <div class="mini-hero-strip"></div>
+          <div class="hero-main">
+            <div class="hero-main-visual">
+              <!-- grande image produit (sneakers) -->
+              <img src="https://source.unsplash.com/800x600/?sneakers,shoe" alt="Sneakers minimalistes">
             </div>
-            <div class="mini-cod">
-              <div class="mini-cod-row">
-                <div class="mini-cod-field"></div>
-                <div class="mini-cod-field"></div>
-                <div class="mini-cod-field"></div>
-                <div class="mini-cod-field"></div>
+            <div class="hero-main-side">
+              <div class="side-title">Pack “Minimal Sneakers”</div>
+              <div class="side-lines">
+                Exemple de hero : grand visuel produit, titre simple, bandeau
+                promo et bouton d’appel à l’action visible.
               </div>
-              <div class="mini-cod-btn"></div>
+              <div class="side-strip"></div>
+              <div class="side-lines" style="font-size:11px;margin-top:4px;">
+                Tous ces éléments sont transformables en sections Shopify
+                (bannière image + texte + bouton).
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRODUITS SIMPLES -->
-    <section class="section">
+    <!-- COLLECTION PRODUITS -->
+    <section class="section" id="collection">
       <div class="section-header">
         <div>
-          <h2 class="section-title">Produits en vedette</h2>
+          <h2 class="section-title">Modèles en vedette</h2>
           <p class="section-sub">
-            4 cartes produits simples, parfait pour une offre COD directe.
+            Exemple de section “Produits” avec 4 cartes. Sur votre store,
+            ces blocs seront connectés à vos produits réels (handle, prix, etc.).
           </p>
         </div>
       </div>
 
       <div class="product-grid">
-        <div class="product-card">
-          <div class="product-img"></div>
-          <div class="product-title"></div>
-          <div class="product-sub"></div>
-          <div class="product-price-row">
-            <div class="product-price"></div>
-            <div class="product-btn"></div>
+        <!-- Produit 1 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://source.unsplash.com/600x600/?white-sneakers" alt="Sneakers blanches minimalistes">
           </div>
-        </div>
+          <div class="product-info">
+            <div class="product-title">Minimal White Sneaker</div>
+            <div class="product-sub">Modèle clean, semelle confortable, parfait pour le quotidien.</div>
+            <div class="product-meta">
+              <div class="product-price">
+                <span class="price-main">299 DH</span>
+                <span class="price-old">349 DH</span>
+              </div>
+              <span class="badge-small">-15% COD</span>
+            </div>
+            <div class="product-cta">
+              <button class="btn-xs-primary" onclick="scrollToCod('Minimal White Sneaker')">
+                Commander en COD
+              </button>
+              <button class="btn-xs-ghost">
+                Détails (démo)
+              </button>
+            </div>
+          </div>
+        </article>
 
-        <div class="product-card">
-          <div class="product-img"></div>
-          <div class="product-title"></div>
-          <div class="product-sub"></div>
-          <div class="product-price-row">
-            <div class="product-price"></div>
-            <div class="product-btn"></div>
+        <!-- Produit 2 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://source.unsplash.com/600x600/?black-sneakers" alt="Sneakers noires">
           </div>
-        </div>
+          <div class="product-info">
+            <div class="product-title">Black Street Runner</div>
+            <div class="product-sub">Sneaker noire minimaliste, idéale pour les tenues urbaines.</div>
+            <div class="product-meta">
+              <div class="product-price">
+                <span class="price-main">319 DH</span>
+                <span class="price-old">379 DH</span>
+              </div>
+              <span class="badge-small">Top ventes</span>
+            </div>
+            <div class="product-cta">
+              <button class="btn-xs-primary" onclick="scrollToCod('Black Street Runner')">
+                Commander en COD
+              </button>
+              <button class="btn-xs-ghost">
+                Détails (démo)
+              </button>
+            </div>
+          </div>
+        </article>
 
-        <div class="product-card">
-          <div class="product-img"></div>
-          <div class="product-title"></div>
-          <div class="product-sub"></div>
-          <div class="product-price-row">
-            <div class="product-price"></div>
-            <div class="product-btn"></div>
+        <!-- Produit 3 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://source.unsplash.com/600x600/?running-shoes" alt="Chaussures de running">
           </div>
-        </div>
+          <div class="product-info">
+            <div class="product-title">Light Run 2.0</div>
+            <div class="product-sub">Chaussure légère pour le sport, design sobre et moderne.</div>
+            <div class="product-meta">
+              <div class="product-price">
+                <span class="price-main">279 DH</span>
+                <span class="price-old">329 DH</span>
+              </div>
+              <span class="badge-small">Confort +</span>
+            </div>
+            <div class="product-cta">
+              <button class="btn-xs-primary" onclick="scrollToCod('Light Run 2.0')">
+                Commander en COD
+              </button>
+              <button class="btn-xs-ghost">
+                Détails (démo)
+              </button>
+            </div>
+          </div>
+        </article>
 
-        <div class="product-card">
-          <div class="product-img"></div>
-          <div class="product-title"></div>
-          <div class="product-sub"></div>
-          <div class="product-price-row">
-            <div class="product-price"></div>
-            <div class="product-btn"></div>
+        <!-- Produit 4 -->
+        <article class="product-card">
+          <div class="product-img-wrap">
+            <img src="https://source.unsplash.com/600x600/?casual-sneakers" alt="Sneakers casual">
           </div>
+          <div class="product-info">
+            <div class="product-title">Everyday Casual</div>
+            <div class="product-sub">Modèle casual, passe-partout, parfait pour les tenues simples.</div>
+            <div class="product-meta">
+              <div class="product-price">
+                <span class="price-main">259 DH</span>
+                <span class="price-old">299 DH</span>
+              </div>
+              <span class="badge-small">Nouvelle collection</span>
+            </div>
+            <div class="product-cta">
+              <button class="btn-xs-primary" onclick="scrollToCod('Everyday Casual')">
+                Commander en COD
+              </button>
+              <button class="btn-xs-ghost">
+                Détails (démo)
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- AVANTAGES COD -->
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Pourquoi ce thème est adapté au COD ?</h2>
+          <p class="section-sub">
+            Quelques exemples d’arguments que vous pouvez afficher sur la page,
+            juste avant le formulaire de commande.
+          </p>
+        </div>
+      </div>
+      <div class="benefits">
+        <div class="benefit-card">
+          <div class="benefit-title">Page simple, zéro distraction</div>
+          <p>
+            Une seule page pour tout : visuels, prix, avis, avantages et formulaire.
+            Le client ne se perd pas dans le menu.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-title">Pensé mobile-first</div>
+          <p>
+            Grille produits + formulaire lisibles sur petit écran. Boutons larges
+            et texte facile à lire.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-title">Formulaire COD au centre</div>
+          <p>
+            Le formulaire est la dernière étape de la page, avec un focus sur nom,
+            téléphone et adresse pour faciliter la prise de commande.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION FORMULAIRE COD (DEMO) -->
-    <section class="cod-section">
+    <!-- FORMULAIRE COD DEMO -->
+    <section class="cod-section" id="cod">
       <div>
-        <h2 class="cod-text-title">Formulaire COD — Exemple de section finale</h2>
-        <p class="cod-text-sub">
-          Ici, le client remplit ses informations (nom, téléphone, adresse)
-          et la commande arrive directement dans votre système COD (app TRIPLE S,
-          Google Sheet, ou autre).
+        <h2 class="cod-title">Formulaire de commande COD (exemple)</h2>
+        <p class="cod-sub">
+          Dans votre vraie boutique, ce formulaire sera relié à votre système COD :
+          app TRIPLE S, Google Sheet, ou back-office de commande.
         </p>
         <ul class="cod-list">
-          <li>Formulaire 1-step très lisible, pensé mobile-first.</li>
-          <li>Champs personnalisables selon votre marché (ville, région, produit...).</li>
-          <li>Intégration possible avec vos apps TRIPLE S (form, WhatsApp, anti-bot).</li>
+          <li>Champs personnalisables (ville, région, pointure, couleur…)</li>
+          <li>Compatible avec des protections anti-bot et des double-confirmations.</li>
+          <li>Texte & design adaptés à votre marché (FR, AR, ES…)</li>
         </ul>
       </div>
 
       <form class="cod-form" onsubmit="handleDemoCodSubmit(event)">
+        <div>
+          <label>Produit choisi
+            <select id="cod-product" name="product">
+              <option value="Minimal White Sneaker">Minimal White Sneaker</option>
+              <option value="Black Street Runner">Black Street Runner</option>
+              <option value="Light Run 2.0">Light Run 2.0</option>
+              <option value="Everyday Casual">Everyday Casual</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Pointure
+            <input name="size" placeholder="Ex: 41">
+          </label>
+        </div>
+        <div>
+          <label>Couleur
+            <input name="color" placeholder="Ex: Blanc, Noir...">
+          </label>
+        </div>
+        <div>
+          <label>Quantité
+            <input name="qty" type="number" min="1" value="1">
+          </label>
+        </div>
         <div>
           <label>Nom complet
             <input name="name" placeholder="Ex: Ahmed El..." required>
@@ -624,17 +828,14 @@
           </label>
         </div>
         <div>
-          <label>Produit
-            <select name="product">
-              <option value="Produit 1">Produit 1</option>
-              <option value="Produit 2">Produit 2</option>
-              <option value="Produit 3">Produit 3</option>
-            </select>
+          <label>Adresse / quartier
+            <input name="address" placeholder="Adresse complète">
           </label>
         </div>
+
         <label>
-          Commentaire / adresse complète
-          <textarea name="details" placeholder="Adresse, quantité, couleur, taille..."></textarea>
+          Commentaire (optionnel)
+          <textarea name="details" placeholder="Précisez la couleur, un créneau de livraison, etc."></textarea>
         </label>
 
         <div class="cod-actions">
@@ -642,7 +843,7 @@
             Envoyer (démo)
           </button>
           <button type="button" class="btn-outline" onclick="window.location.href='index.html#custom'">
-            Commander ce thème via TRIPLE S
+            Commander ce thème chez TRIPLE S
           </button>
         </div>
       </form>
@@ -650,17 +851,36 @@
   </main>
 
   <footer>
-    <div>
-      Démo front-end créée par TRIPLE S · Pour commander ce design sur votre boutique,
-      utilisez le formulaire sur la page principale.
-    </div>
+    Démo visuelle créée par TRIPLE S.  
+    Pour installer ce thème (ou une version personnalisée) sur votre boutique Shopify,
+    utilisez le formulaire sur la page principale.
   </footer>
 </div>
 
 <script>
+  // Quand on clique "Commander en COD" sur une carte produit,
+  // on descend vers le formulaire et on pré-sélectionne le produit.
+  function scrollToCod(productName){
+    const select = document.getElementById('cod-product');
+    if(select){
+      const options = Array.from(select.options);
+      const match = options.find(o => o.value === productName);
+      if(match){ select.value = match.value; }
+    }
+    const codSection = document.getElementById('cod');
+    if(codSection){
+      codSection.scrollIntoView({behavior:'smooth'});
+    }
+  }
+
+  // Soumission du formulaire (démo uniquement)
   function handleDemoCodSubmit(e){
     e.preventDefault();
-    alert("Ceci est une démo. Sur la vraie boutique, ce formulaire enverrait la commande dans votre système COD (TRIPLE S / Google Sheet / autre).");
+    alert(
+      "Ceci est une démonstration.\n\n" +
+      "Dans votre vraie boutique, cette action créerait une commande COD " +
+      "ou enverrait les informations vers votre app TRIPLE S / Google Sheet."
+    );
   }
 </script>
 </body>
