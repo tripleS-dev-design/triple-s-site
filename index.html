@@ -2,460 +2,471 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRIPLE S — Shopify Apps Studio</title>
-  <meta name="description" content="TRIPLE S crée des apps Shopify performantes : COD, Upsells, Announcement Bars, WhatsApp & plus. Support rapide et outils pensés pour la conversion.">
-  <link rel="icon" href="assets/logo.png" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TRIPLE S — Shopify Apps (COD • Bars • WhatsApp)</title>
+  <meta name="description" content="TRIPLE S crée des apps Shopify: Announcement bars, WhatsApp buttons, Popups, Countdown, COD forms, Upsells. Ultra clean, rapide, support humain." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body data-maintenance="0">
-  <!-- =========================
-       MAINTENANCE (option)
-  ========================== -->
-  <div class="maintenance-overlay" role="dialog" aria-modal="true" aria-label="Maintenance">
-    <div class="maintenance-card">
-      <div class="maintenance-badge">
-        <span class="maintenance-dot"></span>
-        Site en cours de mise à jour
+<body>
+  <!-- Top progress bar (scroll) -->
+  <div class="scrollbar" aria-hidden="true"><span></span></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="#top" aria-label="TRIPLE S Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <strong>TRIPLE S</strong>
+          <small>Shopify Partner • Apps Studio</small>
+        </span>
+      </a>
+
+      <nav class="links" aria-label="Navigation">
+        <a href="#apps">Apps</a>
+        <a href="#features">Features</a>
+        <a href="#proof">Proof</a>
+        <a href="#support">Support</a>
+      </nav>
+
+      <div class="nav__cta">
+        <a class="btn btn--ghost" href="#apps">Explore apps</a>
+        <a class="btn btn--shopify" href="#support">Help Center</a>
       </div>
-      <h2 class="maintenance-title">TRIPLE S revient très bientôt</h2>
-      <p class="maintenance-text">
-        Mise à jour en cours pour améliorer l’expérience (apps, sections, support).
-        Pour toute demande urgente, contactez-nous via email ou WhatsApp.
-      </p>
-      <div class="maintenance-actions">
-        <a class="btn btn-primary" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Demande%20urgente">Contacter par e-mail</a>
-        <a class="btn btn-ghost" href="https://wa.me/212725148634" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn btn-ghost" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">Voir l’app (App Store)</a>
+
+      <button class="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mnav" hidden>
+      <div class="container mnav__inner">
+        <a href="#apps">Apps</a>
+        <a href="#features">Features</a>
+        <a href="#proof">Proof</a>
+        <a href="#support">Support</a>
+        <div class="mnav__cta">
+          <a class="btn btn--ghost" href="#apps">Explore apps</a>
+          <a class="btn btn--shopify" href="#support">Help Center</a>
+        </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="page">
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-    <header class="navbar">
-      <div class="container nav-inner">
-        <a class="brand" href="#top">
-          <span class="brand-mark" aria-hidden="true"></span>
-          <div class="brand-text">
-            <div class="brand-name">TRIPLE S</div>
-            <div class="brand-sub">Certified Shopify Partner • Apps Studio</div>
-          </div>
-        </a>
+  <main id="top">
 
-        <nav class="nav-links" aria-label="Navigation">
-          <a href="#apps">Apps</a>
-          <a href="#results">Résultats</a>
-          <a href="#reviews">Avis</a>
-          <a href="#support">Support</a>
-        </nav>
-
-        <div class="nav-actions">
-          <a class="btn btn-ghost" href="#apps">Explore our apps</a>
-          <a class="btn btn-primary" href="#support">Help Center</a>
-        </div>
-
-        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+    <!-- HERO (animated, reactive) -->
+    <section class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="blob blob--1"></div>
+        <div class="blob blob--2"></div>
+        <div class="gridlines"></div>
       </div>
 
-      <!-- Mobile menu -->
-      <div class="mobile-menu" hidden>
-        <div class="container mobile-menu-inner">
-          <a href="#apps">Apps</a>
-          <a href="#results">Résultats</a>
-          <a href="#reviews">Avis</a>
-          <a href="#support">Support</a>
-          <div class="mobile-menu-cta">
-            <a class="btn btn-ghost" href="#apps">Explore our apps</a>
-            <a class="btn btn-primary" href="#support">Help Center</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main id="top">
-      <!-- =========================
-           HERO
-      ========================== -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy reveal reveal-up">
-            <div class="pill">
-              <span class="dot"></span>
-              TRIPLE S est un Shopify Partner
-            </div>
-
-            <h1 class="hero-title">
-              Powerful Shopify apps<br>
-              <span>that elevate your store</span>
-            </h1>
-
-            <p class="hero-subtitle">
-              Des apps propres, rapides et “Theme Editor friendly”.
-              COD, Upsells, Announcement Bars, WhatsApp & plus — avec support humain.
-            </p>
-
-            <div class="hero-ctas">
-              <a class="btn btn-primary" href="#apps">Explore our apps</a>
-              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Projet%20Shopify">Contact</a>
-            </div>
-
-            <div class="hero-badges">
-              <span class="mini-badge">Fast setup</span>
-              <span class="mini-badge">Performance first</span>
-              <span class="mini-badge">Human support</span>
-            </div>
+      <div class="container hero__inner">
+        <div class="hero__copy reveal">
+          <div class="pill">
+            <span class="pill__dot"></span>
+            Built for Shopify • Clean UI • Fast setup
           </div>
 
-          <div class="hero-visual reveal reveal-up reveal-delay-1">
-            <!-- Illustration inline (tu peux remplacer par une image si tu veux) -->
-            <div class="illus-wrap">
-              <div class="illus-parallax" data-parallax="1">
-                <svg class="illus" viewBox="0 0 860 520" role="img" aria-label="Illustration dashboard">
-                  <defs>
-                    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stop-color="#0f766e" stop-opacity="0.20"/>
-                      <stop offset="1" stop-color="#0f766e" stop-opacity="0.06"/>
-                    </linearGradient>
-                  </defs>
+          <h1>
+            Shopify apps that feel like
+            <span class="grad">native features</span>.
+          </h1>
 
-                  <rect x="40" y="50" rx="28" ry="28" width="780" height="420" fill="url(#g1)" stroke="rgba(15,118,110,0.15)" />
-                  <rect x="80" y="90" rx="18" ry="18" width="700" height="70" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
-                  <rect x="110" y="115" rx="10" ry="10" width="220" height="20" fill="rgba(15,118,110,0.20)"/>
-                  <rect x="350" y="115" rx="10" ry="10" width="140" height="20" fill="rgba(17,24,39,0.08)"/>
-                  <rect x="510" y="115" rx="10" ry="10" width="110" height="20" fill="rgba(17,24,39,0.08)"/>
-
-                  <rect x="80" y="180" rx="22" ry="22" width="340" height="250" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
-                  <rect x="450" y="180" rx="22" ry="22" width="330" height="120" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
-                  <rect x="450" y="310" rx="22" ry="22" width="330" height="120" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
-
-                  <path d="M115 370 C 170 330, 230 390, 290 340 S 400 350, 390 290"
-                        fill="none" stroke="rgba(15,118,110,0.9)" stroke-width="8" stroke-linecap="round"/>
-                  <circle cx="290" cy="340" r="10" fill="#0f766e"/>
-                  <circle cx="390" cy="290" r="10" fill="#0f766e"/>
-
-                  <path d="M490 235 L 740 235" stroke="rgba(17,24,39,0.10)" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M490 360 L 740 360" stroke="rgba(17,24,39,0.10)" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M490 265 L 690 265" stroke="rgba(15,118,110,0.30)" stroke-width="10" stroke-linecap="round"/>
-                  <path d="M490 390 L 650 390" stroke="rgba(15,118,110,0.30)" stroke-width="10" stroke-linecap="round"/>
-
-                  <circle cx="760" cy="130" r="22" fill="rgba(15,118,110,0.18)"/>
-                  <circle cx="785" cy="130" r="14" fill="rgba(15,118,110,0.35)"/>
-                </svg>
-              </div>
-
-              <div class="floating-card" data-parallax="2">
-                <div class="fc-title">Support</div>
-                <div class="fc-sub">Réponse rapide • WhatsApp • Email • Crisp</div>
-                <div class="fc-row">
-                  <span class="chip">24/7 Crisp</span>
-                  <span class="chip">WhatsApp</span>
-                  <span class="chip">Email</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================
-           TRUSTED / LOGOS
-      ========================== -->
-      <section class="trusted section-soft">
-        <div class="container reveal reveal-up">
-          <h2 class="section-title-center">Trusted by Shopify brands of every size.</h2>
-          <p class="section-subtitle-center">
-            Nos apps sont conçues pour la performance, la fiabilité et l’évolutivité.
+          <p>
+            TRIPLE S crée des apps ultra propres (Theme Editor friendly), orientées conversion:
+            Announcement bars, WhatsApp, popups, countdown, COD forms & upsells.
           </p>
 
-          <!-- Logos placeholders (mets tes logos clients plus tard) -->
-          <div class="logo-row" aria-label="Logos">
-            <span class="logo-pill">Store A</span>
-            <span class="logo-pill">Store B</span>
-            <span class="logo-pill">Store C</span>
-            <span class="logo-pill">Brand D</span>
-            <span class="logo-pill">Brand E</span>
-            <span class="logo-pill">Brand F</span>
+          <div class="hero__cta">
+            <a class="btn btn--shopify" href="#apps">Explore our apps</a>
+            <a class="btn btn--ghost" href="#support">Talk to support</a>
           </div>
-        </div>
-      </section>
 
-      <!-- =========================
-           RESULTS / KPIs (count-up)
-      ========================== -->
-      <section id="results" class="results">
-        <div class="container">
-          <h2 class="section-title-center reveal reveal-up">Grow your Business</h2>
-
-          <div class="kpi-grid">
-            <article class="kpi-card reveal reveal-up reveal-delay-1">
-              <div class="kpi-value">
-                <span class="countup" data-from="0" data-to="42" data-suffix="%">0</span>
-              </div>
-              <div class="kpi-label">Increase AOV</div>
-              <p class="kpi-text">Upsells & bundles plus simples → panier moyen plus élevé.</p>
-            </article>
-
-            <article class="kpi-card reveal reveal-up reveal-delay-2">
-              <div class="kpi-value">
-                <span class="countup" data-from="0" data-to="1.2" data-decimals="1" data-suffix="h">0</span>
-              </div>
-              <div class="kpi-label">Save Time</div>
-              <p class="kpi-text">Automatisation (COD, templates, settings) → moins de tâches manuelles.</p>
-            </article>
-
-            <article class="kpi-card reveal reveal-up reveal-delay-3">
-              <div class="kpi-value">
-                <span class="countup" data-from="0" data-to="98" data-suffix="%">0</span>
-              </div>
-              <div class="kpi-label">Reduce Errors</div>
-              <p class="kpi-text">Settings clairs + logique stable → moins d’erreurs côté commandes.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================
-           APPS GRID (tes apps)
-      ========================== -->
-      <section id="apps" class="apps section-soft">
-        <div class="container">
-          <div class="section-head reveal reveal-up">
-            <div>
-              <div class="section-eyebrow">Discover our Shopify Apps</div>
-              <h2 class="section-title">Mes apps Shopify (TRIPLE S)</h2>
-              <p class="section-subtitle">3 apps publiques — roadmap active — support humain.</p>
+          <div class="mini">
+            <div class="mini__item">
+              <span class="mini__dot"></span>
+              <strong>Fast</strong><small>Performance first</small>
             </div>
-            <a class="btn btn-ghost" href="#support">Contact support</a>
-          </div>
-
-          <div class="app-grid">
-            <!-- App 1 -->
-            <article class="app-card reveal reveal-up">
-              <div class="app-top">
-                <div class="app-icon" aria-hidden="true">B</div>
-                <div class="app-meta">
-                  <div class="app-name">Blocks: Bar, WhatsApp & More</div>
-                  <div class="app-sub">Publié • 5.0/5 • 15 features</div>
-                </div>
-                <span class="status status-live">Live</span>
-              </div>
-              <p class="app-desc">
-                Announcement bar, popup, countdown, bouton WhatsApp sticky — tout via Theme Editor, sans coder.
-              </p>
-              <div class="app-actions">
-                <a class="btn btn-primary" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">Try for Free</a>
-                <a class="btn btn-ghost" href="#support">Learn More</a>
-              </div>
-            </article>
-
-            <!-- App 2 -->
-            <article class="app-card reveal reveal-up reveal-delay-1">
-              <div class="app-top">
-                <div class="app-icon" aria-hidden="true">T</div>
-                <div class="app-meta">
-                  <div class="app-name">TripleForm COD Order — Upsells</div>
-                  <div class="app-sub">Soumise • 0 review • 3 modules</div>
-                </div>
-                <span class="status status-soon">Submitted</span>
-              </div>
-              <p class="app-desc">
-                Formulaire COD 1-step/2-steps + upsells légers, Google Sheets, WhatsApp, validation & anti-bot.
-              </p>
-              <div class="app-actions">
-                <a class="btn btn-ghost" href="#support">Request demo</a>
-              </div>
-            </article>
-
-            <!-- App 3 -->
-            <article class="app-card reveal reveal-up reveal-delay-2">
-              <div class="app-top">
-                <div class="app-icon" aria-hidden="true">S</div>
-                <div class="app-meta">
-                  <div class="app-name">Trisend (Messaging Hub)</div>
-                  <div class="app-sub">Brouillon • Attention • 1 module</div>
-                </div>
-                <span class="status status-draft">Draft</span>
-              </div>
-              <p class="app-desc">
-                Templates Email/SMS/WhatsApp avec variables, routage par pays, automations et logs.
-              </p>
-              <div class="app-actions">
-                <a class="btn btn-ghost" href="#support">Join beta</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- =========================
-           NUMBERS + REVIEWS
-      ========================== -->
-      <section class="numbers">
-        <div class="container reveal reveal-up">
-          <h2 class="section-title-center">Our numbers speak for themselves</h2>
-
-          <div class="numbers-row">
-            <div class="number-card">
-              <div class="number-big">
-                <span class="countup" data-from="0" data-to="1350" data-suffix="+">0</span>
-              </div>
-              <div class="number-label">Reviews (global apps)</div>
+            <div class="mini__item">
+              <span class="mini__dot"></span>
+              <strong>Stable</strong><small>Clean logic</small>
             </div>
-
-            <div class="number-card">
-              <div class="number-big">
-                <span class="countup" data-from="0" data-to="5.0" data-decimals="1">0</span>
-                <span class="star" aria-hidden="true">★</span>
-              </div>
-              <div class="number-label">Average rating</div>
+            <div class="mini__item">
+              <span class="mini__dot"></span>
+              <strong>Human</strong><small>Real support</small>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- =========================
-           TESTIMONIALS
-      ========================== -->
-      <section id="reviews" class="reviews section-soft">
-        <div class="container">
-          <h2 class="section-title-center reveal reveal-up">Reviews from our Merchants</h2>
+        <!-- Right card (animated dashboard) -->
+        <div class="hero__card reveal" data-tilt>
+          <div class="cardTop">
+            <div class="cardTop__left">
+              <div class="dotrow" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="cardTop__title">TRIPLE S Dashboard</div>
+              <div class="cardTop__sub">Live preview • Theme Editor • One-click</div>
+            </div>
+            <div class="badgeLive">
+              <span></span> Live
+            </div>
+          </div>
 
-          <div class="testi-grid">
-            <article class="testi-card reveal reveal-up">
-              <div class="testi-stars" aria-hidden="true">★★★★★</div>
-              <div class="testi-app">Blocks: Bar, WhatsApp & More</div>
-              <p class="testi-text">
-                “Setup rapide, très propre dans le Theme Editor. Le support répond vite et les blocs sont stables.”
-              </p>
-              <div class="testi-author">HockeyStation <span>• UK</span></div>
+          <div class="spark">
+            <div class="spark__line"></div>
+            <div class="spark__line"></div>
+            <div class="spark__line"></div>
+          </div>
+
+          <div class="cards">
+            <article class="miniCard">
+              <div class="miniCard__icon">⚡</div>
+              <div class="miniCard__txt">
+                <strong>Instant blocks</strong>
+                <small>Add in Theme Editor</small>
+              </div>
+              <div class="miniCard__stat">
+                <span class="count" data-to="3">0</span><small>blocks</small>
+              </div>
             </article>
 
-            <article class="testi-card reveal reveal-up reveal-delay-1">
-              <div class="testi-stars" aria-hidden="true">★★★★★</div>
-              <div class="testi-app">GetSale (exemple)</div>
-              <p class="testi-text">
-                “Simple à utiliser, et surtout ça évite les erreurs pendant les promos. Super app.”
-              </p>
-              <div class="testi-author">NOTIQ <span>• US</span></div>
+            <article class="miniCard">
+              <div class="miniCard__icon">💬</div>
+              <div class="miniCard__txt">
+                <strong>WhatsApp ready</strong>
+                <small>Sticky / Floating</small>
+              </div>
+              <div class="miniCard__stat">
+                <span class="count" data-to="24">0</span><small>/7</small>
+              </div>
+            </article>
+
+            <article class="miniCard">
+              <div class="miniCard__icon">📈</div>
+              <div class="miniCard__txt">
+                <strong>Conversion</strong>
+                <small>Upsell • urgency</small>
+              </div>
+              <div class="miniCard__stat">
+                <span class="count" data-to="42">0</span><small>%</small>
+              </div>
             </article>
           </div>
 
-          <div class="cta-strip reveal reveal-up reveal-delay-2">
-            <div>
-              <div class="cta-title">Got questions? We have answers.</div>
-              <div class="cta-sub">Support: Email + WhatsApp + Crisp (24/7).</div>
-            </div>
-            <div class="cta-actions">
-              <a class="btn btn-primary" href="#support">Help Center</a>
-              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Support">Contact Support</a>
+          <!-- live activity ticker -->
+          <div class="ticker" aria-label="Live activity">
+            <div class="ticker__track">
+              <span>✅ Merchant installed “Blocks”</span>
+              <span>⚙️ Theme Editor: added Announcement Bar</span>
+              <span>💬 WhatsApp button enabled</span>
+              <span>⏱️ Countdown activated on product page</span>
+              <span>✅ Merchant installed “Blocks”</span>
+              <span>⚙️ Theme Editor: added Announcement Bar</span>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- =========================
-           SUPPORT
-      ========================== -->
-      <section id="support" class="support">
-        <div class="container support-grid">
-          <div class="support-card reveal reveal-up">
-            <h2 class="support-title">Support TRIPLE S</h2>
-            <p class="support-text">
-              Dis-moi ton besoin (app, bug, configuration, intégration).
-              Réponse rapide avec solution claire.
-            </p>
+    <!-- APPS (Shopify App Store style buttons) -->
+    <section id="apps" class="section">
+      <div class="container">
+        <div class="head reveal">
+          <div>
+            <div class="kicker">Discover our Shopify Apps</div>
+            <h2>Apps by TRIPLE S</h2>
+            <p>Des apps pro: UI clean, settings clairs, previews réels et support rapide.</p>
+          </div>
+        </div>
 
-            <div class="support-rows">
-              <div class="support-row">
-                <div class="support-label">Email</div>
-                <div class="support-value">ktami.sami@icloud.com</div>
+        <div class="appGrid">
+          <!-- App 1 (live app store) -->
+          <article class="app reveal">
+            <div class="app__top">
+              <div class="app__icon">B</div>
+              <div class="app__meta">
+                <strong>Blocks: Bar, WhatsApp & More</strong>
+                <small>Announcement bar • Popup • Countdown • WhatsApp</small>
               </div>
-              <div class="support-row">
-                <div class="support-label">WhatsApp</div>
-                <div class="support-value">+212 7 25 14 86 34</div>
-              </div>
-              <div class="support-row">
-                <div class="support-label">Live chat</div>
-                <div class="support-value">Crisp • 24/7</div>
-              </div>
+              <span class="tag tag--ok">Live</span>
             </div>
 
-            <div class="support-actions">
-              <a class="btn btn-primary" href="https://wa.me/212725148634?text=Bonjour%20TRIPLE%20S%2C%20j%27ai%20besoin%20d%27aide%20sur%20mon%20store." target="_blank" rel="noopener">
+            <div class="app__bullets">
+              <div class="bullet">Theme Editor blocks (no code)</div>
+              <div class="bullet">Modern styles + effects</div>
+              <div class="bullet">Optimized for speed</div>
+            </div>
+
+            <div class="app__actions">
+              <!-- IMPORTANT: replace with your exact app store link if different -->
+              <a class="btn btn--shopify"
+                 href="https://apps.shopify.com/announcement-bar-app-1"
+                 target="_blank" rel="noopener">
+                Add app
+              </a>
+              <a class="btn btn--ghost"
+                 href="https://apps.shopify.com/announcement-bar-app-1"
+                 target="_blank" rel="noopener">
+                View on App Store
+              </a>
+            </div>
+          </article>
+
+          <!-- App 2 -->
+          <article class="app reveal">
+            <div class="app__top">
+              <div class="app__icon app__icon--dark">T</div>
+              <div class="app__meta">
+                <strong>TripleForm COD — Upsells</strong>
+                <small>COD form • Upsell • Sheets • WhatsApp</small>
+              </div>
+              <span class="tag tag--soon">In review</span>
+            </div>
+
+            <div class="app__bullets">
+              <div class="bullet">COD order form (1-step / 2-steps)</div>
+              <div class="bullet">Upsells + validation logic</div>
+              <div class="bullet">Google Sheets sync</div>
+            </div>
+
+            <div class="app__actions">
+              <a class="btn btn--shopify" href="#support">Request demo</a>
+              <a class="btn btn--ghost" href="#support">Get early access</a>
+            </div>
+          </article>
+
+          <!-- App 3 -->
+          <article class="app reveal">
+            <div class="app__top">
+              <div class="app__icon app__icon--lite">S</div>
+              <div class="app__meta">
+                <strong>Trisend — Messaging Hub</strong>
+                <small>Email • SMS • WhatsApp templates & routing</small>
+              </div>
+              <span class="tag tag--draft">Beta</span>
+            </div>
+
+            <div class="app__bullets">
+              <div class="bullet">Templates with variables</div>
+              <div class="bullet">Country routing rules</div>
+              <div class="bullet">Logs + delivery status</div>
+            </div>
+
+            <div class="app__actions">
+              <a class="btn btn--shopify" href="#support">Join beta</a>
+              <a class="btn btn--ghost" href="#support">Talk to us</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES (interactive) -->
+    <section id="features" class="section section--soft">
+      <div class="container">
+        <div class="head reveal">
+          <div class="kicker">Why merchants choose TRIPLE S</div>
+          <h2>Built like Shopify, not like a template</h2>
+          <p>Chaque bloc est stable, clair et pensé pour la conversion + expérience admin.</p>
+        </div>
+
+        <div class="featGrid">
+          <article class="feat reveal">
+            <div class="feat__icon">🧩</div>
+            <h3>Theme Editor blocks</h3>
+            <p>Ajoute un bloc, règle le style, et c’est fini. Aucun code.</p>
+          </article>
+
+          <article class="feat reveal">
+            <div class="feat__icon">✨</div>
+            <h3>Real previews</h3>
+            <p>Preview animé et fidèle à ce que le client voit sur le store.</p>
+          </article>
+
+          <article class="feat reveal">
+            <div class="feat__icon">⚙️</div>
+            <h3>Clean settings</h3>
+            <p>Options simples: couleurs, positions, vitesse, texte, multi-language.</p>
+          </article>
+
+          <article class="feat reveal">
+            <div class="feat__icon">🚀</div>
+            <h3>Performance first</h3>
+            <p>Animations légères + code optimisé → pas de ralentissement.</p>
+          </article>
+
+          <article class="feat reveal">
+            <div class="feat__icon">🛡️</div>
+            <h3>Stable logic</h3>
+            <p>Moins de bugs, moins d’erreurs, logique claire même sur thèmes custom.</p>
+          </article>
+
+          <article class="feat reveal">
+            <div class="feat__icon">💬</div>
+            <h3>Human support</h3>
+            <p>Email + WhatsApp + Crisp (24/7) pour guider le merchant.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF (animated counters + slider) -->
+    <section id="proof" class="section">
+      <div class="container">
+        <div class="proofGrid">
+          <div class="proofLeft reveal">
+            <div class="kicker">Proof</div>
+            <h2>Numbers that matter</h2>
+            <p>Impact conversion + expérience merchant. C’est ça le but de TRIPLE S.</p>
+
+            <div class="stats">
+              <div class="stat">
+                <strong><span class="count" data-to="98">0</span>%</strong>
+                <small>Cleaner setup</small>
+              </div>
+              <div class="stat">
+                <strong><span class="count" data-to="5">0</span>.0</strong>
+                <small>Rating goal</small>
+              </div>
+              <div class="stat">
+                <strong><span class="count" data-to="1350">0</span>+</strong>
+                <small>Reviews ecosystem</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="proofRight reveal">
+            <div class="slider" aria-label="Reviews slider">
+              <div class="slides">
+                <article class="slide is-active">
+                  <div class="stars">★★★★★</div>
+                  <strong>“Clean blocks. Setup took 2 minutes.”</strong>
+                  <p>Theme Editor integration is super smooth. Support answered fast.</p>
+                  <small>Merchant • Blocks app</small>
+                </article>
+
+                <article class="slide">
+                  <div class="stars">★★★★★</div>
+                  <strong>“Perfect WhatsApp button + bar.”</strong>
+                  <p>Looks professional, no heavy scripts. Exactly what we needed.</p>
+                  <small>Merchant • Blocks app</small>
+                </article>
+
+                <article class="slide">
+                  <div class="stars">★★★★★</div>
+                  <strong>“Stable on custom themes.”</strong>
+                  <p>Even with theme customizations, everything stays clean and responsive.</p>
+                  <small>Merchant • Blocks app</small>
+                </article>
+              </div>
+
+              <div class="sliderNav">
+                <button class="sbtn" data-prev aria-label="Previous">←</button>
+                <button class="sbtn" data-next aria-label="Next">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaBar reveal">
+          <div>
+            <strong>Need help installing a block?</strong>
+            <small>We guide you step-by-step (Theme Editor, settings, conflicts).</small>
+          </div>
+          <div class="ctaBar__actions">
+            <a class="btn btn--shopify" href="#support">Contact support</a>
+            <a class="btn btn--ghost" href="#apps">View apps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUPPORT -->
+    <section id="support" class="section section--soft">
+      <div class="container">
+        <div class="head reveal">
+          <div class="kicker">Support</div>
+          <h2>Talk to TRIPLE S</h2>
+          <p>Réponse rapide: WhatsApp + Email + Crisp 24/7.</p>
+        </div>
+
+        <div class="supportGrid">
+          <div class="supportCard reveal">
+            <div class="supportRow">
+              <span>Email</span>
+              <strong>ktami.sami@icloud.com</strong>
+            </div>
+            <div class="supportRow">
+              <span>WhatsApp</span>
+              <strong>+212 7 25 14 86 34</strong>
+            </div>
+            <div class="supportRow">
+              <span>Live Chat</span>
+              <strong>Crisp • 24/7</strong>
+            </div>
+
+            <div class="supportBtns">
+              <a class="btn btn--shopify" target="_blank" rel="noopener"
+                 href="https://wa.me/212725148634?text=Bonjour%20TRIPLE%20S%2C%20j%27ai%20besoin%20d%27aide%20sur%20mon%20store.">
                 WhatsApp
               </a>
-              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Support">Email</a>
+              <a class="btn btn--ghost"
+                 href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20Support">
+                Email
+              </a>
             </div>
           </div>
 
-          <form class="support-form reveal reveal-up reveal-delay-1" id="supportForm">
-            <h3>Message rapide</h3>
+          <form class="form reveal" id="quickForm">
             <label>
-              <span>Nom</span>
-              <input name="name" required placeholder="Votre nom" />
+              <span>Name</span>
+              <input name="name" required placeholder="Your name" />
             </label>
             <label>
               <span>Email</span>
-              <input name="email" type="email" required placeholder="email@exemple.com" />
+              <input name="email" required type="email" placeholder="name@store.com" />
             </label>
             <label>
               <span>Message</span>
-              <textarea name="message" required placeholder="Explique le besoin (app, bug, configuration...)"></textarea>
+              <textarea name="message" required placeholder="Which app? What issue? (Theme Editor, settings, conflict...)"></textarea>
             </label>
-            <button type="submit" class="btn btn-primary">Envoyer (WhatsApp)</button>
-            <p class="form-note">Le bouton envoie le message sur WhatsApp (simple & rapide).</p>
+            <button class="btn btn--shopify" type="submit">Send via WhatsApp</button>
+            <small class="hint">Le message s’ouvre sur WhatsApp (rapide).</small>
           </form>
         </div>
-      </section>
-    </main>
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <div class="footer-name">TRIPLE S</div>
-          <p class="footer-text">
-            Apps Shopify orientées conversion : COD, upsells, announcement bars, popups, WhatsApp & support.
-          </p>
-        </div>
-
-        <div>
-          <div class="footer-title">Links</div>
-          <div class="footer-links">
-            <a href="#top">Home</a>
-            <a href="#apps">Apps</a>
-            <a href="#results">Résultats</a>
-            <a href="#reviews">Avis</a>
-            <a href="#support">Support</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-title">Contact</div>
-          <div class="footer-links">
-            <span>Email: ktami.sami@icloud.com</span>
-            <span>WhatsApp: +212 7 25 14 86 34</span>
-          </div>
-        </div>
       </div>
+    </section>
 
-      <div class="container footer-bottom">
-        <span>© <span id="year"></span> TRIPLE S — Tous droits réservés.</span>
-        <a class="btn btn-ghost" href="#top">Back to top</a>
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footBrand">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <div>
+            <strong>TRIPLE S</strong>
+            <small>Shopify apps • Performance • Support</small>
+          </div>
+        </div>
+
+        <div class="footLinks">
+          <a href="#apps">Apps</a>
+          <a href="#features">Features</a>
+          <a href="#proof">Proof</a>
+          <a href="#support">Support</a>
+        </div>
+
+        <div class="footCopy">
+          © <span id="year"></span> TRIPLE S. All rights reserved.
+        </div>
       </div>
     </footer>
-  </div>
+
+  </main>
 
   <script src="script.js" defer></script>
 </body>
