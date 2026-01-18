@@ -1,63 +1,61 @@
-// ========= Helpers =========
-const $ = (q, el = document) => el.querySelector(q);
-const $$ = (q, el = document) => [...el.querySelectorAll(q)];
+const $ = (q, el=document) => el.querySelector(q);
+const $$ = (q, el=document) => [...el.querySelectorAll(q)];
 
-function openWhatsApp(text){
-  const WA_NUMBER = "212725148634";
-  const url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
-  window.open(url, "_blank", "noopener");
+function setYear(){
+  const y = $("#year");
+  if (y) y.textContent = new Date().getFullYear();
 }
 
-// ========= Year =========
-const yearEl = $("#year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+function scrollProgress(){
+  const bar = $(".scrollbar span");
+  if (!bar) return;
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+  bar.style.width = `${p}%`;
+}
 
-// ========= Mobile menu =========
-const burger = $(".burger");
-const mobileMenu = $(".mobile-menu");
+function mobileNav(){
+  const burger = $(".burger");
+  const mnav = $(".mnav");
+  if (!burger || !mnav) return;
 
-if (burger && mobileMenu) {
   burger.addEventListener("click", () => {
-    const expanded = burger.getAttribute("aria-expanded") === "true";
-    burger.setAttribute("aria-expanded", String(!expanded));
-    mobileMenu.hidden = expanded;
+    const open = burger.getAttribute("aria-expanded") === "true";
+    burger.setAttribute("aria-expanded", String(!open));
+    mnav.hidden = open;
   });
 
-  // close on link click
-  $$(".mobile-menu a").forEach(a => {
-    a.addEventListener("click", () => {
-      burger.setAttribute("aria-expanded", "false");
-      mobileMenu.hidden = true;
-    });
-  });
+  $$(".mnav a").forEach(a => a.addEventListener("click", () => {
+    burger.setAttribute("aria-expanded", "false");
+    mnav.hidden = true;
+  }));
 }
 
-// ========= Reveal on scroll =========
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add("in-view");
-    else e.target.classList.remove("in-view");
-  });
-}, { threshold: 0.18 });
+function revealOnScroll(){
+  const els = $$(".reveal");
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add("in");
+    });
+  }, {threshold: 0.18});
 
-$$(".reveal").forEach(el => revealObs.observe(el));
+  els.forEach(el => obs.observe(el));
+}
 
-// ========= Count up (numbers animate when visible) =========
-function animateCount(el) {
-  const from = parseFloat(el.dataset.from ?? "0");
-  const to = parseFloat(el.dataset.to ?? "0");
-  const decimals = parseInt(el.dataset.decimals ?? "0", 10);
-  const suffix = el.dataset.suffix ?? "";
-  const duration = 1200; // ms
+function animateCount(el){
+  const to = parseFloat(el.dataset.to || "0");
+  const from = 0;
+  const dur = 950;
   const start = performance.now();
 
-  function tick(now) {
-    const t = Math.min(1, (now - start) / duration);
-    // smooth easeOut
+  function tick(now){
+    const t = Math.min(1, (now - start) / dur);
     const eased = 1 - Math.pow(1 - t, 3);
     const val = from + (to - from) * eased;
 
-    el.textContent = val.toFixed(decimals) + suffix;
+    // integer only (simple + clean)
+    el.textContent = String(Math.round(val));
 
     if (t < 1) requestAnimationFrame(tick);
   }
@@ -65,49 +63,96 @@ function animateCount(el) {
   requestAnimationFrame(tick);
 }
 
-const countObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
+function counters(){
+  const els = $$(".count");
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.dataset.ran === "1") return;
+      el.dataset.ran = "1";
+      animateCount(el);
+    });
+  }, {threshold: 0.35});
 
-    // run once
-    if (el.dataset.ran === "1") return;
-    el.dataset.ran = "1";
+  els.forEach(el => obs.observe(el));
+}
 
-    animateCount(el);
+function slider(){
+  const slidesWrap = $(".slides");
+  if (!slidesWrap) return;
+  const slides = $$(".slide", slidesWrap);
+  if (!slides.length) return;
+
+  let i = slides.findIndex(s => s.classList.contains("is-active"));
+  if (i < 0) i = 0;
+
+  function show(n){
+    slides[i].classList.remove("is-active");
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("is-active");
+  }
+
+  const prev = $("[data-prev]");
+  const next = $("[data-next]");
+  prev?.addEventListener("click", () => show(i - 1));
+  next?.addEventListener("click", () => show(i + 1));
+
+  // auto
+  setInterval(() => show(i + 1), 5200);
+}
+
+function tiltCard(){
+  const card = $("[data-tilt]");
+  if (!card) return;
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+  card.addEventListener("mousemove", (e) => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width;
+    const y = (e.clientY - r.top) / r.height;
+
+    const rx = clamp((0.5 - y) * 8, -8, 8);
+    const ry = clamp((x - 0.5) * 10, -10, 10);
+
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
   });
-}, { threshold: 0.35 });
 
-$$(".countup").forEach(el => countObs.observe(el));
-
-// ========= Parallax (simple, pro) =========
-// elements with [data-parallax="1..n"] move slightly on scroll
-const parallaxEls = $$("[data-parallax]");
-function onScrollParallax(){
-  const y = window.scrollY || 0;
-  parallaxEls.forEach(el => {
-    const depth = parseFloat(el.dataset.parallax || "1");
-    const offset = (y * 0.03) / depth; // small
-    el.style.transform = `translate3d(0, ${offset}px, 0)`;
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = `none`;
   });
 }
-window.addEventListener("scroll", onScrollParallax, { passive: true });
-onScrollParallax();
 
-// ========= Support form -> WhatsApp =========
-const supportForm = $("#supportForm");
-if (supportForm) {
-  supportForm.addEventListener("submit", (e) => {
+function whatsappForm(){
+  const form = $("#quickForm");
+  if (!form) return;
+
+  const WA = "212725148634";
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(supportForm).entries());
-
+    const data = Object.fromEntries(new FormData(form).entries());
     const msg =
-      `Support TRIPLE S\n` +
-      `Nom: ${data.name}\n` +
+      `TRIPLE S Support\n` +
+      `Name: ${data.name}\n` +
       `Email: ${data.email}\n\n` +
       `${data.message}`;
 
-    openWhatsApp(msg);
-    supportForm.reset();
+    const url = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank", "noopener");
+    form.reset();
   });
 }
+
+window.addEventListener("scroll", scrollProgress, {passive:true});
+window.addEventListener("load", () => {
+  setYear();
+  scrollProgress();
+  mobileNav();
+  revealOnScroll();
+  counters();
+  slider();
+  tiltCard();
+  whatsappForm();
+});
