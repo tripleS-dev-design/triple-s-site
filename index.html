@@ -3,1427 +3,460 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRIPLE S — AI & Shopify Studio</title>
-  <meta name="description" content="TRIPLE S — Création d’apps Shopify, sections premium, thèmes personnalisés et automatisations intelligentes pour votre boutique.">
+  <title>TRIPLE S — Shopify Apps Studio</title>
+  <meta name="description" content="TRIPLE S crée des apps Shopify performantes : COD, Upsells, Announcement Bars, WhatsApp & plus. Support rapide et outils pensés pour la conversion.">
   <link rel="icon" href="assets/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#050608;
-      --bg-soft:#0b0d11;
-      --primary:#ff8a1f;
-      --primary-soft:rgba(255,138,31,.2);
-      --text:#f5f5f5;
-      --muted:#a0a0a0;
-      --card:rgba(9,10,16,.96);
-      --border:rgba(255,255,255,.06);
-      --radius-lg:22px;
-      --radius-pill:999px;
-      --shadow-strong:0 0 35px rgba(255,138,31,.28);
-      --shadow-soft:0 0 24px rgba(0,0,0,.6);
-      --sidepad:clamp(16px,5vw,80px);
-      --transition:.2s ease-out;
-      --maxw:1180px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
-      background:
-        radial-gradient(circle at 0 0,rgba(255,138,31,.18),transparent 55%),
-        radial-gradient(circle at 100% 100%,rgba(255,138,31,.14),transparent 55%),
-        var(--bg);
-      color:var(--text);
-      min-height:100vh;
-    }
-    a{text-decoration:none;color:inherit}
-    .page{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      background-image:url("assets/network-pattern.png");
-      background-size:cover;
-      background-attachment:fixed;
-      background-repeat:no-repeat;
-      background-position:center;
-      background-blend-mode:screen;
-    }
-    .container{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--sidepad)}
-
-    /* NAVBAR */
-    .navbar{
-      position:sticky;top:0;z-index:40;
-      backdrop-filter:blur(18px);
-      background:linear-gradient(to bottom,rgba(5,6,8,.94),rgba(5,6,8,.85));
-      border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .navbar-inner{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px var(--sidepad);max-width:var(--maxw);margin:0 auto;gap:20px;
-    }
-    .logo{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:6px 14px;border-radius:999px;
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.4),transparent 60%);
-    }
-    .logo-mark{
-      width:26px;height:26px;border-radius:999px;
-      background:conic-gradient(from 140deg,#ff8a1f,#ffcf66,#ff8a1f);
-      box-shadow:0 0 20px rgba(255,138,31,.6);
-    }
-    .logo-text-main{font-weight:800;letter-spacing:.08em;font-size:14px}
-    .logo-text-sub{font-size:11px;color:var(--muted)}
-    .nav-links{
-      display:flex;align-items:center;gap:22px;
-      font-size:13px;text-transform:uppercase;letter-spacing:.12em;
-    }
-    .nav-links a{
-      position:relative;color:var(--muted);font-weight:500;
-    }
-    .nav-links a::after{
-      content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;
-      border-radius:999px;background:linear-gradient(90deg,#ff8a1f,#ffcf66);
-      transition:width var(--transition);
-    }
-    .nav-links a:hover{color:var(--text)}
-    .nav-links a:hover::after{width:100%}
-    .nav-cta{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:9px 20px;border-radius:var(--radius-pill);
-      background:linear-gradient(135deg,#ff8a1f,#ffcf66);color:#111;
-      font-weight:600;font-size:13px;box-shadow:var(--shadow-strong);
-      border:none;cursor:pointer;
-      transition:transform var(--transition),box-shadow var(--transition);
-    }
-    .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 40px rgba(255,138,31,.5)}
-    .nav-burger{display:none;width:34px;height:34px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);align-items:center;justify-content:center;gap:4px;flex-direction:column}
-    .nav-burger span{display:block;width:16px;height:2px;border-radius:999px;background:#fff}
-
-    /* HERO */
-    .hero{padding:70px var(--sidepad) 90px}
-    .hero-inner{
-      max-width:var(--maxw);margin:0 auto;
-      display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1.05fr);
-      gap:48px;align-items:center;
-    }
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:4px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.4),transparent 65%);
-      font-size:11px;text-transform:uppercase;letter-spacing:.18em;
-      color:var(--muted);margin-bottom:14px;
-    }
-    .eyebrow-dot{width:6px;height:6px;border-radius:999px;background:#ff8a1f;box-shadow:0 0 10px rgba(255,138,31,.7)}
-    .hero-title{font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:.02em;margin-bottom:18px}
-    .hero-title span{color:#ffcf66}
-    .hero-subtitle{max-width:520px;font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:24px;min-height:44px}
-    .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
-    .badge{
-      padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12);
-      font-size:11px;color:var(--muted);background:rgba(9,10,16,.85);
-    }
-    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-    .btn-primary,.btn-ghost{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:11px 22px;border-radius:var(--radius-pill);border:1px solid transparent;
-      font-size:14px;font-weight:600;cursor:pointer;
-      transition:background var(--transition),color var(--transition),
-        transform var(--transition),box-shadow var(--transition),border-color var(--transition);
-    }
-    .btn-primary{background:linear-gradient(135deg,#ff8a1f,#ffcf66);color:#111;box-shadow:var(--shadow-strong)}
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 40px rgba(255,138,31,.6)}
-    .btn-ghost{background:transparent;border-color:rgba(255,255,255,.18);color:var(--muted)}
-    .btn-ghost:hover{border-color:#ff8a1f;color:var(--text);background:rgba(255,138,31,.06)}
-    .hero-kpi{font-size:11px;color:var(--muted);margin-top:6px}
-    .hero-kpi strong{color:#ffcf66}
-
-    /* ASSISTANT IA TRIPLE S (robot + mini chat) */
-    .hero-assistant{display:flex;justify-content:center;align-items:stretch;}
-    .assistant-card{
-      width:100%;max-width:460px;border-radius:var(--radius-lg);
-      border:1px solid var(--border);background:var(--bg-soft);
-      box-shadow:var(--shadow-soft);padding:18px 18px 16px;
-      display:flex;flex-direction:column;gap:12px;
-    }
-    .assistant-header{display:flex;justify-content:space-between;align-items:center;gap:10px;}
-    .assistant-title{font-size:13px;font-weight:600;}
-    .assistant-sub{font-size:11px;color:var(--muted);}
-    .assistant-status{
-      padding:4px 10px;border-radius:999px;font-size:10px;
-      text-transform:uppercase;letter-spacing:.12em;background:rgba(16,185,129,.1);
-      border:1px solid rgba(16,185,129,.5);color:#6ee7b7;white-space:nowrap;
-    }
-    .assistant-body{
-      display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.2fr);
-      gap:14px;align-items:stretch;
-    }
-
-    /* Robot statique */
-    .assistant-robot{
-      border-radius:18px;
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.35),transparent 70%),#07080d;
-      border:1px solid rgba(255,255,255,.12);
-      padding:12px 10px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-    }
-    .robot-head{
-      position:relative;width:82%;aspect-ratio:4/3;border-radius:18px;
-      background:linear-gradient(145deg,#ffcf66,#ff8a1f);
-      box-shadow:0 0 18px rgba(255,138,31,.7);
-      display:flex;align-items:center;justify-content:center;overflow:hidden;
-    }
-    .robot-head::before{
-      content:"";position:absolute;top:-10px;left:50%;transform:translateX(-50%);
-      width:14px;height:18px;border-radius:999px;background:#ffcf66;
-      box-shadow:0 0 12px rgba(255,207,102,.9);
-    }
-    .robot-screen{
-      width:78%;height:68%;border-radius:12px;
-      background:radial-gradient(circle at 20% 0,#302c3f,#050608 75%);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
-    }
-    .robot-eyes{display:flex;gap:10px;}
-    .robot-eyes span{
-      width:16px;height:11px;border-radius:999px;background:linear-gradient(135deg,#7df5ff,#ffffff);
-      box-shadow:0 0 10px rgba(125,245,255,.9);
-    }
-    .robot-mouth{
-      width:40px;height:12px;border-radius:0 0 999px 999px;
-      border-bottom:2px solid rgba(125,245,255,.85);opacity:.9;
-    }
-    .robot-label{text-align:center;font-size:10px;color:var(--muted);line-height:1.5;}
-    .robot-label span{display:block;}
-    .robot-label .name{
-      font-size:11px;font-weight:600;color:#ffcf66;
-      text-transform:uppercase;letter-spacing:.14em;
-    }
-
-    /* Zone chat */
-    .assistant-chat{display:flex;flex-direction:column;gap:8px;}
-    .assistant-messages{
-      border-radius:14px;border:1px solid rgba(255,255,255,.07);
-      background:rgba(5,6,8,.96);
-      padding:10px 10px;min-height:120px;max-height:210px;overflow-y:auto;
-      font-size:12px;display:flex;flex-direction:column;gap:6px;
-    }
-    .chat-bubble{padding:7px 9px;border-radius:10px;max-width:100%;line-height:1.5;}
-    .chat-bubble.bot{
-      background:rgba(15,23,42,1);border:1px solid rgba(148,163,184,.5);
-      color:#e5e7eb;align-self:flex-start;font-size:12px;
-    }
-    .chat-bubble.user{
-      background:rgba(255,138,31,.12);border:1px solid rgba(255,138,31,.5);
-      color:#fde68a;align-self:flex-end;font-size:12px;
-    }
-    .chat-meta{display:block;font-size:10px;color:var(--muted);margin-bottom:2px;}
-
-    .assistant-suggestions{display:flex;flex-wrap:wrap;gap:6px;}
-    .suggested-question{
-      border-radius:999px;border:1px solid rgba(255,255,255,.16);
-      background:rgba(15,23,42,1);
-      padding:4px 9px;font-size:11px;color:var(--muted);cursor:pointer;white-space:nowrap;
-    }
-    .suggested-question:hover{border-color:#ff8a1f;color:#fef3c7;}
-
-    .assistant-form{display:flex;gap:6px;margin-top:2px;}
-    .assistant-form input{
-      flex:1;padding:8px 10px;border-radius:999px;border:1px solid var(--border);
-      background:#020617;color:var(--text);font-size:12px;
-    }
-    .assistant-form button{
-      padding:8px 14px;border-radius:999px;border:none;font-size:11px;font-weight:600;
-      text-transform:uppercase;letter-spacing:.12em;
-      background:linear-gradient(135deg,#ff8a1f,#ffcf66);color:#111827;cursor:pointer;
-    }
-    .assistant-footnote{font-size:10px;color:var(--muted);margin-top:2px;}
-
-    /* SECTIONS GENERIQUES */
-    section{padding:40px var(--sidepad) 64px}
-    .section-inner{max-width:var(--maxw);margin:0 auto}
-    .section-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-    .section-title{font-size:24px;margin-bottom:10px}
-    .section-title span{color:#ffcf66}
-    .section-description{font-size:14px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:26px}
-    .grid-2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px;align-items:flex-start}
-    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-    .card{
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.11),transparent 55%),var(--card);
-      border-radius:var(--radius-lg);border:1px solid var(--border);
-      box-shadow:var(--shadow-soft);padding:22px 22px 24px;position:relative;overflow:hidden;
-    }
-    .card::before{
-      content:"";position:absolute;inset:-40%;
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.26),transparent 55%);
-      opacity:0;transition:opacity var(--transition);pointer-events:none;
-    }
-    .card:hover::before{opacity:1}
-    .card-title{font-size:16px;margin-bottom:6px}
-    .card-text{font-size:13px;color:var(--muted);line-height:1.7}
-    .feature-icon{
-      width:30px;height:30px;border-radius:999px;
-      background:radial-gradient(circle at 30% 0,#ffcf66,#ff8a1f);
-      box-shadow:0 0 18px rgba(255,138,31,.7);margin-bottom:10px;
-    }
-
-    /* APPS */
-    .apps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-    .app-badge{
-      display:inline-block;padding:4px 10px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);background:rgba(12,14,20,.95);
-      font-size:11px;color:var(--muted);margin-bottom:6px;
-    }
-    .app-badge.live{background:#12b76a;border-color:#12b76a;color:#fff}
-    .app-footer{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-
-    /* ===== THEMES DEMO ===== */
-    .themes-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}
-    .theme-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
-    .theme-name{font-size:14px;font-weight:600;}
-    .theme-sub{font-size:11px;color:var(--muted);margin-top:4px;}
-    .theme-tag{
-      font-size:10px;text-transform:uppercase;letter-spacing:.14em;
-      padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
-      background:rgba(15,23,42,1);color:#e5e7eb;white-space:nowrap;
-    }
-    .theme-tag.cod{border-color:#22c55e;color:#bbf7d0;}
-    .theme-preview{
-      margin-top:8px;border-radius:16px;border:1px solid rgba(148,163,184,.4);
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.3),transparent 70%),#020617;
-      padding:10px;display:flex;flex-direction:column;gap:8px;
-    }
-    .preview-header{display:flex;justify-content:space-between;align-items:center;gap:6px;}
-    .preview-logo{width:40px;height:10px;border-radius:999px;background:linear-gradient(90deg,#ff8a1f,#ffcf66);}
-    .preview-menu{display:flex;gap:4px;}
-    .preview-menu span{width:22px;height:4px;border-radius:999px;background:rgba(148,163,184,.5);}
-    .preview-hero{border-radius:12px;padding:10px;background:linear-gradient(135deg,rgba(248,250,252,.06),rgba(15,23,42,1));}
-    .preview-hero-line{width:70%;height:6px;border-radius:999px;background:rgba(248,250,252,.6);margin-bottom:6px;}
-    .preview-hero-sub{width:50%;height:4px;border-radius:999px;background:rgba(148,163,184,.7);}
-    .preview-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;}
-    .preview-product{border-radius:10px;background:rgba(15,23,42,1);padding:5px 4px;display:flex;flex-direction:column;gap:3px;}
-    .preview-product-img{height:22px;border-radius:8px;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(148,163,184,.4));}
-    .preview-product-line{width:80%;height:3px;border-radius:999px;background:rgba(148,163,184,.7);}
-    .preview-product-price{width:40%;height:3px;border-radius:999px;background:rgba(52,211,153,.8);}
-    .preview-cod{margin-top:4px;border-radius:10px;padding:7px 6px;background:rgba(15,23,42,1);border:1px dashed rgba(248,250,252,.14);}
-    .preview-cod-lines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;}
-    .preview-cod-field{height:7px;border-radius:999px;background:rgba(30,64,175,.8);}
-    .preview-cod-btn{margin-top:5px;width:60%;height:9px;border-radius:999px;background:linear-gradient(90deg,#22c55e,#bef264);}
-    .theme-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;}
-    .btn-small{padding:7px 13px;font-size:11px;}
-
-    @media(max-width:1100px){.themes-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    @media(max-width:720px){.themes-grid{grid-template-columns:1fr;}}
-
-    /* PROCESS */
-    .step-number{
-      width:32px;height:32px;border-radius:999px;
-      display:inline-flex;align-items:center;justify-content:center;
-      background:radial-gradient(circle at 30% 0,#ffcf66,#ff8a1f);
-      font-size:14px;font-weight:700;color:#111;margin-bottom:10px;
-    }
-    .step-title{font-size:14px;margin-bottom:4px}
-    .step-text{font-size:12px;color:var(--muted);line-height:1.7}
-
-    /* STATS / TESTIMONIAL */
-    .stats-testimonials{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:26px}
-    .stats-card{
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.26),transparent 70%);
-      border-radius:var(--radius-lg);padding:24px 22px 22px;
-      border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-soft);
-    }
-    .stats-title{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#ffcf66;margin-bottom:4px}
-    .stats-heading{font-size:20px;margin-bottom:12px}
-    .stat-row{display:flex;gap:18px;margin-top:16px}
-    .stat{flex:1}
-    .stat-value{font-size:22px;font-weight:700}
-    .stat-label{font-size:11px;color:var(--muted);margin-top:4px}
-    .testimonial-card{
-      background:radial-gradient(circle at 100% 0,rgba(136,84,255,.4),transparent 70%);
-      border-radius:var(--radius-lg);padding:24px 24px 20px;
-      border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-soft);
-    }
-    .testimonial-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#ffcf66;margin-bottom:6px}
-    .testimonial-heading{font-size:20px;margin-bottom:18px}
-    .testimonial-text{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px}
-    .testimonial-author{font-size:13px;font-weight:600}
-    .testimonial-role{font-size:11px;color:var(--muted)}
-
-    /* CONTACT + FORMULAIRES */
-    .contact-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px}
-    .contact-list{font-size:13px;color:var(--muted)}
-    .contact-list span{display:block;margin-bottom:6px}
-    .contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    form{display:grid;gap:10px}
-    input,textarea,select{
-      width:100%;padding:11px 13px;border-radius:12px;
-      border:1px solid var(--border);background:rgba(5,6,8,.95);
-      color:var(--text);font:inherit;
-    }
-    textarea{min-height:120px;resize:vertical}
-
-    /* FOOTER */
-    footer{
-      border-top:1px solid rgba(255,255,255,.08);
-      background:radial-gradient(circle at 0 0,rgba(255,138,31,.2),transparent 55%),#050608;
-      padding:32px var(--sidepad) 24px;margin-top:20px;
-    }
-    .footer-inner{
-      max-width:var(--maxw);margin:0 auto;
-      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.8fr);
-      gap:26px;font-size:12px;color:var(--muted);
-    }
-    .footer-logo{margin-bottom:10px}
-    .footer-nav-title{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:#ffcf66;margin-bottom:8px}
-    .footer-list{display:flex;flex-direction:column;gap:6px}
-    .footer-list a{font-size:12px;color:var(--muted)}
-    .footer-list a:hover{color:var(--text)}
-    .footer-bottom{
-      max-width:var(--maxw);margin:18px auto 0;font-size:11px;color:#696969;
-      display:flex;justify-content:space-between;align-items:center;gap:10px;
-    }
-
-    /* ANIMATION SCROLL (sections) */
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease-out,transform .7s ease-out;will-change:opacity,transform;}
-    .reveal-left{transform:translateX(-50px)}
-    .reveal-right{transform:translateX(50px)}
-    .reveal-fall{transform:translateY(-40px) scale(.96) rotate(-1.5deg)}
-    .reveal.in-view{opacity:1;transform:translate3d(0,0,0)}
-    .reveal.in-view.reveal-fall{opacity:1;transform:translate3d(0,0,0) scale(1) rotate(0)}
-    .reveal-delay-1{transition-delay:.08s}
-    .reveal-delay-2{transition-delay:.16s}
-    .reveal-delay-3{transition-delay:.24s}
-    .reveal-delay-4{transition-delay:.32s}
-
-    /* RESPONSIVE */
-    @media(max-width:900px){
-      .hero-inner{grid-template-columns:1fr}
-      .hero{padding-top:50px}
-      .grid-2{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr 1fr}
-      .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .stats-testimonials{grid-template-columns:1fr}
-      .footer-inner{grid-template-columns:1fr 1fr}
-      .contact-grid{grid-template-columns:1fr}
-    }
-    @media(max-width:720px){
-      .navbar-inner{padding-inline:var(--sidepad)}
-      .nav-links,.nav-cta{display:none}
-      .nav-burger{display:inline-flex}
-      .footer-inner{grid-template-columns:1fr}
-      .hero-actions{flex-direction:column;align-items:flex-start}
-      .grid-3{grid-template-columns:1fr}
-      .grid-4{grid-template-columns:1fr}
-      .assistant-body{grid-template-columns:1fr;}
-    }
-
-    /* =========================
-       ✅ MODE MAINTENANCE
-    ========================= */
-    .maintenance-overlay{
-      display:none;
-      position:fixed;
-      inset:0;
-      z-index:999999;
-      padding:24px;
-      align-items:center;
-      justify-content:center;
-      background:
-        radial-gradient(circle at 0 0,rgba(255,138,31,.22),transparent 55%),
-        radial-gradient(circle at 100% 100%,rgba(255,138,31,.16),transparent 55%),
-        rgba(5,6,8,.86);
-      backdrop-filter:blur(16px);
-    }
-    .maintenance-card{
-      width:min(680px,100%);
-      background:rgba(9,10,16,.60);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:28px;
-      padding:22px 18px;
-      box-shadow:0 26px 70px rgba(0,0,0,.65);
-    }
-    .maintenance-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,138,31,.14);
-      border:1px solid rgba(255,138,31,.32);
-      font-size:12px;
-      color:#ffcf66;
-      margin-bottom:12px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-    }
-    .maintenance-dot{
-      width:8px;height:8px;border-radius:999px;background:#ff8a1f;
-      box-shadow:0 0 14px rgba(255,138,31,.8);
-    }
-    .maintenance-title{
-      font-size:clamp(22px,2.8vw,30px);
-      font-weight:800;
-      line-height:1.12;
-      margin-bottom:10px;
-    }
-    .maintenance-text{
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.75;
-      margin-bottom:16px;
-    }
-    .maintenance-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:8px;
-    }
-    .maintenance-actions .btn-primary,
-    .maintenance-actions .btn-ghost{
-      padding:10px 18px;
-      font-size:13px;
-    }
-
-    /* ✅ Quand maintenance active: on cache le site */
-    body[data-maintenance="1"] .page{display:none !important;}
-    /* ✅ Et on affiche la fenêtre */
-    body[data-maintenance="1"] .maintenance-overlay{display:flex;}
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
-<!-- ✅ Active maintenance: data-maintenance="1" -->
-<!-- ✅ Désactive maintenance: data-maintenance="0" -->
-<body data-maintenance="1">
-
-  <!-- ✅ Fenêtre Maintenance -->
-  <div class="maintenance-overlay">
+<body data-maintenance="0">
+  <!-- =========================
+       MAINTENANCE (option)
+  ========================== -->
+  <div class="maintenance-overlay" role="dialog" aria-modal="true" aria-label="Maintenance">
     <div class="maintenance-card">
       <div class="maintenance-badge">
         <span class="maintenance-dot"></span>
         Site en cours de mise à jour
       </div>
-
-      <div class="maintenance-title">TRIPLE S revient très bientôt 🚧</div>
-
-      <div class="maintenance-text">
-        Nous effectuons une mise à jour pour améliorer l’expérience (apps, sections, thèmes et automatisations).
-        Merci pour votre patience. Pour toute demande urgente, contactez-nous via email ou WhatsApp.
-      </div>
-
+      <h2 class="maintenance-title">TRIPLE S revient très bientôt</h2>
+      <p class="maintenance-text">
+        Mise à jour en cours pour améliorer l’expérience (apps, sections, support).
+        Pour toute demande urgente, contactez-nous via email ou WhatsApp.
+      </p>
       <div class="maintenance-actions">
-        <a class="btn-primary" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Demande%20urgente">
-          Contacter par e-mail
-        </a>
-        <a class="btn-ghost" href="https://wa.me/212725148634" target="_blank" rel="noopener">
-          WhatsApp
-        </a>
-        <a class="btn-ghost" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">
-          Voir l’app (App Store)
-        </a>
+        <a class="btn btn-primary" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Demande%20urgente">Contacter par e-mail</a>
+        <a class="btn btn-ghost" href="https://wa.me/212725148634" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">Voir l’app (App Store)</a>
       </div>
     </div>
   </div>
 
   <div class="page">
-    <!-- NAVBAR -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
     <header class="navbar">
-      <div class="navbar-inner">
-        <a href="#top" class="logo">
-          <span class="logo-mark"></span>
-          <div>
-            <div class="logo-text-main">TRIPLE S</div>
-            <div class="logo-text-sub">Shopify Apps & Sections</div>
+      <div class="container nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div class="brand-text">
+            <div class="brand-name">TRIPLE S</div>
+            <div class="brand-sub">Certified Shopify Partner • Apps Studio</div>
           </div>
         </a>
-        <nav class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
+
+        <nav class="nav-links" aria-label="Navigation">
           <a href="#apps">Apps</a>
-          <a href="#portfolio">Portfolio</a>
+          <a href="#results">Résultats</a>
           <a href="#reviews">Avis</a>
-          <a href="#contact">Contact</a>
+          <a href="#support">Support</a>
         </nav>
-        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-          Parler de votre projet
+
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="#apps">Explore our apps</a>
+          <a class="btn btn-primary" href="#support">Help Center</a>
+        </div>
+
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
-        <button class="nav-burger" aria-label="Menu">
-          <span></span><span></span>
-        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="mobile-menu" hidden>
+        <div class="container mobile-menu-inner">
+          <a href="#apps">Apps</a>
+          <a href="#results">Résultats</a>
+          <a href="#reviews">Avis</a>
+          <a href="#support">Support</a>
+          <div class="mobile-menu-cta">
+            <a class="btn btn-ghost" href="#apps">Explore our apps</a>
+            <a class="btn btn-primary" href="#support">Help Center</a>
+          </div>
+        </div>
       </div>
     </header>
 
     <main id="top">
-      <!-- HERO -->
+      <!-- =========================
+           HERO
+      ========================== -->
       <section class="hero">
-        <div class="hero-inner">
-          <div class="reveal reveal-left">
-            <div class="eyebrow">
-              <span class="eyebrow-dot"></span>
-              <span>AI & SHOPIFY FUTURE</span>
+        <div class="container hero-grid">
+          <div class="hero-copy reveal reveal-up">
+            <div class="pill">
+              <span class="dot"></span>
+              TRIPLE S est un Shopify Partner
             </div>
+
             <h1 class="hero-title">
-              Automatisations intelligentes<br>
-              <span>pour votre boutique Shopify</span>
+              Powerful Shopify apps<br>
+              <span>that elevate your store</span>
             </h1>
 
-            <!-- TEXTE TYPÉ EN LIVE -->
             <p class="hero-subtitle">
-              <span id="typed-line"></span>
+              Des apps propres, rapides et “Theme Editor friendly”.
+              COD, Upsells, Announcement Bars, WhatsApp & plus — avec support humain.
             </p>
+
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="#apps">Explore our apps</a>
+              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Projet%20Shopify">Contact</a>
+            </div>
 
             <div class="hero-badges">
-              <div class="badge">Apps & sections Shopify</div>
-              <div class="badge">Automatisation IA</div>
-              <div class="badge">Design premium</div>
+              <span class="mini-badge">Fast setup</span>
+              <span class="mini-badge">Performance first</span>
+              <span class="mini-badge">Human support</span>
             </div>
-            <div class="hero-actions">
-              <button class="btn-primary" onclick="document.getElementById('apps').scrollIntoView({behavior:'smooth'})">
-                Voir les apps & blocs
-              </button>
-              <a href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener" class="btn-ghost">
-                Triple Announcement Bar sur l’App Store
+          </div>
+
+          <div class="hero-visual reveal reveal-up reveal-delay-1">
+            <!-- Illustration inline (tu peux remplacer par une image si tu veux) -->
+            <div class="illus-wrap">
+              <div class="illus-parallax" data-parallax="1">
+                <svg class="illus" viewBox="0 0 860 520" role="img" aria-label="Illustration dashboard">
+                  <defs>
+                    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#0f766e" stop-opacity="0.20"/>
+                      <stop offset="1" stop-color="#0f766e" stop-opacity="0.06"/>
+                    </linearGradient>
+                  </defs>
+
+                  <rect x="40" y="50" rx="28" ry="28" width="780" height="420" fill="url(#g1)" stroke="rgba(15,118,110,0.15)" />
+                  <rect x="80" y="90" rx="18" ry="18" width="700" height="70" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
+                  <rect x="110" y="115" rx="10" ry="10" width="220" height="20" fill="rgba(15,118,110,0.20)"/>
+                  <rect x="350" y="115" rx="10" ry="10" width="140" height="20" fill="rgba(17,24,39,0.08)"/>
+                  <rect x="510" y="115" rx="10" ry="10" width="110" height="20" fill="rgba(17,24,39,0.08)"/>
+
+                  <rect x="80" y="180" rx="22" ry="22" width="340" height="250" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
+                  <rect x="450" y="180" rx="22" ry="22" width="330" height="120" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
+                  <rect x="450" y="310" rx="22" ry="22" width="330" height="120" fill="#ffffff" stroke="rgba(17,24,39,0.08)"/>
+
+                  <path d="M115 370 C 170 330, 230 390, 290 340 S 400 350, 390 290"
+                        fill="none" stroke="rgba(15,118,110,0.9)" stroke-width="8" stroke-linecap="round"/>
+                  <circle cx="290" cy="340" r="10" fill="#0f766e"/>
+                  <circle cx="390" cy="290" r="10" fill="#0f766e"/>
+
+                  <path d="M490 235 L 740 235" stroke="rgba(17,24,39,0.10)" stroke-width="10" stroke-linecap="round"/>
+                  <path d="M490 360 L 740 360" stroke="rgba(17,24,39,0.10)" stroke-width="10" stroke-linecap="round"/>
+                  <path d="M490 265 L 690 265" stroke="rgba(15,118,110,0.30)" stroke-width="10" stroke-linecap="round"/>
+                  <path d="M490 390 L 650 390" stroke="rgba(15,118,110,0.30)" stroke-width="10" stroke-linecap="round"/>
+
+                  <circle cx="760" cy="130" r="22" fill="rgba(15,118,110,0.18)"/>
+                  <circle cx="785" cy="130" r="14" fill="rgba(15,118,110,0.35)"/>
+                </svg>
+              </div>
+
+              <div class="floating-card" data-parallax="2">
+                <div class="fc-title">Support</div>
+                <div class="fc-sub">Réponse rapide • WhatsApp • Email • Crisp</div>
+                <div class="fc-row">
+                  <span class="chip">24/7 Crisp</span>
+                  <span class="chip">WhatsApp</span>
+                  <span class="chip">Email</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           TRUSTED / LOGOS
+      ========================== -->
+      <section class="trusted section-soft">
+        <div class="container reveal reveal-up">
+          <h2 class="section-title-center">Trusted by Shopify brands of every size.</h2>
+          <p class="section-subtitle-center">
+            Nos apps sont conçues pour la performance, la fiabilité et l’évolutivité.
+          </p>
+
+          <!-- Logos placeholders (mets tes logos clients plus tard) -->
+          <div class="logo-row" aria-label="Logos">
+            <span class="logo-pill">Store A</span>
+            <span class="logo-pill">Store B</span>
+            <span class="logo-pill">Store C</span>
+            <span class="logo-pill">Brand D</span>
+            <span class="logo-pill">Brand E</span>
+            <span class="logo-pill">Brand F</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           RESULTS / KPIs (count-up)
+      ========================== -->
+      <section id="results" class="results">
+        <div class="container">
+          <h2 class="section-title-center reveal reveal-up">Grow your Business</h2>
+
+          <div class="kpi-grid">
+            <article class="kpi-card reveal reveal-up reveal-delay-1">
+              <div class="kpi-value">
+                <span class="countup" data-from="0" data-to="42" data-suffix="%">0</span>
+              </div>
+              <div class="kpi-label">Increase AOV</div>
+              <p class="kpi-text">Upsells & bundles plus simples → panier moyen plus élevé.</p>
+            </article>
+
+            <article class="kpi-card reveal reveal-up reveal-delay-2">
+              <div class="kpi-value">
+                <span class="countup" data-from="0" data-to="1.2" data-decimals="1" data-suffix="h">0</span>
+              </div>
+              <div class="kpi-label">Save Time</div>
+              <p class="kpi-text">Automatisation (COD, templates, settings) → moins de tâches manuelles.</p>
+            </article>
+
+            <article class="kpi-card reveal reveal-up reveal-delay-3">
+              <div class="kpi-value">
+                <span class="countup" data-from="0" data-to="98" data-suffix="%">0</span>
+              </div>
+              <div class="kpi-label">Reduce Errors</div>
+              <p class="kpi-text">Settings clairs + logique stable → moins d’erreurs côté commandes.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           APPS GRID (tes apps)
+      ========================== -->
+      <section id="apps" class="apps section-soft">
+        <div class="container">
+          <div class="section-head reveal reveal-up">
+            <div>
+              <div class="section-eyebrow">Discover our Shopify Apps</div>
+              <h2 class="section-title">Mes apps Shopify (TRIPLE S)</h2>
+              <p class="section-subtitle">3 apps publiques — roadmap active — support humain.</p>
+            </div>
+            <a class="btn btn-ghost" href="#support">Contact support</a>
+          </div>
+
+          <div class="app-grid">
+            <!-- App 1 -->
+            <article class="app-card reveal reveal-up">
+              <div class="app-top">
+                <div class="app-icon" aria-hidden="true">B</div>
+                <div class="app-meta">
+                  <div class="app-name">Blocks: Bar, WhatsApp & More</div>
+                  <div class="app-sub">Publié • 5.0/5 • 15 features</div>
+                </div>
+                <span class="status status-live">Live</span>
+              </div>
+              <p class="app-desc">
+                Announcement bar, popup, countdown, bouton WhatsApp sticky — tout via Theme Editor, sans coder.
+              </p>
+              <div class="app-actions">
+                <a class="btn btn-primary" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">Try for Free</a>
+                <a class="btn btn-ghost" href="#support">Learn More</a>
+              </div>
+            </article>
+
+            <!-- App 2 -->
+            <article class="app-card reveal reveal-up reveal-delay-1">
+              <div class="app-top">
+                <div class="app-icon" aria-hidden="true">T</div>
+                <div class="app-meta">
+                  <div class="app-name">TripleForm COD Order — Upsells</div>
+                  <div class="app-sub">Soumise • 0 review • 3 modules</div>
+                </div>
+                <span class="status status-soon">Submitted</span>
+              </div>
+              <p class="app-desc">
+                Formulaire COD 1-step/2-steps + upsells légers, Google Sheets, WhatsApp, validation & anti-bot.
+              </p>
+              <div class="app-actions">
+                <a class="btn btn-ghost" href="#support">Request demo</a>
+              </div>
+            </article>
+
+            <!-- App 3 -->
+            <article class="app-card reveal reveal-up reveal-delay-2">
+              <div class="app-top">
+                <div class="app-icon" aria-hidden="true">S</div>
+                <div class="app-meta">
+                  <div class="app-name">Trisend (Messaging Hub)</div>
+                  <div class="app-sub">Brouillon • Attention • 1 module</div>
+                </div>
+                <span class="status status-draft">Draft</span>
+              </div>
+              <p class="app-desc">
+                Templates Email/SMS/WhatsApp avec variables, routage par pays, automations et logs.
+              </p>
+              <div class="app-actions">
+                <a class="btn btn-ghost" href="#support">Join beta</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           NUMBERS + REVIEWS
+      ========================== -->
+      <section class="numbers">
+        <div class="container reveal reveal-up">
+          <h2 class="section-title-center">Our numbers speak for themselves</h2>
+
+          <div class="numbers-row">
+            <div class="number-card">
+              <div class="number-big">
+                <span class="countup" data-from="0" data-to="1350" data-suffix="+">0</span>
+              </div>
+              <div class="number-label">Reviews (global apps)</div>
+            </div>
+
+            <div class="number-card">
+              <div class="number-big">
+                <span class="countup" data-from="0" data-to="5.0" data-decimals="1">0</span>
+                <span class="star" aria-hidden="true">★</span>
+              </div>
+              <div class="number-label">Average rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           TESTIMONIALS
+      ========================== -->
+      <section id="reviews" class="reviews section-soft">
+        <div class="container">
+          <h2 class="section-title-center reveal reveal-up">Reviews from our Merchants</h2>
+
+          <div class="testi-grid">
+            <article class="testi-card reveal reveal-up">
+              <div class="testi-stars" aria-hidden="true">★★★★★</div>
+              <div class="testi-app">Blocks: Bar, WhatsApp & More</div>
+              <p class="testi-text">
+                “Setup rapide, très propre dans le Theme Editor. Le support répond vite et les blocs sont stables.”
+              </p>
+              <div class="testi-author">HockeyStation <span>• UK</span></div>
+            </article>
+
+            <article class="testi-card reveal reveal-up reveal-delay-1">
+              <div class="testi-stars" aria-hidden="true">★★★★★</div>
+              <div class="testi-app">GetSale (exemple)</div>
+              <p class="testi-text">
+                “Simple à utiliser, et surtout ça évite les erreurs pendant les promos. Super app.”
+              </p>
+              <div class="testi-author">NOTIQ <span>• US</span></div>
+            </article>
+          </div>
+
+          <div class="cta-strip reveal reveal-up reveal-delay-2">
+            <div>
+              <div class="cta-title">Got questions? We have answers.</div>
+              <div class="cta-sub">Support: Email + WhatsApp + Crisp (24/7).</div>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="#support">Help Center</a>
+              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Support">Contact Support</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+           SUPPORT
+      ========================== -->
+      <section id="support" class="support">
+        <div class="container support-grid">
+          <div class="support-card reveal reveal-up">
+            <h2 class="support-title">Support TRIPLE S</h2>
+            <p class="support-text">
+              Dis-moi ton besoin (app, bug, configuration, intégration).
+              Réponse rapide avec solution claire.
+            </p>
+
+            <div class="support-rows">
+              <div class="support-row">
+                <div class="support-label">Email</div>
+                <div class="support-value">ktami.sami@icloud.com</div>
+              </div>
+              <div class="support-row">
+                <div class="support-label">WhatsApp</div>
+                <div class="support-value">+212 7 25 14 86 34</div>
+              </div>
+              <div class="support-row">
+                <div class="support-label">Live chat</div>
+                <div class="support-value">Crisp • 24/7</div>
+              </div>
+            </div>
+
+            <div class="support-actions">
+              <a class="btn btn-primary" href="https://wa.me/212725148634?text=Bonjour%20TRIPLE%20S%2C%20j%27ai%20besoin%20d%27aide%20sur%20mon%20store." target="_blank" rel="noopener">
+                WhatsApp
               </a>
-            </div>
-            <div class="hero-kpi">
-              <strong>50+ boutiques</strong> déjà optimisées avec nos blocs et apps.
+              <a class="btn btn-ghost" href="mailto:ktami.sami@icloud.com?subject=TRIPLE%20S%20-%20Support">Email</a>
             </div>
           </div>
 
-          <!-- ASSISTANT IA TRIPLE S -->
-          <div class="hero-assistant reveal reveal-right">
-            <div class="assistant-card">
-              <div class="assistant-header">
-                <div>
-                  <div class="assistant-title">Assistant IA TRIPLE S</div>
-                  <div class="assistant-sub">Questions sur vos apps, sections et store Shopify.</div>
-                </div>
-                <div class="assistant-status">En démo</div>
-              </div>
-
-              <div class="assistant-body">
-                <!-- Robot statique -->
-                <div class="assistant-robot">
-                  <div class="robot-head">
-                    <div class="robot-screen">
-                      <div class="robot-eyes"><span></span><span></span></div>
-                      <div class="robot-mouth"></div>
-                    </div>
-                  </div>
-                  <div class="robot-label">
-                    <span class="name">TRIPLE S BOT</span>
-                    <span>Support IA pour vos apps & blocs Shopify.</span>
-                  </div>
-                </div>
-
-                <!-- Mini chat -->
-                <div class="assistant-chat">
-                  <div id="assistantMessages" class="assistant-messages">
-                    <div class="chat-bubble bot">
-                      <span class="chat-meta">TRIPLE S BOT</span>
-                      Bonjour 👋 Je suis l’agent IA TRIPLE S.  
-                      Posez une question sur vos apps, vos sections ou votre boutique Shopify,
-                      et je vous montre comment un support IA peut répondre automatiquement.
-                    </div>
-                  </div>
-
-                  <div class="assistant-suggestions">
-                    <button class="suggested-question" data-q="Comment votre app Blocks: Bar, WhatsApp & More peut m’aider ?">
-                      Blocks: Bar, WhatsApp & More
-                    </button>
-                    <button class="suggested-question" data-q="Je veux un formulaire COD simple pour ma boutique.">
-                      Formulaire COD
-                    </button>
-                    <button class="suggested-question" data-q="Pouvez-vous automatiser des tâches avec l’IA sur Shopify ?">
-                      Automatisation IA
-                    </button>
-                    <button class="suggested-question" data-q="Est-ce que vous faites aussi des thèmes ou sections sur mesure ?">
-                      Thèmes & sections
-                    </button>
-                  </div>
-
-                  <form id="assistantForm" class="assistant-form">
-                    <input id="assistantInput" name="question" placeholder="Posez une question sur vos apps ou votre store..." autocomplete="off">
-                    <button type="submit">Envoyer</button>
-                  </form>
-
-                  <div class="assistant-footnote">
-                    Exemple de bot IA TRIPLE S — réponses basées sur un moteur de mots-clés + FAQ personnalisée.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services">
-        <div class="section-inner grid-2">
-          <div class="reveal reveal-left">
-            <div class="section-eyebrow">À propos</div>
-            <h2 class="section-title">Studio <span>Shopify & Automations</span></h2>
-            <p class="section-description">
-              Nous créons des expériences complètes : thème, sections, formulaires COD,
-              popups, compteurs, bars d’annonce et intégrations (Google Sheets, WhatsApp,
-              Pixels…). Chaque bloc est pensé pour être simple à configurer et performant.
-            </p>
-            <div class="card">
-              <div class="card-title">Ce que nous faisons pour votre store</div>
-              <p class="card-text">
-                De la structure du thème jusqu’aux micro-détails (texte, couleurs, timing
-                des popups, compteurs dynamiques), nous vous aidons à transformer votre
-                boutique en un système clair, moderne et efficace.
-              </p>
-            </div>
-          </div>
-          <div class="grid-2">
-            <div class="card reveal reveal-right reveal-delay-1">
-              <div class="feature-icon"></div>
-              <div class="card-title">Apps & blocs COD</div>
-              <p class="card-text">
-                Formulaires COD 1-step/2-steps, validation, anti-bot, exports Google Sheets
-                et notifications instantanées.
-              </p>
-            </div>
-            <div class="card reveal reveal-right reveal-delay-2">
-              <div class="feature-icon"></div>
-              <div class="card-title">Bars d’annonce & popups</div>
-              <p class="card-text">
-                Bars d’annonce dynamiques, popups lumineux, compteurs intégrés et CTA
-                WhatsApp / Messenger.
-              </p>
-            </div>
-            <div class="card reveal reveal-right reveal-delay-3">
-              <div class="feature-icon"></div>
-              <div class="card-title">Sections & thèmes</div>
-              <p class="card-text">
-                Sections flexibles (bundles, bannières, vidéos, témoignages) et thèmes
-                semi-sur-mesure prêts pour la vente.
-              </p>
-            </div>
-            <div class="card reveal reveal-right reveal-delay-4">
-              <div class="feature-icon"></div>
-              <div class="card-title">Automatisations IA</div>
-              <p class="card-text">
-                Intégration d’agents IA (chat / voix) pour le support, la FAQ ou la
-                qualification des leads directement depuis votre store.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- APPS -->
-      <section id="apps">
-        <div class="section-inner">
-          <div class="section-eyebrow">Apps Shopify</div>
-          <h2 class="section-title">Blocs & <span>applications</span></h2>
-          <p class="section-description">
-            Des apps simples à installer, centrées sur les conversions, compatibles avec le Theme Editor.
-          </p>
-          <div class="apps-grid">
-            <article class="card reveal reveal-left reveal-fall">
-              <span class="app-badge live">Live</span>
-              <h3 class="card-title">Blocks: Bar, WhatsApp & More</h3>
-              <p class="card-text">
-                Ajoutez des barres d’annonce, popups ciblés, compteurs dynamiques
-                et un bouton WhatsApp sticky. Tout est géré dans le Theme Editor.
-              </p>
-              <div class="app-footer">
-                <a class="btn-primary" href="https://apps.shopify.com/announcement-bar-app-1" target="_blank" rel="noopener">
-                  Voir sur l’App Store
-                </a>
-                <button class="btn-ghost" onclick="openWhatsApp('Je veux en savoir plus sur Blocks: Bar, WhatsApp & More')">
-                  Parler sur WhatsApp
-                </button>
-              </div>
-            </article>
-
-            <article class="card reveal reveal-left reveal-delay-1">
-              <span class="app-badge">Bientôt</span>
-              <h3 class="card-title">Triple-Luxe-Sections</h3>
-              <p class="card-text">
-                Pack de sections haut de gamme : bannières animées, grilles produit,
-                blocs USP, témoignages et plus, prêtes à brancher sur vos thèmes.
-              </p>
-            </article>
-
-            <article class="card reveal reveal-left reveal-delay-2">
-              <span class="app-badge">Bientôt</span>
-              <h3 class="card-title">AfterFollow Emails</h3>
-              <p class="card-text">
-                Automatisations post-achat propres (merci, relances, cross-sell)
-                avec templates et statistiques simples à lire.
-              </p>
-            </article>
-
-            <article class="card reveal reveal-left reveal-delay-3">
-              <span class="app-badge">Bientôt</span>
-              <h3 class="card-title">Tripleform-COD</h3>
-              <p class="card-text">
-                Formulaire COD 1 étape, synchronisation WhatsApp & Google Sheets,
-                options anti-bot, upsell léger, suivi des conversions.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- THEMES DEMO -->
-      <section id="themes">
-        <div class="section-inner">
-          <div class="section-eyebrow">Thèmes démo</div>
-          <h2 class="section-title">Choisissez un <span>exemple de thème</span></h2>
-          <p class="section-description">
-            Chaque thème est un faux store complet (home + page produit + formulaire COD).
-            Si vous aimez un style, cliquez sur “Choisir ce thème” et le formulaire ci-dessous
-            sera pré-rempli. Vous recevez ensuite une réponse sur WhatsApp / email.
-          </p>
-
-          <div class="themes-grid">
-            <!-- Thème 1 -->
-            <article class="card reveal reveal-left">
-              <div class="theme-card-header">
-                <div>
-                  <div class="theme-name">Thème 1 — Minimal Clean</div>
-                  <div class="theme-sub">Home claire, produits simples, formulaire COD très lisible.</div>
-                </div>
-                <span class="theme-tag">Démo</span>
-              </div>
-              <div class="theme-preview">
-                <div class="preview-header">
-                  <div class="preview-logo"></div>
-                  <div class="preview-menu"><span></span><span></span><span></span></div>
-                </div>
-                <div class="preview-hero">
-                  <div class="preview-hero-line"></div>
-                  <div class="preview-hero-sub"></div>
-                </div>
-                <div class="preview-products">
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                </div>
-                <div class="preview-cod">
-                  <div class="preview-cod-lines">
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                  </div>
-                  <div class="preview-cod-btn"></div>
-                </div>
-              </div>
-              <div class="theme-actions">
-                <a href="theme-minimal.html" target="_blank" class="btn-primary btn-small">Voir la démo</a>
-                <button class="btn-ghost btn-small" data-theme-choice="Thème 1 — Minimal Clean">Choisir ce thème</button>
-              </div>
-            </article>
-
-            <!-- Thème 2 -->
-            <article class="card reveal reveal-left reveal-delay-1">
-              <div class="theme-card-header">
-                <div>
-                  <div class="theme-name">Thème 2 — Glow Premium</div>
-                  <div class="theme-sub">Gradients, highlight produit, focus sur l’offre principale.</div>
-                </div>
-                <span class="theme-tag">Démo</span>
-              </div>
-              <div class="theme-preview">
-                <div class="preview-header">
-                  <div class="preview-logo"></div>
-                  <div class="preview-menu"><span></span><span></span><span></span></div>
-                </div>
-                <div class="preview-hero" style="background:linear-gradient(135deg,rgba(255,138,31,.5),rgba(15,23,42,1));">
-                  <div class="preview-hero-line" style="width:80%;"></div>
-                  <div class="preview-hero-sub" style="width:60%;"></div>
-                </div>
-                <div class="preview-products">
-                  <div class="preview-product">
-                    <div class="preview-product-img" style="background:linear-gradient(135deg,rgba(251,191,36,.5),rgba(249,115,22,.8));"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                    <div class="preview-product-price"></div>
-                  </div>
-                </div>
-                <div class="preview-cod">
-                  <div class="preview-cod-lines">
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                  </div>
-                  <div class="preview-cod-btn" style="width:70%;"></div>
-                </div>
-              </div>
-              <div class="theme-actions">
-                <button class="btn-ghost btn-small" data-theme-choice="Thème 2 — Glow Premium">Choisir ce thème</button>
-              </div>
-            </article>
-
-            <!-- Thème 3 -->
-            <article class="card reveal reveal-left reveal-delay-2">
-              <div class="theme-card-header">
-                <div>
-                  <div class="theme-name">Thème 3 — Editorial Story</div>
-                  <div class="theme-sub">Beaucoup de texte, storytelling, photos larges.</div>
-                </div>
-                <span class="theme-tag">Démo</span>
-              </div>
-              <div class="theme-preview">
-                <div class="preview-header">
-                  <div class="preview-logo"></div>
-                  <div class="preview-menu"><span></span><span></span><span></span></div>
-                </div>
-                <div class="preview-hero" style="padding:8px 10px 12px;">
-                  <div class="preview-hero-line" style="width:60%;"></div>
-                  <div class="preview-hero-sub" style="width:40%;margin-bottom:4px;"></div>
-                  <div class="preview-hero-sub" style="width:80%;background:rgba(148,163,184,.5);"></div>
-                </div>
-                <div class="preview-products">
-                  <div class="preview-product" style="grid-column:1/4;">
-                    <div class="preview-product-img" style="height:26px;"></div>
-                    <div class="preview-product-line" style="width:60%;"></div>
-                    <div class="preview-product-line" style="width:40%;background:rgba(148,163,184,.6);"></div>
-                  </div>
-                </div>
-                <div class="preview-cod">
-                  <div class="preview-cod-lines">
-                    <div class="preview-cod-field" style="grid-column:1/3;width:100%;"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                  </div>
-                  <div class="preview-cod-btn" style="width:65%;"></div>
-                </div>
-              </div>
-              <div class="theme-actions">
-                <button class="btn-ghost btn-small" data-theme-choice="Thème 3 — Editorial">Choisir ce thème</button>
-              </div>
-            </article>
-
-            <!-- Thème 4 -->
-            <article class="card reveal reveal-left reveal-delay-3">
-              <div class="theme-card-header">
-                <div>
-                  <div class="theme-name">Thème 4 — COD Focus</div>
-                  <div class="theme-sub">Peu de distraction, grosse mise en avant du formulaire COD.</div>
-                </div>
-                <span class="theme-tag cod">COD</span>
-              </div>
-              <div class="theme-preview">
-                <div class="preview-header">
-                  <div class="preview-logo"></div>
-                  <div class="preview-menu"><span></span><span></span><span></span></div>
-                </div>
-                <div class="preview-hero" style="padding:8px 10px;">
-                  <div class="preview-hero-line" style="width:55%;"></div>
-                  <div class="preview-hero-sub" style="width:35%;"></div>
-                </div>
-                <div class="preview-cod" style="border-style:solid;">
-                  <div class="preview-cod-lines">
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                    <div class="preview-cod-field"></div>
-                  </div>
-                  <div class="preview-cod-btn"></div>
-                </div>
-                <div class="preview-products" style="margin-top:4px;">
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                  </div>
-                  <div class="preview-product">
-                    <div class="preview-product-img"></div>
-                    <div class="preview-product-line"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="theme-actions">
-                <button class="btn-ghost btn-small" data-theme-choice="Thème 4 — COD Focus">Choisir ce thème</button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROCESS -->
-      <section id="process">
-        <div class="section-inner">
-          <div class="section-eyebrow">Process</div>
-          <h2 class="section-title">Comment <span>on travaille</span></h2>
-          <p class="section-description">
-            Un process simple, en 4 étapes, pour lancer votre thème, vos blocs ou votre app Shopify sans perdre de temps.
-          </p>
-          <div class="grid-4">
-            <div class="card reveal reveal-fall">
-              <div class="step-number">01</div>
-              <div class="step-title">Consultation</div>
-              <p class="step-text">
-                On pose vos objectifs, vos blocages actuels et le type de boutique/app que vous voulez lancer.
-              </p>
-            </div>
-            <div class="card reveal reveal-fall reveal-delay-1">
-              <div class="step-number">02</div>
-              <div class="step-title">Design & structure</div>
-              <p class="step-text">
-                Wireframes, sections, flux de commande COD, déclenchement des popups et organisation des blocs.
-              </p>
-            </div>
-            <div class="card reveal reveal-fall reveal-delay-2">
-              <div class="step-number">03</div>
-              <div class="step-title">Build & intégrations</div>
-              <p class="step-text">
-                Développement du thème/app, liaison avec Shopify, Google Sheets, pixels, automatisations IA, etc.
-              </p>
-            </div>
-            <div class="card reveal reveal-fall reveal-delay-3">
-              <div class="step-number">04</div>
-              <div class="step-title">Lancement & support</div>
-              <p class="step-text">
-                On configure ensemble, on teste, puis on vous accompagne pour les premiers jours/semaines après le lancement.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STATS + TEMOIGNAGE -->
-      <section id="portfolio">
-        <div class="section-inner stats-testimonials">
-          <div class="stats-card reveal reveal-left">
-            <div class="stats-title">Local support</div>
-            <div class="stats-heading">Humain d’abord, tech ensuite.</div>
-            <p class="card-text">
-              Même si nos outils sont techniques, notre approche reste simple,
-              transparente et orientée résultats.
-            </p>
-            <div class="stat-row">
-              <div class="stat">
-                <div class="stat-value">30+</div>
-                <div class="stat-label">Projets Shopify accompagnés</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">95%</div>
-                <div class="stat-label">Clients qui recommandent TRIPLE S</div>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card reveal reveal-right reveal-fall">
-            <div class="testimonial-eyebrow">Témoignage</div>
-            <div class="testimonial-heading">“On a enfin un système clair.”</div>
-            <p class="testimonial-text">
-              « Avant, notre boutique COD était un mélange de scripts, d’apps
-              et de hacks. Avec TRIPLE S, on a un seul app avec des blocs propres :
-              bar d’annonce, popup, formulaire COD et compteur. Tout est géré au même endroit. »
-            </p>
-            <div class="testimonial-author">Client TripleForm COD</div>
-            <div class="testimonial-role">Boutique e-commerce COD</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- AVIS REELS -->
-      <section id="reviews">
-        <div class="section-inner">
-          <div class="section-eyebrow">Avis clients</div>
-          <h2 class="section-title">Ce que <span>disent les boutiques</span></h2>
-
-          <div class="grid-3" id="reviewsList">
-            <article class="card reveal reveal-left">
-              <h3 class="card-title">Ahmed — Boutique Mode</h3>
-              <p class="card-text">
-                “Installation rapide, le thème Glow a modernisé ma home. Bon support, réponses le jour même.”
-              </p>
-            </article>
-            <article class="card reveal reveal-left reveal-delay-1">
-              <h3 class="card-title">Sarah — Cosmétiques</h3>
-              <p class="card-text">
-                “Barre d’annonce + compte à rebours = plus d’actions pendant mes promos. Simple et efficace.”
-              </p>
-            </article>
-            <article class="card reveal reveal-left reveal-delay-2">
-              <h3 class="card-title">Yassine — Accessoires</h3>
-              <p class="card-text">
-                “Interface claire, j’ai ajouté WhatsApp sticky en 2 minutes. Merci pour l’aide sur le thème !”
-              </p>
-            </article>
-          </div>
-
-          <div class="card reveal reveal-right" style="margin-top:26px;max-width:760px;">
-            <h3 class="card-title">Laisser un avis</h3>
-            <p class="card-text" style="margin-bottom:8px">
-              Votre avis sera affiché directement ci-dessus, et envoyé à TRIPLE S par email / WhatsApp.
-            </p>
-            <form id="reviewForm">
-              <input name="name" placeholder="Votre nom" required>
-              <input name="store" placeholder="Nom de boutique (optionnel)">
-              <textarea name="msg" placeholder="Votre avis (ce qui vous a plu, résultats, etc.)" required></textarea>
-              <div style="display:flex;gap:10px;flex-wrap:wrap">
-                <button type="submit" class="btn-primary">Envoyer & afficher</button>
-                <button type="button" id="reviewWA" class="btn-ghost">Envoyer seulement sur WhatsApp</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- DEMANDE THEME PERSONNALISE -->
-      <section id="custom">
-        <div class="section-inner">
-          <div class="section-eyebrow">Thème personnalisé</div>
-          <h2 class="section-title">Demande de <span>thème ou section</span></h2>
-          <div class="card contact-grid reveal reveal-fall">
-            <div>
-              <h3 class="card-title">Parlez-nous de votre besoin</h3>
-              <p class="card-text" style="margin-bottom:10px">
-                Donnez des exemples de sites que vous aimez, couleurs, sections souhaitées, contraintes, délais.
-                Vous recevez une réponse claire sur WhatsApp et par email.
-              </p>
-              <div class="contact-list">
-                <span>Email : <strong>ktami.sami@icloud.com</strong></span>
-                <span>WhatsApp : <strong>+212 7 25 14 86 34</strong></span>
-              </div>
-            </div>
-            <div>
-              <form id="customForm">
-                <div class="grid-2" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
-                  <input name="name" placeholder="Nom complet" required>
-                  <input name="email" type="email" placeholder="Email" required>
-                  <input name="phone" placeholder="WhatsApp (avec indicatif)">
-                  <select name="theme">
-                    <option value="Thème 1">Thème 1 — Minimal Clean</option>
-                    <option value="Thème 2">Thème 2 — Glow Premium</option>
-                    <option value="Thème 3">Thème 3 — Editorial</option>
-                    <option value="Autre">Autre / Nouveau</option>
-                  </select>
-                </div>
-                <textarea name="details" placeholder="Décrivez votre demande : sections, couleurs, références, objectifs de conversion…" required></textarea>
-                <div style="display:flex;gap:10px;flex-wrap:wrap">
-                  <button type="submit" class="btn-primary">Envoyer par Email</button>
-                  <button type="button" id="customWA" class="btn-ghost">Envoyer sur WhatsApp</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="section-inner">
-          <div class="card contact-grid reveal reveal-left">
-            <div>
-              <h3 class="card-title">Contact direct</h3>
-              <p class="card-text">
-                Vous avez déjà une boutique ou un projet précis ? Envoyez un message rapide et on voit ensemble
-                comment TRIPLE S peut vous aider (apps, blocs, thèmes ou support).
-              </p>
-              <div class="contact-list">
-                <span>Email : <strong>ktami.sami@icloud.com</strong></span>
-                <span>WhatsApp : <strong>+212 7 25 14 86 34</strong></span>
-                <span>Basé au Maroc, clients partout.</span>
-              </div>
-              <div class="contact-actions">
-                <button class="btn-primary" onclick="openWhatsApp('Bonjour, je veux discuter de mon projet Shopify.')">
-                  Écrire sur WhatsApp
-                </button>
-                <a class="btn-ghost" href="mailto:ktami.sami@icloud.com?subject=Projet%20Shopify%20-%20TRIPLE%20S">
-                  Envoyer un email
-                </a>
-              </div>
-            </div>
-            <div>
-              <h3 class="card-title">Message rapide</h3>
-              <form id="contactQuickForm">
-                <input name="name" placeholder="Nom complet" required>
-                <input name="store" placeholder="Nom de la boutique (optionnel)">
-                <textarea name="msg" placeholder="Votre message / vos questions" required></textarea>
-                <button type="submit" class="btn-primary">Envoyer sur WhatsApp</button>
-              </form>
-            </div>
-          </div>
+          <form class="support-form reveal reveal-up reveal-delay-1" id="supportForm">
+            <h3>Message rapide</h3>
+            <label>
+              <span>Nom</span>
+              <input name="name" required placeholder="Votre nom" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input name="email" type="email" required placeholder="email@exemple.com" />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" required placeholder="Explique le besoin (app, bug, configuration...)"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Envoyer (WhatsApp)</button>
+            <p class="form-note">Le bouton envoie le message sur WhatsApp (simple & rapide).</p>
+          </form>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-inner">
-        <div>
-          <div class="footer-logo">
-            <span class="logo-text-main">TRIPLE S</span><br>
-            <span class="logo-text-sub">Apps & sections Shopify</span>
-          </div>
-          <p>
-            Création d’apps, blocs et thèmes Shopify.  
-            Formulaires COD, bars d’annonce, popups, compteurs et intégrations IA.
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="footer-name">TRIPLE S</div>
+          <p class="footer-text">
+            Apps Shopify orientées conversion : COD, upsells, announcement bars, popups, WhatsApp & support.
           </p>
         </div>
+
         <div>
-          <div class="footer-nav-title">Navigation</div>
-          <div class="footer-list">
+          <div class="footer-title">Links</div>
+          <div class="footer-links">
             <a href="#top">Home</a>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#apps">Apps & blocs</a>
+            <a href="#apps">Apps</a>
+            <a href="#results">Résultats</a>
             <a href="#reviews">Avis</a>
+            <a href="#support">Support</a>
           </div>
         </div>
+
         <div>
-          <div class="footer-nav-title">Contact</div>
-          <div class="footer-list">
-            <span>Email : ktami.sami@icloud.com</span>
-            <span>WhatsApp : +212 7 25 14 86 34</span>
+          <div class="footer-title">Contact</div>
+          <div class="footer-links">
+            <span>Email: ktami.sami@icloud.com</span>
+            <span>WhatsApp: +212 7 25 14 86 34</span>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">
+
+      <div class="container footer-bottom">
         <span>© <span id="year"></span> TRIPLE S — Tous droits réservés.</span>
-        <a href="#top" class="btn-ghost">Haut de page</a>
+        <a class="btn btn-ghost" href="#top">Back to top</a>
       </div>
     </footer>
   </div>
 
-  <script>
-    // Année
-    const yearEl = document.getElementById('year');
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    // Effet de typing pour la phrase principale
-    const typedTarget = document.getElementById('typed-line');
-    if (typedTarget){
-      const typedText = "TRIPLE S conçoit des apps, sections et thèmes Shopify pensés pour les conversions : formulaires COD, popups, compteurs, bars d’annonce et automatisations pilotées par l’IA.";
-      let i = 0;
-      const speed = 40; // ms
-      function typeNext(){
-        if(i <= typedText.length){
-          typedTarget.textContent = typedText.slice(0, i);
-          i++;
-          setTimeout(typeNext, speed);
-        }
-      }
-      typeNext();
-    }
-
-    // Fonction WhatsApp globale
-    const WA_NUMBER = "212725148634";
-    function openWhatsApp(text){
-      const url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
-      window.open(url, "_blank");
-    }
-
-    // Scroll reveal IN/OUT
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('in-view');
-        } else {
-          e.target.classList.remove('in-view');
-        }
-      });
-    }, {threshold:0.15});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    // MINI BOT IA TRIPLE S (moteur mots-clés)
-    const assistantForm = document.getElementById('assistantForm');
-    const assistantInput = document.getElementById('assistantInput');
-    const assistantMessages = document.getElementById('assistantMessages');
-    const suggestionButtons = document.querySelectorAll('.suggested-question');
-
-    const knowledgeBase = [
-      {
-        keywords: ["blocks", "bar", "whatsapp", "announcement"],
-        answer:
-          "Notre app « Blocks: Bar, WhatsApp & More » ajoute des barres d’annonce, popups ciblés, compteurs et bouton WhatsApp sticky directement dans le Theme Editor. Vous pouvez activer/désactiver chaque bloc, changer les textes, couleurs et positions sans coder."
-      },
-      {
-        keywords: ["cod", "formulaire", "cash on delivery", "one step"],
-        answer:
-          "Pour le COD, TRIPLE S conçoit des formulaires 1-step ou 2-steps avec validation, anti-bot, champs personnalisés et synchronisation vers Google Sheets ou WhatsApp. L’objectif est d’avoir un formulaire clair, rapide et facile à gérer côté support."
-      },
-      {
-        keywords: ["ia", "automatisation", "automation", "bot", "agent"],
-        answer:
-          "Côté IA, nous mettons en place des agents pour le support (FAQ, suivi de commande), la qualification des leads ou les tâches répétitives (préparation de messages, réponses types, résumés). Le bot est entraîné sur vos pages, vos apps et vos process."
-      },
-      {
-        keywords: ["thème", "theme", "section", "sections", "landing"],
-        answer:
-          "Nous créons des thèmes et sections sur mesure : home pages, landing pages, bannières, grilles de produits, blocs USP, témoignages, etc. Tout est pensé pour être réutilisable dans le Theme Editor et compatible avec vos apps existantes."
-      },
-      {
-        keywords: ["support", "accompagnement", "aide"],
-        answer:
-          "TRIPLE S propose un support humain + IA : aide sur vos apps, réglages de blocs, textes, couleurs, intégration avec d’autres apps, et création de FAQ intelligentes. Vous pouvez commencer par WhatsApp, puis ajouter un bot comme celui sur cette page."
-      },
-      {
-        keywords: ["prix", "tarif", "pricing", "combien"],
-        answer:
-          "Les tarifs dépendent du périmètre (simple configuration d’app, création de sections, développement d’une app complète...). En général, on commence par un échange rapide sur WhatsApp pour définir le besoin et proposer un budget clair."
-      }
-    ];
-
-    function findAnswer(message){
-      const text = message.toLowerCase();
-      for (const item of knowledgeBase){
-        if (item.keywords.some(k => text.includes(k))) return item.answer;
-      }
-      return (
-        "Bonne question 👍\n\n" +
-        "Pour ce cas précis, l’IA peut être entraînée sur votre boutique (pages, FAQ, process internes) " +
-        "et répondre avec plus de contexte. Sur cette démo, le bot reste volontairement simple. " +
-        "Envoyez-moi votre scénario sur WhatsApp et on voit ensemble comment le mettre en place."
-      );
-    }
-
-    function addMessage(text, from){
-      const bubble = document.createElement('div');
-      bubble.className = 'chat-bubble ' + (from === 'user' ? 'user' : 'bot');
-      const label = from === 'user' ? 'Vous' : 'TRIPLE S BOT';
-      bubble.innerHTML = `<span class="chat-meta">${label}</span>${String(text).replace(/\n/g, "<br>")}`;
-      assistantMessages.appendChild(bubble);
-      assistantMessages.scrollTop = assistantMessages.scrollHeight;
-    }
-
-    if (assistantForm && assistantInput && assistantMessages) {
-      assistantForm.addEventListener('submit', (e)=>{
-        e.preventDefault();
-        const question = assistantInput.value.trim();
-        if (!question) return;
-        addMessage(question, 'user');
-        addMessage(findAnswer(question), 'bot');
-        assistantInput.value = "";
-      });
-
-      suggestionButtons.forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          const q = btn.getAttribute('data-q') || "";
-          if (!q) return;
-          addMessage(q, 'user');
-          addMessage(findAnswer(q), 'bot');
-        });
-      });
-    }
-
-    // AVIS : ajout dans la liste + envoi email + WA
-    const reviewForm = document.getElementById('reviewForm');
-    const reviewsList = document.getElementById('reviewsList');
-
-    if (reviewForm && reviewsList) {
-      reviewForm.addEventListener('submit', (e)=>{
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(reviewForm).entries());
-        const name = (data.name || "").trim() || "Client TRIPLE S";
-        const store = (data.store || "").trim();
-        const msg = (data.msg || "").trim();
-        if (!msg) return;
-
-        const card = document.createElement('article');
-        card.className = 'card reveal reveal-left';
-        card.innerHTML = `
-          <h3 class="card-title">${name}${store ? " — " + store : ""}</h3>
-          <p class="card-text">${msg}</p>
-        `;
-        reviewsList.prepend(card);
-        observer.observe(card);
-
-        const subject = encodeURIComponent("Nouvel avis client TRIPLE S");
-        const body = encodeURIComponent(`Nom: ${name}\nBoutique: ${store || "-"}\n\nAvis:\n${msg}`);
-        window.open(`mailto:ktami.sami@icloud.com?subject=${subject}&body=${body}`, "_self");
-
-        openWhatsApp(`Avis client\nNom: ${name}\nBoutique: ${store || "-"}\n\n${msg}`);
-
-        reviewForm.reset();
-      });
-
-      const reviewWAButton = document.getElementById('reviewWA');
-      if (reviewWAButton){
-        reviewWAButton.addEventListener('click', ()=>{
-          const data = Object.fromEntries(new FormData(reviewForm).entries());
-          if(!data.name || !data.msg){
-            alert("Remplissez au minimum votre nom et votre avis.");
-            return;
-          }
-          openWhatsApp(`Avis client\nNom: ${data.name}\nBoutique: ${data.store || "-"}\n\n${data.msg}`);
-        });
-      }
-    }
-
-    // DEMANDE THEME : email + WhatsApp
-    const customForm = document.getElementById('customForm');
-    if (customForm) {
-      customForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const d = Object.fromEntries(new FormData(customForm).entries());
-        const subject = encodeURIComponent(`Demande thème personnalisable — ${d.theme}`);
-        const body = encodeURIComponent(
-          `Nom: ${d.name}\nEmail: ${d.email}\nWhatsApp: ${d.phone || "-"}\nThème: ${d.theme}\n\nDétails:\n${d.details}`
-        );
-        window.location.href = `mailto:ktami.sami@icloud.com?subject=${subject}&body=${body}`;
-      });
-
-      const customWA = document.getElementById('customWA');
-      if (customWA){
-        customWA.addEventListener('click',()=>{
-          const d = Object.fromEntries(new FormData(customForm).entries());
-          if(!d.name || !d.details){
-            alert("Nom et détails sont obligatoires.");
-            return;
-          }
-          const text =
-            `Demande thème personnalisable\n` +
-            `Nom: ${d.name}\n` +
-            `Email: ${d.email || "-"}\n` +
-            `WhatsApp: ${d.phone || "-"}\n` +
-            `Thème: ${d.theme}\n\n` +
-            `Détails:\n${d.details}`;
-          openWhatsApp(text);
-        });
-      }
-    }
-
-    // CONTACT RAPIDE : WA seulement
-    const contactQuickForm = document.getElementById('contactQuickForm');
-    if (contactQuickForm) {
-      contactQuickForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const d = Object.fromEntries(new FormData(contactQuickForm).entries());
-        const text =
-          `Contact rapide TRIPLE S\n` +
-          `Nom: ${d.name}\n` +
-          `Boutique: ${d.store || "-"}\n\n` +
-          `Message:\n${d.msg}`;
-        openWhatsApp(text);
-        contactQuickForm.reset();
-      });
-    }
-  </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
